@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steps</title>
+    <link rel="stylesheet" href="style/css.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <header class="headerMain">
+            <div class="logoTitle">
+                <img src="img/logo/logo.svg" alt="" class="logo">
+                <h1>Steps</h1>
+            </div>
+            <div onclick="activeModal('wrapperMenu')">
+                <i class="material-icons menu">&#xe5d2;</i>              
+            </div>
+            <div class="wrapperMenu">
+                <div>
+                    <button onclick="activeModal('wrapperMenu')" class="closeBtn">X</button>
+                </div>
+                <ul>
+                    <li onclick="activeWindow('home'); activeModal('wrapperMenu')" tabindex="0" data-descr="Go to home">
+                        <span tabindex="0" data-descr="Go to home">Home</span>
+                    </li>
+                    <li onclick="activeWindow('app');activeModal('wrapperMenu')" >
+                        <span tabindex="0" data-descr="Go to my personal Task">My workspace</span>
+                    </li>
+                    <li>About Steps</li>
+                </ul>
+                <input type="button" value="Login" class="btn login" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')">
+                <input type="button" value="Logout" class="btn logout hide">    
+                <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
+                    ¿Don't you have an account? <br>
+                    <span style="text-decoration: underline">
+                        Create an account here.
+                    </span>
+                </p>
+            </div>  
+            <div class="modalLogin">
+                <div>
+                    <button class="closeBtn" onclick="activeModal('modalLogin')">X</button>
+                </div>
+                <form action="">
+                    <h3>Login</h3>
+                    <p>
+                        Login in steps to start creating your own story.
+                    </p>
+                    <fieldset>
+                        <legend>Email</legend>
+                        <input type="mail">
+                    </fieldset>                    
+                    <fieldset>
+                        <legend>Password</legend>
+                        <input type="password">
+                    </fieldset>
+                    <button class="btn">Start</button>
+                    <p onclick="activeModal('modalLogin'); activeModal('modalRegister')">
+                        ¿Don't you have an account? <br>
+                        <span style="text-decoration: underline">
+                            Create an account here.
+                        </span>
+                    </p>
+                    
+                </form>
+            </div>
+            <div class="modalRegister" enctype=multipart/form-data>
+                <div>
+                    <button class="closeBtn" onclick="activeModal('modalRegister')">X</button>
+                </div>
+                <form action="">
+                    <h3>Register</h3>
+                    <p>
+                        Register in steps to start creating your own story.
+                    </p>
+                    <fieldset>
+                        <legend>User Name</legend>
+                        <input type="text">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Email</legend>
+                        <input type="mail">
+                    </fieldset>                    
+                    <fieldset>
+                        <legend>Password</legend>
+                        <input type="password">
+                    </fieldset>                   
+                    <fieldset>
+                        <legend>Add description (Optional)</legend>
+                        <input type="text" accept=".jpg, .jpeg, .png">
+                    </fieldset>
+                    <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
+                    <label for="files">
+                        <i class="material-icons">&#xe2c3;</i>
+                    </label>
+                    <input type="file" id="files" name="files[]" multiple enctype=multipart/form-data/>
+                    <p class="list" ></p>
+                    <button class="btn">Start</button>
+                    
+                </form>                
+            </div>
+        </header>  
+        <!-- home content -->
+        <div class="window home" id="home">
+            <div class="wrapperTitle">
+                <h2 ><span id="titleMain"></span><span class="cursor">|</span></h2>
+                <input type="button" value="Get started" class="btn">
+            </div>
+        </div>
+        <!-- app content -->
+        <div class="window App" id="app">
+            <div class="AppItem  asideMenu">
+                <div class="newItem">
+                    <ul>
+                        <li>
+                            <i class="material-icons">&#xe147;</i>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="itemList">
+                    <li>Git</li>
+                    <li>Firebase</li>
+                    <li>React js</li>
+                    <li>Node</li>
+                </ul>
+            </div>
+            <div class="AppItem mainContent">
+                              
+            </div>
+            <div class="AppItem asideNotes">
+
+            </div>
+        </div> 
+        <footer class="footer">
+            <div class="wrapperFooter">
+                <p>
+                    <b>
+                        <img src="img/logo/logo.svg" alt="" class="logoFooter">
+                        Steps 2020
+                    </b>
+                </p>
+                <p style="font-size: .8rem"><i>Todos los derechos reservados</i></p>
+                <p><i>EdcasDevelopment</i></p>
+            </div>
+        </footer> 
+    </div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

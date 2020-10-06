@@ -1,0 +1,69 @@
+@mixin gridItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2rem 1fr;
+    row-gap: .5rem;
+
+}
+.App {
+    display: grid;
+    grid-template-columns: 240px 1fr 250px;
+    width: 100%;
+    height: 100%;
+    .AppItem {
+        padding: .3rem;
+        margin: 5rem .5rem .5rem .5rem;
+        border-radius: var(--border-radius);
+        overflow: auto;
+    }
+    .asideMenu{
+        background: rgba(0, 0, 0, .5);
+        background: var(--black-color);
+        box-shadow: var(--shadow-short);
+        @include gridItem;
+
+    }
+    .asideNotes{
+        // background: rgba(0, 0, 0, .5);
+
+    }
+    .mainContent{
+        background: rgba(255, 255, 255, .5);
+    }
+}
+.newItem {
+    @include flexcenter;
+    ul {
+        width: 100%;
+        height: 100%;
+        @include flexcenter;
+        justify-content: flex-end;
+        border-radius: .3rem .3rem 0 0;
+        li {
+            list-style: none;
+            display: inline-block;
+            color: var(--primary-color);
+            cursor: pointer;
+            i {
+                font-weight: 500;
+                font-size: 2rem;
+
+            }
+        }
+    }
+}
+.itemList {
+    width: 100%;
+    li {
+        font-size: var(--font-size-medium);
+        padding: .4rem 0;
+        color: var(--primary-color);
+        list-style: none;
+        transition: .5s;
+        text-align: center;
+        &:hover {
+            background: rgba(#101010, .5);
+            color: var(--white-color);
+        }
+    }
+}

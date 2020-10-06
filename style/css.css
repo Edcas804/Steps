@@ -1,0 +1,574 @@
+:root {
+  --border-radius: .5rem;
+  --primary-color: #05976c;
+  --white-color: #ccc;
+  --black-color: #272727;
+  --hight-color: #af0;
+  --shadow-short: 0rem .3rem .8rem #000;
+  --font-size-big: 3rem;
+  --font-size-large: 1.4rem;
+  --font-size-medium: 1.2rem;
+  --font-size-small: .8rem;
+}
+
+::-webkit-scrollbar {
+  width: .7rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 1rem;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.headerMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  margin: auto;
+  padding: 1rem;
+  position: fixed;
+  left: 10%;
+  right: 10%;
+  top: 0;
+  cursor: pointer;
+}
+
+.headerMain .logoTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerMain .logoTitle .logo {
+  width: 3rem;
+  height: 3rem;
+  -webkit-filter: hue-rotate(150deg);
+          filter: hue-rotate(150deg);
+}
+
+.headerMain .logoTitle h1 {
+  color: var(--primary-color);
+  font-size: var(--font-size-big);
+}
+
+.headerMain .menu {
+  color: var(--primary-color);
+  font-size: 3rem;
+}
+
+.wrapperMenu {
+  position: fixed;
+  top: -100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #222;
+  border-radius: var(--border-radius);
+  padding: 3rem 1rem  1rem 1rem;
+  width: 320px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-box-shadow: var(--shadow-short);
+          box-shadow: var(--shadow-short);
+  right: 3rem;
+}
+
+.wrapperMenu ul {
+  width: 100%;
+  padding: 0 0 2rem 0;
+}
+
+.wrapperMenu ul li {
+  color: var(--primary-color);
+  list-style: none;
+  font-size: var(--font-size-large);
+  padding: 1rem 0;
+  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--primary-color);
+  width: 100%;
+  text-align: center;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.wrapperMenu ul li:hover {
+  background: rgba(34, 34, 34, 0.5);
+  border-bottom: 1px solid var(--white-color);
+  color: var(--white-color);
+}
+
+.wrapperMenu ul li [data-descr] {
+  position: relative;
+}
+
+.wrapperMenu ul li [data-descr]:hover::after {
+  content: attr(data-descr);
+  position: absolute;
+  left: 0;
+  top: 24px;
+  min-width: 150px;
+  border-radius: var(--border-radius);
+  background-color: var(--black-color);
+  padding: 12px;
+  color: var(--white-color);
+  font-size: var(--font-size-small);
+  z-index: 1;
+}
+
+.wrapperMenu p {
+  color: var(--primary-color);
+  text-align: center;
+  padding: .5rem 0;
+  width: 100%;
+  font-size: var(--font-size-medium);
+  margin-bottom: .8rem;
+}
+
+.modalLogin, .modalRegister {
+  position: fixed;
+  top: -100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #222;
+  border-radius: var(--border-radius);
+  padding: 3rem 1rem  1rem 1rem;
+  width: 320px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-box-shadow: var(--shadow-short);
+          box-shadow: var(--shadow-short);
+  margin: auto;
+  left: 20%;
+  right: 20%;
+}
+
+.modalLogin form, .modalRegister form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modalLogin form h3, .modalLogin form p, .modalRegister form h3, .modalRegister form p {
+  color: var(--primary-color);
+  text-align: center;
+  padding: .5rem 0;
+  width: 100%;
+}
+
+.modalLogin form h3, .modalRegister form h3 {
+  font-size: var(--font-size-large);
+}
+
+.modalLogin form p, .modalRegister form p {
+  font-size: var(--font-size-medium);
+  margin-bottom: .8rem;
+}
+
+.modalLogin form fieldset, .modalRegister form fieldset {
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  width: 100%;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modalLogin form fieldset:focus, .modalRegister form fieldset:focus {
+  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid #f00;
+}
+
+.modalLogin form fieldset legend, .modalRegister form fieldset legend {
+  padding: 0 1rem;
+}
+
+.modalLogin form input, .modalRegister form input {
+  width: 98%;
+  padding: .6rem 0;
+  border-radius: var(--border-radius);
+  background: none;
+  border: none;
+  color: var(--white-color);
+  font-size: var(--font-size-medium);
+  outline: none;
+}
+
+.modalLogin form input:focus, .modalRegister form input:focus {
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: var(--primary-color);
+}
+
+.modalLogin form #files, .modalRegister form #files {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+}
+
+.modalLogin form label, .modalRegister form label {
+  color: var(--primary-color);
+  background: var(--primary-color);
+  border-radius: var(--border-radius);
+  color: var(--white-color);
+  padding: .5rem;
+  height: 20px;
+  width: 60px;
+  text-align: center;
+}
+
+.modalLogin form .list, .modalRegister form .list {
+  max-width: 80%;
+  overflow: hidden;
+  font-size: var(--font-size-small);
+  color: var(--hight-color);
+  padding: .3rem;
+  border-radius: var(--border-radius);
+}
+
+.home {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home .wrapperTitle {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home .wrapperTitle h2 {
+  color: var(--white-color);
+  font-size: 5rem;
+}
+
+.home .cursor {
+  -webkit-animation: hide 1s infinite;
+          animation: hide 1s infinite;
+}
+
+@-webkit-keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.btn {
+  outline: none;
+  border-radius: var(--border-radius);
+  padding: .8rem 1rem;
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  min-width: 100px;
+  margin: .3rem;
+  background: var(--primary-color);
+  color: var(--white-color);
+  border: 2px solid var(--primary-color);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.btn:hover, .btn:focus {
+  background: none;
+  color: var(--primary-color);
+}
+
+.btn:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.closeBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  outline: none;
+  background: none;
+  color: var(--primary-color);
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  border: 2px solid var(--primary-color);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.closeBtn:hover, .closeBtn:focus {
+  background: none;
+  background: var(--primary-color);
+  color: var(--white-color);
+}
+
+.closeBtn:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: -2.5rem;
+  border-radius: 500% 500% 0 0;
+  padding: .5rem 0 0 0;
+  background: url("../img/background/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.footer .wrapperFooter {
+  padding: .2rem 0 .5rem 0;
+  background: var(--white-color);
+  background: var(--black-color);
+  width: 100%;
+  bottom: -2.7rem;
+  border-radius: 500% 500% 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 100;
+}
+
+.footer .wrapperFooter .logoFooter {
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  -webkit-filter: hue-rotate(150deg);
+          filter: hue-rotate(150deg);
+}
+
+.footer .wrapperFooter p {
+  color: var(--primary-color);
+  margin: auto;
+}
+
+.footer:hover {
+  bottom: 0;
+}
+
+.footer:hover .logoFooter {
+  display: inline-block;
+}
+
+.App {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 240px 1fr 250px;
+      grid-template-columns: 240px 1fr 250px;
+  width: 100%;
+  height: 100%;
+}
+
+.App .AppItem {
+  padding: .3rem;
+  margin: 5rem .5rem .5rem .5rem;
+  border-radius: var(--border-radius);
+  overflow: auto;
+}
+
+.App .asideMenu {
+  background: rgba(0, 0, 0, 0.5);
+  background: var(--black-color);
+  -webkit-box-shadow: var(--shadow-short);
+          box-shadow: var(--shadow-short);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 2rem 1fr;
+      grid-template-rows: 2rem 1fr;
+  row-gap: .5rem;
+}
+
+.App .mainContent {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.newItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newItem ul {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  border-radius: .3rem .3rem 0 0;
+}
+
+.newItem ul li {
+  list-style: none;
+  display: inline-block;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.newItem ul li i {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.itemList {
+  width: 100%;
+}
+
+.itemList li {
+  font-size: var(--font-size-medium);
+  padding: .4rem 0;
+  color: var(--primary-color);
+  list-style: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-align: center;
+}
+
+.itemList li:hover {
+  background: rgba(16, 16, 16, 0.5);
+  color: var(--white-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("../img/background/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hide {
+  display: none;
+}
+
+.top0 {
+  top: 0;
+}
+/*# sourceMappingURL=css.css.map */
