@@ -1,0 +1,82 @@
+
+@media (max-width: 850px){
+    .headerMain{
+        @include flexBetween;
+        width: 90%;
+        margin:auto;
+        padding: 1rem 0;
+        position: fixed;
+        left: 2%;
+        right: 2%;
+        top: 0;
+        cursor: pointer;
+        
+        .logoTitle{
+            @include flexcenter;
+            .logo {
+                width: 3rem;
+                height: 3rem;
+                filter: hue-rotate(150deg);
+            }   
+            h1{
+                color:var(--primary-color);
+                font-size: var(--font-size-big);
+            }
+        
+        }
+        .menu {
+            color:var(--primary-color);
+            font-size: 3rem;
+        }
+        
+    }
+    .App {
+        grid-template-columns: 100%;
+        width: 100%;
+        height: 100%;
+        .AppItem {
+            .toggleClose {
+                display: block;  
+            }
+        }
+        .asideMenu, .asideNotes {
+            position: fixed;
+            left: 1%;
+            right: 1%;
+            z-index: 200;
+            margin: auto;
+            max-width: 400px;
+            background: var(--black-color);
+        }
+        .asideNotes {
+            padding: 3rem 0 0 0;
+        }
+        .mainContent{
+        }
+    }.newItem {
+        h6 {
+        }
+        ul {
+            li {
+                i {
+                    font-size: 1.5rem;
+                }
+            }
+            .toggleItems {
+                display: inline-block;
+                display: block;
+            }
+        }
+    }
+    .asideMenu{
+        top: -100%;  
+    }
+    .asideNotes{
+        top: -100%;      
+    }
+    .modalLogin, .modalRegister, .wrapperMenu{
+
+    }
+    
+
+}

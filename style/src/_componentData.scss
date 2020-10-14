@@ -1,0 +1,171 @@
+.dataFromDb {
+    overflow: auto;
+    padding: 0 1rem 0 0 ;
+}
+.wrapperData {
+    // box-shadow: var(--shadow-short);
+    padding: .2rem .2rem;
+    border-radius: var(--border-radius);
+    background: var(--white-color);
+    display: grid;
+    grid-template-rows: 1.5rem 1fr 1rem;
+    border-left: 5px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    margin: .5rem 0;
+    .dataHeader {
+        @include flexBetween;
+        padding: 0 1rem;
+        transition: .5s;
+        h4 {
+            font-size: var(--font-size-large);
+            color: var(--black-color);
+        }
+        ul {
+            opacity: 0;
+            padding: 0 0 0 1rem;
+            transition: .5s;
+            li {
+                display: inline-block;
+                cursor: pointer;
+                i {
+                    font-size: var(--font-size-large);
+                    color: var(--primary-color);
+                    text-shadow: var(--shadow-short);
+                }
+                .delete {color: #f00}
+                .edit {
+                    color: var(--primary-color);
+                }
+            }
+        }
+        &:hover ul{
+            opacity: 1;
+        }
+    }
+    .wrapperCode {
+        position: relative;
+        padding: 0 .2rem .2rem 0;
+        .code {
+            width: 100%;
+            text-align: left;
+            background: var(--black-color);
+            padding: .5rem 0 .5rem 0;
+            margin: .2rem 0;
+            border-radius: var(--border-radius);
+            color: var(--hight-color);
+            font-size: var(--font-size-medium);
+            border: none;
+            outline: none;
+        }  
+        .copy {
+            display: none;
+            position: absolute;
+            top: .7rem;
+            right: 1.1rem;
+            background: none;
+            outline: none;
+            border: none;
+            color: var(--hight-color);
+            transition: .5s;
+            i {
+                font-size: var(--font-size-medium);
+            }
+        }  
+        .description {
+            color: var(--black-color);
+            padding: .2em;
+        }   
+        &:hover .copy{
+            display: block;
+        } 
+    }
+    .details {
+        font-size: var(--font-size-small);
+        color: var(--primary-color);
+        text-align: right;    
+    }
+}
+// form new data
+.newDataModal {
+    @include modalMenu;
+    top: -200;
+    // top: 10%;
+    margin: auto;
+    overflow:auto;
+    form {
+        width: 80%;
+        @include flexcenter;
+        flex-direction: column;
+        h5 {
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+        }
+        fieldset {
+            @include fieldsetAll;
+        }
+        .wrapperFieldset{
+            position: relative;
+            width: 100%;
+            @include flexBetween;
+            i{
+                position: absolute;
+                right: 0;
+                font-size: var(--font-size-big);
+                display: block;
+            }
+            select {
+                display: inline-block;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                option {
+                    background: var(--black-color);
+                    color: var(--white-color);
+                    box-shadow: var(--shadow-short);
+                }
+            }
+        }
+        input, textarea, select  {
+            width: 100%;
+            padding: .5rem;
+            border-radius:  var(--border-radius);
+            margin: .3rem 0;
+            border:none;
+            outline: none;
+            font-size: var(--font-size-medium);
+            background: none;
+            color: var(--white-color);
+        }
+        .textCode {
+            color: var(--hight-color);
+        }
+    }
+    .wrapperTags{
+        width: 100%;
+        @include flexAround;
+        input{
+            border: 1px solid var(--primary-color);
+        }
+        button {
+            background: none;
+            outline: none;
+            border: none;
+            i {
+                color: var(--primary-color);
+            }
+        }
+    }
+    .insertTags {
+        width: 100%;
+        @include flexcenter;
+        flex-wrap: wrap;
+        p {
+            padding: .2rem;
+            border-radius: var(--border-radius);
+            color: var(--black-color);
+            margin: .1rem;
+            background: #fa0;
+        }
+    }
+
+}

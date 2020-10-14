@@ -17,122 +17,253 @@
             <div onclick="activeModal('wrapperMenu')">
                 <i class="material-icons menu">&#xe5d2;</i>              
             </div>
-            <div class="wrapperMenu">
-                <div>
-                    <button onclick="activeModal('wrapperMenu')" class="closeBtn">X</button>
-                </div>
-                <ul>
-                    <li onclick="activeWindow('home'); activeModal('wrapperMenu')" tabindex="0" data-descr="Go to home">
-                        <span tabindex="0" data-descr="Go to home">Home</span>
-                    </li>
-                    <li onclick="activeWindow('app');activeModal('wrapperMenu')" >
-                        <span tabindex="0" data-descr="Go to my personal Task">My workspace</span>
-                    </li>
-                    <li>About Steps</li>
-                </ul>
-                <input type="button" value="Login" class="btn login" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')">
-                <input type="button" value="Logout" class="btn logout hide">    
-                <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
-                    ¿Don't you have an account? <br>
-                    <span style="text-decoration: underline">
-                        Create an account here.
-                    </span>
-                </p>
-            </div>  
-            <div class="modalLogin">
-                <div>
-                    <button class="closeBtn" onclick="activeModal('modalLogin')">X</button>
-                </div>
-                <form action="">
-                    <h3>Login</h3>
-                    <p>
-                        Login in steps to start creating your own story.
-                    </p>
-                    <fieldset>
-                        <legend>Email</legend>
-                        <input type="mail">
-                    </fieldset>                    
-                    <fieldset>
-                        <legend>Password</legend>
-                        <input type="password">
-                    </fieldset>
-                    <button class="btn">Start</button>
-                    <p onclick="activeModal('modalLogin'); activeModal('modalRegister')">
-                        ¿Don't you have an account? <br>
-                        <span style="text-decoration: underline">
-                            Create an account here.
-                        </span>
-                    </p>
-                    
-                </form>
-            </div>
-            <div class="modalRegister" enctype=multipart/form-data>
-                <div>
-                    <button class="closeBtn" onclick="activeModal('modalRegister')">X</button>
-                </div>
-                <form action="">
-                    <h3>Register</h3>
-                    <p>
-                        Register in steps to start creating your own story.
-                    </p>
-                    <fieldset>
-                        <legend>User Name</legend>
-                        <input type="text">
-                    </fieldset>
-                    <fieldset>
-                        <legend>Email</legend>
-                        <input type="mail">
-                    </fieldset>                    
-                    <fieldset>
-                        <legend>Password</legend>
-                        <input type="password">
-                    </fieldset>                   
-                    <fieldset>
-                        <legend>Add description (Optional)</legend>
-                        <input type="text" accept=".jpg, .jpeg, .png">
-                    </fieldset>
-                    <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
-                    <label for="files">
-                        <i class="material-icons">&#xe2c3;</i>
-                    </label>
-                    <input type="file" id="files" name="files[]" multiple enctype=multipart/form-data/>
-                    <p class="list" ></p>
-                    <button class="btn">Start</button>
-                    
-                </form>                
-            </div>
         </header>  
         <!-- home content -->
         <div class="window home" id="home">
             <div class="wrapperTitle">
                 <h2 ><span id="titleMain"></span><span class="cursor">|</span></h2>
-                <input type="button" value="Get started" class="btn">
+                <input type="button" value="Get started" class="btn"  onclick="activeWindow('about'); anonymous()">
+            </div>
+        </div>
+        <!-- about steps -->
+        <div class="window about" id="about">
+            <div class="wrapperAbout">
+
+                <div class="itemDescription">
+                    <div class="dinamicJs transtaleT">
+                        <h6>
+                            A new way to store your knowledge
+                        </h6>
+                    </div>
+                    <p class="dinamicJs transtaleL">
+                        Create simple notes, add a title and description and you're done. Save it or share it
+                    </p>
+                    <button class="dinamicJs btn transtaleR" onclick="activeModal('modalRegister')">
+                        Create an account
+                    </button>
+
+                </div>
+
             </div>
         </div>
         <!-- app content -->
         <div class="window App" id="app">
-            <div class="AppItem  asideMenu">
+            <div class="AppItem   asideMenu  transtaleL">
+                <div>
+                    <button onclick="ShowAddNewCode('asideMenu')" class="closeBtn toggleClose">X</button>
+                </div>
+                <ul class="itemList">
+                    <li><input type="button" value="Git"></li>
+                    <li><input type="button" value="Firebase"></li>
+                    <li><input type="button" value="React js"></li>
+                    <li><input type="button" value="Node"></li>
+                </ul>
+            </div>
+            <div class="AppItem  mainContent  transtaleT">
                 <div class="newItem">
+                    <h6>List Name</h6>
                     <ul>
+                        <li class="" onclick="ShowAddNewCode('newDataModal')">
+                            <i class="material-icons newfile" >&#xe147;</i>
+                        </li>
+                        <li class="toggleItems" onclick="ShowAddNewCode('asideMenu')">
+                            <i class="material-icons listFiles ">&#xe241;</i>
+                        </li>
+                        <li class="toggleItems" onclick="ShowAddNewCode('asideNotes')" >
+                            <i class="material-icons listNotes ">&#xe06f;</i>
+                        </li>
                         <li>
-                            <i class="material-icons">&#xe147;</i>
+                            <label for="inputColor" class="inputColor" id="inputColorLabel">                               
+                                <i class="material-icons">&#xe3b7;</i>
+                            </label>                            
+                            <input type="color" id="inputColor" class="SelectInputColor" value="#ffb414"> 
                         </li>
                     </ul>
                 </div>
-                <ul class="itemList">
-                    <li>Git</li>
-                    <li>Firebase</li>
-                    <li>React js</li>
-                    <li>Node</li>
-                </ul>
-            </div>
-            <div class="AppItem mainContent">
+                <!-- main content form database -->
+                <div id="dataFromDb" class="dataFromDb">
+                </div>
                               
             </div>
-            <div class="AppItem asideNotes">
+            <div class="AppItem  asideNotes  transtaleR">
+                <div class="headerAside">
+                    <div>
+                        <button onclick="ShowAddNewCode('asideNotes')" class="closeBtn toggleClose">X</button>
+                    </div>
+                    <p id="userDisplayName"></p>
+                    <img src="img\profile\profile.jpg" alt="Profile" title="Profile" onclick="activeModal('userInformation')">
+                    <div class="userInformation">
+                        <div>
+                            <button onclick="activeModal('userInformation')" class="closeBtn">X</button>
+                        </div>
+                        <div class="photoUser" >                            
+                            <img src="img\profile\profile.jpg" alt="">
+                            <div class="wrapperSelectPhoto">                                
+                                <p class="material-icons">&#xe439;                              
+                                </p>
+                            </div>
+                        </div>
+                        <form action="">
+                            <fieldset>
+                                <legend>Name:</legend>
+                                <input type="text" value="Edwar Castaño">
+                            </fieldset>
+                            <fieldset>
+                                <legend>Email:</legend>
+                                <input type="email" value="edwarcas80@gmail.com">
+                            </fieldset>
+                            </fieldset>
+                            <fieldset>
+                                <legend>About you</legend>
+                                <input type="text" value="Developer">
+                            </fieldset>
+                            <button class="btn">
+                                Update
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+                <div>
+                    <p id="errorMensaje"></p>
+                </div>
 
             </div>
         </div> 
+        <!-- modal for login and register -->        
+        <div class="wrapperMenu">
+            <div>
+                <button onclick="activeModal('wrapperMenu')" class="closeBtn">X</button>
+            </div>
+            <ul>
+                <li onclick="activeWindow('home'); activeModal('wrapperMenu')" tabindex="0" data-descr="Go to home">
+                    <span tabindex="0" data-descr="Go to home">Home</span>
+                </li>
+                <li onclick="activeWindow('app');activeModal('wrapperMenu')" >
+                    <span tabindex="0" data-descr="Go to my personal Task">My workspace</span>
+                </li>
+                <li onclick="activeWindow('about');activeModal('wrapperMenu')">
+                    About Steps
+                </li>
+            </ul>
+            <input type="button" value="Login" class="btn login" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')" id="btnLogin">
+            <input type="button" value="Logout" class="btn logout hide" id="btnLogOut">    
+            <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
+                ¿Don't you have an account? <br>
+                <span style="text-decoration: underline">
+                    Create an account here.
+                </span>
+            </p>
+        </div>  
+        <div class="modalLogin">
+            <div>
+                <button class="closeBtn" onclick="activeModal('modalLogin')">X</button>
+            </div>
+            <form action="" id="userLogin">
+                <h3>Login</h3>
+                <p>
+                    Login in steps to start creating your own story.
+                </p>
+                <fieldset>
+                    <legend>Email</legend>
+                    <input type="mail" id="userLoginEmail">
+                </fieldset>                    
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password" id="userLoginPassword">
+                </fieldset>
+                <button class="btn">Start</button>
+                <p onclick="activeModal('modalLogin'); activeModal('modalRegister')">
+                    ¿Don't you have an account? <br>
+                    <span style="text-decoration: underline">
+                        Create an account here.
+                    </span>
+                </p>
+                
+            </form>              
+            <p class="errorAll" id="errorLogin"></p>
+        </div>
+        <div class="modalRegister" enctype=multipart/form-data>
+            <div>
+                <button class="closeBtn" onclick="activeModal('modalRegister')">X</button>
+            </div>
+            <form action="" id="btnSingup">
+                <h3>Register</h3>
+                <p>
+                    Register in steps to start creating your own story.
+                </p>
+                <fieldset>
+                    <legend>User Name</legend>
+                    <input type="text" id="newName">
+                </fieldset>
+                <fieldset>
+                    <legend>Email</legend>
+                    <input type="mail" id="newEmail">
+                </fieldset>                    
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password" id="newPassword">
+                </fieldset>                   
+                <fieldset>
+                    <legend>Add description (Optional)</legend>
+                    <input type="text" id="newDescription">
+                </fieldset>
+                <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
+                <label for="files">
+                    <i class="material-icons">&#xe2c3;</i>
+                </label>
+                <input type="file" id="files" name="files[]" multiple enctype=multipart/form-data/>
+                <p class="list" ></p>
+                <button class="btn">Start</button>
+                
+            </form>                
+            <p class="errorAll" id="errorRegister"></p>
+        </div>
+        <!-- modal inputs for new data -->
+        <div class="newDataModal">
+            <div>
+                <button onclick="ShowAddNewCode('newDataModal')" class="closeBtn">X</button>
+            </div>
+            <form action="" id="newItemCode">
+                <h5>Insert new code</h5>
+                    <fieldset >
+                        <legend>Colection Name</legend>
+                        <div class="wrapperFieldset">
+                            <select name="" id="">
+                                <option value="git">Git</option>
+                                <option value="firebase">Firebase</option>
+                                <option value="react js">React js</option>
+                                <option value="node">Node</option>
+                            </select>
+                            <i class="material-icons">&#xe313;</i>
+                        </div>
+                    </fieldset>
+                <fieldset>
+                    <legend>Title</legend>
+                    <input type="text" placeholder="" id="titleNewItem">
+                </fieldset>
+                <fieldset>
+                    <legend>Code</legend>
+                    <textarea name="" id="code" cols="" rows="6" placeholder="Insert your code lines here." class="textCode"></textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>Description</legend>
+                    <textarea name="" id="description" cols="" rows="3" placeholder="Description"></textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>Tags</legend>
+                    <div>
+                        <div class="wrapperTags">
+                            <input type="text" placeholder="" id="tag">
+                            <button><i class="material-icons newfile" onclick="addNewTag()">&#xe147;</i></button>
+                        </div>
+                        <div id="insertTags" class="insertTags">
+                        </div>
+                    </div>
+                </fieldset>
+                <button class="btn" >Save</button>
+            </form>
+        </div>
         <footer class="footer">
             <div class="wrapperFooter">
                 <p>
@@ -143,9 +274,46 @@
                 </p>
                 <p style="font-size: .8rem"><i>Todos los derechos reservados</i></p>
                 <p><i>EdcasDevelopment</i></p>
+                <p style="font-size: .8rem; filter: grayscale(100%)">
+                    <i>                        
+                    Iconos diseñados por 
+                    <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> 
+                    from 
+                    <a href="https://www.flaticon.es/" title="Flaticon"> www.flaticon.es</a>
+                    </i>
+                </p>
+                
             </div>
         </footer> 
     </div>
-<script src="scripts/main.js"></script>
+<!-- moment -->
+<script type="text/javascript" src="scripts/time.js"></script>
+<script type="text/javascript">
+    moment().format();
+</script>
+
+<!-- firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyC7llBIi5Xz7LAPVXSyI-USTiJAG3sZ1lg",
+    authDomain: "steps-ca334.firebaseapp.com",
+    databaseURL: "https://steps-ca334.firebaseio.com",
+    projectId: "steps-ca334",
+    storageBucket: "steps-ca334.appspot.com",
+    messagingSenderId: "340835380458",
+    appId: "1:340835380458:web:3e54cf2a63cd4c5d11bb93",
+    measurementId: "G-6W4JLF6MZ3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<!-- native scripts -->
+<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="scripts/data.js"></script>
+<script type="text/javascript" src="scripts/db.js"></script>
 </body>
 </html>

@@ -1,23 +1,66 @@
 :root{
     --border-radius: .5rem;
     --primary-color: #05976c;
+    // --primary-color: #0fa;
     --white-color: #ccc;
     --black-color: #272727;
-    --hight-color: #af0;
+    --hight-color: #00f0ea; 
+    --gradient:
+        linear-gradient(150deg, rgba(0,0,0,.9), rgba(0,0,0,0) 70.71%),
+        linear-gradient(330deg, rgba(5,151,108,.8), rgba(5,151,108,0) 70.71%),
+        linear-gradient(200deg, rgba(255,255,255,.8), rgba(255,255,255,0) 70.71%);
     
     --shadow-short: 0rem .3rem .8rem #000;
 
+    --font-size-extraBig: 5rem;
     --font-size-big: 3rem;
-    --font-size-large: 1.4rem;
-    --font-size-medium: 1.2rem;
+    --font-size-large: 1.2rem;
+    --font-size-medium: 1rem;
     --font-size-small: .8rem;
+    @media (max-width:750px) {
+        --font-size-extraBig: 3.5rem;
+        --font-size-big: 3rem;
+        --font-size-large: 1rem;
+        --font-size-medium: .8rem;
+        --font-size-small: .7rem;
+    }
+    @media (max-width:550px) {
+        --font-size-extraBig: 2.5rem;
+        --font-size-big: 2rem;
+    }
+    @media (max-width:370px) {
+        --font-size-extraBig: 2rem;
+        --font-size-big: 2rem;
+        --font-size-large: 1rem;
+        --font-size-medium: .7rem;
+        --font-size-small: .6rem;
+    }
+    @media (max-width:300px) {
+        --font-size-extraBig: 1.4rem;
+        --font-size-big: 1.4rem;
+    }
 }
 ::-webkit-scrollbar{
-    width: .7rem;
+    width: .5rem;
+    height: .5rem;
 }
 ::-webkit-scrollbar-thumb{
     background:var(--primary-color);
     border-radius: 1rem;
+    &:active {
+        background: var(--hight-color);
+    }
+}
+::-webkit-scrollbar-track{
+    border-radius: 1rem;
+    transition: .5s;
+    &:hover {
+        background: #aaa;
+    }
+}
+::-webkit-scrollbar-corner {
+    background: var(--primary-color);
+    border-radius: 50%;
 }
 @mixin flexcenter {
     display:flex;
@@ -34,6 +77,14 @@
     justify-content: space-between;
     align-items: center;
 }
+@mixin gridItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2.5rem 1fr;
+    row-gap: .5rem;
+    padding: 0 1rem 2rem 1rem;
+
+}
 @mixin mainBtn {
     outline: none;
     border-radius:var(--border-radius);
@@ -48,6 +99,7 @@
     &:hover, &:focus{
         background: none;
         color: var(--primary-color);
+        box-shadow: var(--shadow-short);
     }
     &:active{
         transform: scale(.9);
@@ -84,12 +136,53 @@
     background: #222;
     border-radius: var(--border-radius);
     padding: 3rem 1rem  1rem 1rem ;
-    width: 320px;
     transition: 1s;
+    max-width: 400px;
+    min-width: 280px;
     box-shadow: var(--shadow-short);
+    z-index:500;
+    left: 10%; right: 10%; 
+    @media (max-width: 850px){
+        left: 1%; right: 1%; 
+        max-width: 400px;
+
+    }
     
 }
-@import 'src/main', 'src/app';
+@mixin fieldsetAll {
+    border-radius: var(--border-radius);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    width: 100%;
+    margin: 0 0 1rem 0;
+    transition: .5s;
+    &:hover, &:focus { 
+        filter: hue-rotate(20deg);
+    }
+    @include flexcenter
+    legend {
+        padding: 0 1rem .3rem 1rem;
+
+    }
+
+}
+@mixin inputFieldset {
+    width: 98%;
+    padding: .6rem 0;
+    border-radius: var(--border-radius);
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-size: var(--font-size-medium);
+    outline: none;
+    &:focus { 
+        border-width: 0 2px 0 2px;
+        border-style: solid;
+        border-color: var(--primary-color);
+
+    }
+}
+@import 'src/main', 'src/app', 'src/about', 'src/media';
 
 
 
@@ -99,15 +192,26 @@
 }
 body {
     background: url('../img/background/background2.jpg');
-    background-size: cover;
+    background-size: cover
     background-repeat: no-repeat;
 }
-.hide {
-    display: none;
-}
-.top0 {
-    top: 0;
-}
-@media (max-width: 900px){
 
+// class for dinamic js
+.dinamicJs {
+    position: relative;
+    transition: 1s;
+}
+.transtaleL {transform: translateX(-1000px)}
+.transtaleT {transform: translateY(-1000px)}
+.transtaleR {transform: translateX(1000px)}
+.hide {display: none}
+.top0 {top: 0}
+.top5 {top: 5rem}
+.errorAll {
+    width: 100%;
+    background: rgba(255, 0, 0, .4);
+    color: #fff;
+    font-size: var(--font-size-medium);
+    text-align: center;
+    border-radius: var(--border-radius);
 }

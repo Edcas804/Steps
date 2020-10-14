@@ -1,21 +1,63 @@
-
 let l = console.log;
 const activeWindow = (activeWindow) => {
     let windowView = document.querySelectorAll('.window');
 
     windowView[0].classList.add('hide');
     windowView[1].classList.add('hide');
+    windowView[2].classList.add('hide');
 
     document.querySelector(`#${activeWindow}`).classList.remove('hide');
+    animationWin(activeWindow);
+    animationWin2(activeWindow)
+}
+function animationWin(win){
+    let AppItem = document.querySelectorAll('.AppItem');
+    if(win === 'app'){
+        setTimeout(()=>{
+                AppItem[0].classList.remove('transtaleL');
+                AppItem[1].classList.remove('transtaleT');
+                AppItem[2].classList.remove('transtaleR');
+        }, 50);
+    }
+    else{
+        AppItem[0].classList.add('transtaleL');
+        AppItem[1].classList.add('transtaleT');
+        AppItem[2].classList.add('transtaleR');
+    }
+
+}
+function animationWin2(win){
+    let dinamicJs = document.querySelectorAll('.dinamicJs');
+    if( win === 'about'){
+        setTimeout(()=>{
+            for(let i = 0; i < dinamicJs.length; i++){
+                dinamicJs[i].classList.remove('transtaleT');
+                dinamicJs[i].classList.remove('transtaleR');
+                dinamicJs[i].classList.remove('transtaleL');
+            }
+        }, 50);
+    }
+    else{
+        dinamicJs[0].classList.add('transtaleT');
+            dinamicJs[1].classList.add('transtaleR');
+            dinamicJs[2].classList.add('transtaleL');
+        
+    }
+
 }
 activeWindow('app');
 let menu = true;
 let showLogin = true;
 let showRegister = true;
+let showuserInformation = true;
 let wrapperMenu = document.getElementsByClassName('wrapperMenu')[0];
 let modalLogin = document.getElementsByClassName('modalLogin')[0];
 let modalRegister = document.getElementsByClassName('modalRegister')[0];
-const activeModal = (modal, bole) => {
+let userInformation = document.getElementsByClassName('userInformation')[0];
+
+
+
+const activeModal = (modal) => {
     if(modal === 'wrapperMenu'){
         if(menu){
             showModal(wrapperMenu);
@@ -40,12 +82,64 @@ const activeModal = (modal, bole) => {
             hiddeModal(modalRegister); 
             showRegister = true}
     }            
+    if(modal === 'userInformation'){   
+        if(showuserInformation){
+            showModal(userInformation);
+            showuserInformation = false;
+        }else{
+            hiddeModal(userInformation); 
+            showuserInformation = true}
+    }            
 }
-const showModal = (modal) => {
-    modal.classList.add('top0');
+const showModal = (modal, modal2) => {
+    if(modal2 === 'modal2'){
+            modal.classList.add('top5');
+    }
+    else{
+        modal.classList.add('top0');
+    }
 }
-const hiddeModal = (modal) => {
-    modal.classList.remove('top0');
+const hiddeModal = (modal, modal2) => {
+    if(modal2 === 'modal2'){
+            modal.classList.remove('top5');
+    }
+    else{
+        modal.classList.remove('top0');
+    }
+}
+
+// modals for add new data
+let newdata = true;
+let newasideMenu = true;
+let newasideNotes = true;
+let newDataModal = document.getElementsByClassName('newDataModal')[0];
+let asideMenu = document.getElementsByClassName('asideMenu')[0];
+let asideNotes = document.getElementsByClassName('asideNotes')[0];
+const ShowAddNewCode = (modal) => {
+    if(modal === 'newDataModal'){
+        if(newdata){
+            showModal(newDataModal, 'modal2');
+            newdata = false;
+        }else{
+            hiddeModal(newDataModal, 'modal2');
+            newdata = true}
+    }
+    if(modal === 'asideMenu'){
+        if(newasideMenu){
+            showModal(asideMenu, 'modal2');
+            newasideMenu = false;
+        }else{
+            hiddeModal(asideMenu, 'modal2');
+            newasideMenu = true}
+    }
+    if(modal === 'asideNotes'){
+        if(newasideNotes){
+            showModal(asideNotes, 'modal2');
+            newasideNotes = false;
+        }else{
+            hiddeModal(asideNotes, 'modal2');
+            newasideNotes = true}
+    }
 }
 let timeOut;
 const writeTitle = () => {
@@ -81,3 +175,14 @@ const uploadFile = (evt) => {
      return write.innerHTML = 'Se subío el archivo';
 }
 files.addEventListener('change', uploadFile);
+
+
+let inputColor = document.querySelector('#inputColor');
+let root = document.documentElement;
+const watchColor = e => {
+    let color= e.target.value;
+    root.style.setProperty('--hight-color', color);
+}
+inputColor.addEventListener('input', watchColor, false);
+
+  
