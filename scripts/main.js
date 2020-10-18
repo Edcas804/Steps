@@ -46,16 +46,17 @@ function animationWin2(win){
 
 }
 activeWindow('app');
-let menu = true;
-let showLogin = true;
-let showRegister = true;
-let showuserInformation = true;
+// let menu = true;
+// let showLogin = true;
+// let showRegister = true;
+// let showuserInformation = true;
+// let showmodalError = true;
+let menu, showLogin, showRegister, showuserInformation, showmodalError = true;
 let wrapperMenu = document.getElementsByClassName('wrapperMenu')[0];
 let modalLogin = document.getElementsByClassName('modalLogin')[0];
 let modalRegister = document.getElementsByClassName('modalRegister')[0];
 let userInformation = document.getElementsByClassName('userInformation')[0];
-
-
+let modalError = document.getElementsByClassName('modalError')[0];
 
 const activeModal = (modal) => {
     if(modal === 'wrapperMenu'){
@@ -89,7 +90,15 @@ const activeModal = (modal) => {
         }else{
             hiddeModal(userInformation); 
             showuserInformation = true}
-    }            
+    }         
+    if(modal === 'modalError'){   
+        if(showmodalError){
+            showModal(modalError, 'modal2');
+            showmodalError = false;
+        }else{
+            hiddeModal(modalError, 'modal2'); 
+            showmodalError= true}
+    }           
 }
 const showModal = (modal, modal2) => {
     if(modal2 === 'modal2'){

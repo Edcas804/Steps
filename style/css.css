@@ -547,6 +547,43 @@
   display: inline-block;
 }
 
+.modalError {
+  position: fixed;
+  top: -200%;
+  left: 1%;
+  right: 1%;
+  max-width: 270px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+  border-radius: var(--border-radius);
+  background: #f00;
+  background: rgba(255, 0, 0, 0.7);
+  -webkit-box-shadow: var(--shadow-short);
+          box-shadow: var(--shadow-short);
+  -webkit-transition: 1s;
+  transition: 1s;
+  z-index: 1000;
+}
+
+.modalError p {
+  color: #fff;
+  font-size: var(--font-size-large);
+  text-align: center;
+}
+
+.modalError .closeBtn {
+  top: -20%;
+  left: 94%;
+  border-color: #fff;
+  background: #f00;
+  color: #fff;
+}
+
+.modalError .closeBtn:hover {
+  color: #f00;
+  background: #fff;
+}
+
 .App {
   display: -ms-grid;
   display: grid;
@@ -1059,6 +1096,7 @@
 .newDataModal form h5 {
   color: var(--primary-color);
   font-size: var(--font-size-large);
+  margin: 0 0 .6rem 0;
 }
 
 .newDataModal form fieldset {
@@ -1138,6 +1176,18 @@
 
 .newDataModal form .textCode {
   color: var(--hight-color);
+}
+
+.newDataModal .SelectCollection {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30px 1fr;
+      grid-template-columns: 30px 1fr;
+}
+
+.newDataModal .SelectCollection label {
+  color: var(--primary-color);
 }
 
 .newDataModal .wrapperTags {
@@ -1337,7 +1387,7 @@
 
 body {
   background: url("../img/background/background2.jpg");
-  background-size: co   ver;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 

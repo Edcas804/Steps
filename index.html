@@ -22,7 +22,7 @@
         <div class="window home" id="home">
             <div class="wrapperTitle">
                 <h2 ><span id="titleMain"></span><span class="cursor">|</span></h2>
-                <input type="button" value="Get started" class="btn"  onclick="activeWindow('about'); anonymous()">
+                <input type="button" value="Get started" class="btn"  onclick="activeWindow('about')">
             </div>
         </div>
         <!-- about steps -->
@@ -180,8 +180,7 @@
                     </span>
                 </p>
                 
-            </form>              
-            <p class="errorAll" id="errorLogin"></p>
+            </form>           
         </div>
         <div class="modalRegister" enctype=multipart/form-data>
             <div>
@@ -206,7 +205,7 @@
                 </fieldset>                   
                 <fieldset>
                     <legend>Add description (Optional)</legend>
-                    <input type="text" id="newDescription">
+                    <input type="text" id="newDescriptionUser">
                 </fieldset>
                 <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
                 <label for="files">
@@ -216,8 +215,15 @@
                 <p class="list" ></p>
                 <button class="btn">Start</button>
                 
-            </form>                
-            <p class="errorAll" id="errorRegister"></p>
+            </form>      
+        </div>
+        <div class="modalError">
+            <div>
+                <button class="closeBtn" onclick="activeModal('modalError')">X</button>
+            </div>
+            <p id="errorAll">
+                Se ha presentado un error inesperado
+            </p>
         </div>
         <!-- modal inputs for new data -->
         <div class="newDataModal">
@@ -225,11 +231,27 @@
                 <button onclick="ShowAddNewCode('newDataModal')" class="closeBtn">X</button>
             </div>
             <form action="" id="newItemCode">
-                <h5>Insert new code</h5>
+                <h5>Insert new code</h5>   
+                <div class="SelectCollection">
+                    <input type="radio" name="collection" id="CollectionSelect" oninput="updatecollectionList(event)" checked>
+                    <label>Select an existing collection</label>
+                </div>
+                <div class="SelectCollection">
+                    <input type="radio" name="collection" id="CollectionSelect" value="Add new Collection"  oninput="updatecollectionList(event)">
+                    <label>Add new Collection</label>
+                </div>
+                <div style="width: 100%" id="showContentSelectNew" class="hide">
+                    <fieldset>
+                        <legend>Add new Collection</legend>
+                        <input type="text" placeholder="Add a new collection" id="addCollection" >
+                    </fieldset>
+                </div>
+                <div style="width: 100%" id="showContentSelectList" >
                     <fieldset >
                         <legend>Colection Name</legend>
                         <div class="wrapperFieldset">
-                            <select name="" id="">
+                            <select name="" id="collecionList">
+                                <option value="select an existing collection" id="jdjdjdjd">Select an existing collection</option>
                                 <option value="git">Git</option>
                                 <option value="firebase">Firebase</option>
                                 <option value="react js">React js</option>
@@ -238,13 +260,15 @@
                             <i class="material-icons">&#xe313;</i>
                         </div>
                     </fieldset>
+                </div>
+
                 <fieldset>
                     <legend>Title</legend>
                     <input type="text" placeholder="" id="titleNewItem">
                 </fieldset>
                 <fieldset>
                     <legend>Code</legend>
-                    <textarea name="" id="code" cols="" rows="6" placeholder="Insert your code lines here." class="textCode"></textarea>
+                    <textarea name="" id="code" cols="" rows="2" placeholder="Insert your code lines here." class="textCode"></textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Description</legend>
@@ -255,7 +279,7 @@
                     <div>
                         <div class="wrapperTags">
                             <input type="text" placeholder="" id="tag">
-                            <button><i class="material-icons newfile" onclick="addNewTag()">&#xe147;</i></button>
+                            <p><i class="material-icons newfile" onclick="addNewTag()">&#xe147;</i></p>
                         </div>
                         <div id="insertTags" class="insertTags">
                         </div>
@@ -295,6 +319,7 @@
 <!-- firebase -->
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
 <script>
   var firebaseConfig = {
@@ -314,6 +339,7 @@
 <!-- native scripts -->
 <script type="text/javascript" src="scripts/main.js"></script>
 <script type="text/javascript" src="scripts/data.js"></script>
+<script type="text/javascript" src="scripts/auth.js"></script>
 <script type="text/javascript" src="scripts/db.js"></script>
 </body>
 </html>

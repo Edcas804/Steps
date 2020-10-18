@@ -210,3 +210,34 @@
         display: inline-block;
     }
 }
+.modalError {
+    position: fixed;
+    top: -200%;
+    left: 1%;
+    right: 1%;
+    max-width: 270px;
+    margin: auto;
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius);
+    background: #f00;
+    background: rgba(255, 0, 0, .7);
+    box-shadow: var(--shadow-short);
+    transition: 1s;
+    z-index: 1000;
+    p {
+        color: #fff;
+        font-size: var(--font-size-large);
+        text-align: center;
+    }
+    .closeBtn{
+        top: -20%;
+        left: 94%;
+        border-color: #fff;
+        background: #f00;
+        color: #fff;
+        &:hover {
+            color: #f00;
+            background: #fff;
+        }
+    }
+}
