@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steps</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon"href="favicon.ico"/>	
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon"href="favicon.ico"/>	
     <link rel="stylesheet" href="style/css.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -52,16 +55,12 @@
                 <div>
                     <button onclick="ShowAddNewCode('asideMenu')" class="closeBtn toggleClose">X</button>
                 </div>
-                <ul class="itemList">
-                    <li><input type="button" value="Git"></li>
-                    <li><input type="button" value="Firebase"></li>
-                    <li><input type="button" value="React js"></li>
-                    <li><input type="button" value="Node"></li>
+                <ul class="itemList" id="itemStepsList">
                 </ul>
             </div>
             <div class="AppItem  mainContent  transtaleT">
                 <div class="newItem">
-                    <h6>List Name</h6>
+                    <h6 id="stepsDbTittle"></h6>
                     <ul>
                         <li class="" onclick="ShowAddNewCode('newDataModal')">
                             <i class="material-icons newfile" >&#xe147;</i>
@@ -233,11 +232,11 @@
             <form action="" id="newItemCode">
                 <h5>Insert new code</h5>   
                 <div class="SelectCollection">
-                    <input type="radio" name="collection" id="CollectionSelect" oninput="updatecollectionList(event)" checked>
+                    <input type="radio" name="collection"  oninput="updatecollectionList(event)" checked>
                     <label>Select an existing collection</label>
                 </div>
                 <div class="SelectCollection">
-                    <input type="radio" name="collection" id="CollectionSelect" value="Add new Collection"  oninput="updatecollectionList(event)">
+                    <input type="radio" name="collection"  value="Add new Collection"  oninput="updatecollectionList(event)">
                     <label>Add new Collection</label>
                 </div>
                 <div style="width: 100%" id="showContentSelectNew" class="hide">
@@ -250,12 +249,7 @@
                     <fieldset >
                         <legend>Colection Name</legend>
                         <div class="wrapperFieldset">
-                            <select name="" id="collecionList">
-                                <option value="select an existing collection" id="jdjdjdjd">Select an existing collection</option>
-                                <option value="git">Git</option>
-                                <option value="firebase">Firebase</option>
-                                <option value="react js">React js</option>
-                                <option value="node">Node</option>
+                            <select name="" id="collecionListSelec">
                             </select>
                             <i class="material-icons">&#xe313;</i>
                         </div>
@@ -334,7 +328,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+//   firebase.analytics();
 </script>
 <!-- native scripts -->
 <script type="text/javascript" src="scripts/main.js"></script>

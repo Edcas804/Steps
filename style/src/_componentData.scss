@@ -17,7 +17,7 @@
         padding: 0 1rem;
         transition: .5s;
         h4 {
-            font-size: var(--font-size-large);
+            font-size: var(--font-size-medium);
             color: var(--black-color);
         }
         ul {
@@ -46,14 +46,15 @@
         position: relative;
         padding: 0 .2rem .2rem 0;
         .code {
-            width: 100%;
+            width: 95%;
             text-align: left;
             background: var(--black-color);
-            padding: .5rem 0 .5rem 0;
+            padding: .5rem;
             margin: .2rem 0;
             border-radius: var(--border-radius);
             color: var(--hight-color);
             font-size: var(--font-size-medium);
+            font-size: var(--font-size-small);
             border: none;
             outline: none;
         }  
@@ -61,7 +62,7 @@
             display: none;
             position: absolute;
             top: .7rem;
-            right: 1.1rem;
+            right: 1.5rem;
             background: none;
             outline: none;
             border: none;
@@ -88,7 +89,7 @@
 // form new data
 .newDataModal {
     @include modalMenu;
-    top: -200;dd
+    top: -200;
     // top: 10%;
     margin: auto;
     overflow:auto;

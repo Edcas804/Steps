@@ -6,16 +6,12 @@
         }
     `;
 
-
-
     let datos = {
         title: 'Fist item',
         code: code,
         date: newDate,
         description: 'Esta linea muestra un ejemplo de como funcionará el programa',
     }
-    let insertCode = document.querySelector('#dataFromDb');
-    let allData;
     const data = () => {
         for(let i = 0; i < 5; i++){
             allData = `   
@@ -47,7 +43,7 @@
             insertCode.innerHTML += allData ;
         }
     }
-    data();
+    // data();
     const copyData = () => {
         let innerCode = document.querySelector('#innerCode');
         let copyDataCode = innerCode.value;

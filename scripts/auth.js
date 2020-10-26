@@ -101,6 +101,8 @@ auth.onAuthStateChanged(firebaseUser => {
             btnLogOut.classList.remove('hide');
             l(userId);
             activeUser = true;
+            showStepsList();
+            db.collection('Steps').doc(userId).set({name: firebaseUser.displayName})
         }
         if(firebaseUser.isAnonymous){
             errorMensaje.innerHTML = 'Aún no has iniciado sesión';
@@ -122,7 +124,7 @@ btnLogOut.addEventListener('click', e =>{
      activeUser = false;
      anonymous();
      userId = '';
-     l(userId)
+     dataFromDb.innerHTML = ``;
 });
 
 document.onload = onloadDocument();

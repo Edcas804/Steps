@@ -1,7 +1,7 @@
 let l = console.log;
 const activeWindow = (activeWindow) => {
     let windowView = document.querySelectorAll('.window');
-
+    
     windowView[0].classList.add('hide');
     windowView[1].classList.add('hide');
     windowView[2].classList.add('hide');
