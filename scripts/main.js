@@ -1,7 +1,7 @@
 let l = console.log;
 const activeWindow = (activeWindow) => {
     let windowView = document.querySelectorAll('.window');
-    
+
     windowView[0].classList.add('hide');
     windowView[1].classList.add('hide');
     windowView[2].classList.add('hide');
@@ -46,12 +46,11 @@ function animationWin2(win){
 
 }
 activeWindow('app');
-// let menu = true;
-// let showLogin = true;
-// let showRegister = true;
-// let showuserInformation = true;
-// let showmodalError = true;
-let menu, showLogin, showRegister, showuserInformation, showmodalError = true;
+let menu = true;
+let showLogin = true;
+let showRegister = true;
+let showuserInformation = true;
+let showmodalError = true;
 let wrapperMenu = document.getElementsByClassName('wrapperMenu')[0];
 let modalLogin = document.getElementsByClassName('modalLogin')[0];
 let modalRegister = document.getElementsByClassName('modalRegister')[0];
@@ -102,7 +101,7 @@ const activeModal = (modal) => {
 }
 const showModal = (modal, modal2) => {
     if(modal2 === 'modal2'){
-            modal.classList.add('top5');
+        modal.classList.add('top5');
     }
     else{
         modal.classList.add('top0');
@@ -194,4 +193,21 @@ const watchColor = e => {
 }
 inputColor.addEventListener('input', watchColor, false);
 
+
+// capturando eventos de teclado
+let numRows= 1;
+document.getElementById('code').addEventListener('keydown', (e) => {
+   if(e.keyCode === 13){
+       numRows++;
+   }
+}, false);
   
+document.addEventListener('keydown', (e) => {   
+    // l(e.keyCode)
+    if(e.keyCode === 107){    
+        ShowAddNewCode('newDataModal')    
+    }
+    if(e.keyCode === 106){
+        searchTags();
+    }
+ }, false);

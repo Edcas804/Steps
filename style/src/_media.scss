@@ -55,6 +55,8 @@
         }
     }.newItem {
         h6 {
+            max-width: 120px
+            overflow: hidden;
         }
         ul {
             li {
@@ -67,6 +69,14 @@
                 display: block;
             }
         }
+        .divInputSearch{
+            position: fixed;
+            top: 7rem;
+            right: 1%;
+        }
+        .inputSearch {
+            background: var(--black-color);
+        }
     }
     .asideMenu{
         top: -100%;  
@@ -77,6 +87,4 @@
     .modalLogin, .modalRegister, .wrapperMenu{
 
     }
-    
-
 }

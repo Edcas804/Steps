@@ -13,12 +13,12 @@
 <body>
     <div class="main">
         <header class="headerMain">
-            <div class="logoTitle">
+            <div class="logoTitle" onclick="activeWindow('home')">
                 <img src="img/logo/logo.svg" alt="" class="logo">
                 <h1>Steps</h1>
             </div>
-            <div onclick="activeModal('wrapperMenu')">
-                <i class="material-icons menu">&#xe5d2;</i>              
+            <div onclick="">
+                <i class="material-icons menu" onclick="activeModal('wrapperMenu');console.log('click')">&#xe5d2;</i>              
             </div>
         </header>  
         <!-- home content -->
@@ -62,6 +62,12 @@
                 <div class="newItem">
                     <h6 id="stepsDbTittle"></h6>
                     <ul>
+                        <li class="divInputSearch" onclick="">    
+                                <input type="text" placeholder="Search" class="inputSearch" id="inputSearch">     
+                        </li>
+                        <li class="" onclick="searchTags()">                           
+                                <i class="material-icons">&#xe8b6;</i>
+                        </li>
                         <li class="" onclick="ShowAddNewCode('newDataModal')">
                             <i class="material-icons newfile" >&#xe147;</i>
                         </li>
@@ -230,19 +236,29 @@
                 <button onclick="ShowAddNewCode('newDataModal')" class="closeBtn">X</button>
             </div>
             <form action="" id="newItemCode">
-                <h5>Insert new code</h5>   
+                <h5>Insert new code</h5>  
                 <div class="SelectCollection">
-                    <input type="radio" name="collection"  oninput="updatecollectionList(event)" checked>
-                    <label>Select an existing collection</label>
+                    <input type="radio" name="collection"  value="Add new Collection"  onclick="updatecollectionList('new', event)" id="AddNewCheck">
+                    <label>Add new Collection</label>
+                </div> 
+                <div class="hide SelectCollection " id="SelectCollectionActive">
+                    <input type="radio" name="collection"   value="this Collection" onclick="updatecollectionList('this', event)" id="thisCheck">
+                    <label>This Collection</label>
                 </div>
                 <div class="SelectCollection">
-                    <input type="radio" name="collection"  value="Add new Collection"  oninput="updatecollectionList(event)">
-                    <label>Add new Collection</label>
+                    <input type="radio" name="collection" value="Select an existing collection" onclick="updatecollectionList('select', event)" id="defaultCLickRadio" checked>
+                    <label>Select an existing collection</label>
                 </div>
                 <div style="width: 100%" id="showContentSelectNew" class="hide">
                     <fieldset>
                         <legend>Add new Collection</legend>
                         <input type="text" placeholder="Add a new collection" id="addCollection" >
+                    </fieldset>
+                </div>
+                <div style="width: 100%" id="showContentSelectThis" class="hide">
+                    <fieldset>
+                        <legend>This Collection</legend>
+                        <input type="text"  id="ThisCollection" >
                     </fieldset>
                 </div>
                 <div style="width: 100%" id="showContentSelectList" >
@@ -262,11 +278,11 @@
                 </fieldset>
                 <fieldset>
                     <legend>Code</legend>
-                    <textarea name="" id="code" cols="" rows="2" placeholder="Insert your code lines here." class="textCode"></textarea>
+                    <textarea name="" id="code" cols="" rows="1" placeholder="Insert your code lines here." class="textCode"></textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Description</legend>
-                    <textarea name="" id="description" cols="" rows="3" placeholder="Description"></textarea>
+                    <textarea name="" id="description" cols="" rows="1" placeholder="Description"></textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Tags</legend>

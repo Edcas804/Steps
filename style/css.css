@@ -137,7 +137,7 @@
 
 .wrapperMenu {
   position: fixed;
-  top: -100%;
+  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -229,7 +229,7 @@
 
 .modalLogin, .modalRegister {
   position: fixed;
-  top: -100%;
+  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -452,8 +452,6 @@
 .btn:hover, .btn:focus {
   background: none;
   color: var(--primary-color);
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
 }
 
 .btn:active {
@@ -706,6 +704,33 @@
   display: none;
 }
 
+.newItem .divInputSearch {
+  overflow: hidden;
+  width: 320px;
+}
+
+.newItem .inputSearch {
+  opacity: 0;
+  width: 0%;
+  padding: .4rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--primary-color);
+  color: var(--white-color);
+  background: none;
+  outline: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.newItem .inputSearch:focus {
+  background: var(--black-color);
+}
+
+.newItem .openSearch {
+  opacity: 1;
+  width: 90%;
+}
+
 .headerAside {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -738,7 +763,7 @@
 .userInformation {
   position: absolute;
   position: fixed;
-  top: -100%;
+  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -764,7 +789,7 @@
   z-index: 500;
   left: 10%;
   right: 10%;
-  top: -200;
+  top: -200%;
   right: 1rem;
   margin: auto;
 }
@@ -892,19 +917,23 @@
 
 .itemList {
   width: 100%;
+  max-width: 100%;
 }
 
 .itemList li {
   list-style: none;
-  text-align: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .itemList li input {
   background: none;
   border: none;
   outline: none;
-  width: 100%;
-  padding: .4rem 0;
+  text-align: left;
+  width: 90%;
+  max-width: 50%;
+  padding: .4rem .3rem;
   font-size: var(--font-size-medium);
   color: var(--primary-color);
   -webkit-transition: .5s;
@@ -915,6 +944,14 @@
 .itemList li input:hover, .itemList li input:focus {
   background: rgba(16, 16, 16, 0.5);
   color: var(--white-color);
+}
+
+.itemList .classActive {
+  color: var(--white-color);
+  background: url("../img/background/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .dataFromDb {
@@ -970,15 +1007,14 @@
 .wrapperData .dataHeader ul li i {
   font-size: var(--font-size-large);
   color: var(--primary-color);
-  text-shadow: var(--shadow-short);
 }
 
-.wrapperData .dataHeader ul li .delete {
+.wrapperData .dataHeader ul li .delete:hover {
   color: #f00;
 }
 
-.wrapperData .dataHeader ul li .edit {
-  color: var(--primary-color);
+.wrapperData .dataHeader ul li .edit:hover {
+  color: var(--hight-color);
 }
 
 .wrapperData .dataHeader:hover ul {
@@ -999,7 +1035,6 @@
   border-radius: var(--border-radius);
   color: var(--hight-color);
   font-size: var(--font-size-medium);
-  font-size: var(--font-size-small);
   border: none;
   outline: none;
 }
@@ -1008,7 +1043,7 @@
   display: none;
   position: absolute;
   top: .7rem;
-  right: 1.5rem;
+  right: 1.1rem;
   background: none;
   outline: none;
   border: none;
@@ -1026,10 +1061,6 @@
   padding: .2em;
 }
 
-.wrapperData .wrapperCode:hover .copy {
-  display: block;
-}
-
 .wrapperData .details {
   font-size: var(--font-size-small);
   color: var(--primary-color);
@@ -1038,7 +1069,7 @@
 
 .newDataModal {
   position: fixed;
-  top: -100%;
+  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1179,18 +1210,6 @@
   color: var(--hight-color);
 }
 
-.newDataModal .SelectCollection {
-  width: 100%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 30px 1fr;
-      grid-template-columns: 30px 1fr;
-}
-
-.newDataModal .SelectCollection label {
-  color: var(--primary-color);
-}
-
 .newDataModal .wrapperTags {
   width: 100%;
   display: -webkit-box;
@@ -1238,6 +1257,18 @@
   color: var(--black-color);
   margin: .1rem;
   background: #fa0;
+}
+
+.SelectCollection {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30px 1fr;
+      grid-template-columns: 30px 1fr;
+}
+
+.SelectCollection label {
+  color: var(--primary-color);
 }
 
 .about {
@@ -1366,12 +1397,24 @@
   .App .asideNotes {
     padding: 3rem 0 0 0;
   }
+  .newItem h6 {
+    max-width: 120px;
+    overflow: hidden;
+  }
   .newItem ul li i {
     font-size: 1.5rem;
   }
   .newItem ul .toggleItems {
     display: inline-block;
     display: block;
+  }
+  .newItem .divInputSearch {
+    position: fixed;
+    top: 7rem;
+    right: 1%;
+  }
+  .newItem .inputSearch {
+    background: var(--black-color);
   }
   .asideMenu {
     top: -100%;

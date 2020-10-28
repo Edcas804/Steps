@@ -66,6 +66,32 @@
             display: none;
         }
     }
+    
+    i {
+    }
+    .divInputSearch {
+        overflow: hidden;
+        width: 320px;
+    }
+    .inputSearch {
+        opacity: 0;
+        width: 0%;
+        padding: .4rem;
+        border-radius: var(--border-radius);
+        border: 2px solid var(--primary-color);
+        color: var(--white-color);
+        background: none;
+        outline: none;
+        transition: .5s;
+        &:focus {
+            background: var(--black-color);
+        }
+    }
+    .openSearch{
+        opacity: 1;
+        width: 90%;
+    }
+            
 }
 .headerAside{
     @include flexcenter;
@@ -85,7 +111,7 @@
 .userInformation {
     position: absolute;
     @include modalMenu;
-    top: -200;
+    top: -200%;
     right: 1rem;
     margin: auto;
     form {
@@ -133,15 +159,20 @@
 
 .itemList {
     width: 100%;
+    max-width: 100%;
+    
     li {
         list-style: none;
-        text-align: center;
+        width: 100%;
+        overflow: hidden;
         input {
             background: none;
             border: none;
             outline: none;
-            width: 100%;
-            padding: .4rem 0;
+            text-align: left;
+            width: 90%; 
+            max-width: 50%;
+            padding: .4rem .3rem;
             font-size: var(--font-size-medium);
             color: var(--primary-color);
             transition: .5s;
@@ -151,6 +182,14 @@
                 color: var(--white-color);
             }
         }
+    }
+    .classActive {
+        // background: rgba(#101010, .5);
+        color: var(--white-color);
+        background: url('../img/background/background2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 }
 

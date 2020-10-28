@@ -2,7 +2,7 @@
   let db = firebase.firestore();
   let newDataUser= db.collection('Steps');
 
-  let newcollecionList, newTitleNewItem, newNewCode, newDescription;   
+  let newcollecionList, newTitleNewItem, newNewCode, newDescription, convertRows;   
   let newItemCode = document.querySelector('#newItemCode'); 
   let collecionListSelec = newItemCode['collecionListSelec'];
   let addCollection = newItemCode['addCollection'];
@@ -10,23 +10,41 @@
   let newCode = newItemCode['code'];
   let description = newItemCode['description'];
   let allTags= [];
-  const updatecollectionList = (e) => {
-      if(e.target.value === 'Add new Collection'){
-          document.querySelector('#showContentSelectNew').classList.remove('hide');
-          document.querySelector('#showContentSelectList').classList.add('hide');
+    
+  let AddNewCheck = document.querySelector('#AddNewCheck');   
+  let thisCheck = document.querySelector('#thisCheck');   
+  let defaultCLickRadio = document.querySelector('#defaultCLickRadio'); 
+  let showContentSelectNew = document.querySelector('#showContentSelectNew');
+  let showContentSelectList = document.querySelector('#showContentSelectList');
+  let showContentSelectThis = document.querySelector('#showContentSelectThis');
+  const updatecollectionList = (action, e) => {
+      if(action === 'new'){
+          showContentSelectNew.classList.remove('hide');
+          showContentSelectList.classList.add('hide');
+          showContentSelectThis.classList.add('hide');
       }
-      else{
-        document.querySelector('#showContentSelectList').classList.remove('hide');
-        document.querySelector('#showContentSelectNew').classList.add('hide');
+      else if(action === 'this'){
+          showContentSelectNew.classList.add('hide');
+          showContentSelectList.classList.add('hide');
+          showContentSelectThis.classList.remove('hide');
+        newcollecionList = ThisCollection.value;          
+      }
+      else if(action === 'select'){
+        showContentSelectNew.classList.add('hide');
+        showContentSelectList.classList.remove('hide');
+        showContentSelectThis.classList.add('hide');
+        newcollecionList = collecionListSelec.value;   
       }
   }
 const writeCode = (e) => {
     e.preventDefault();
-    if(addCollection.value){
-        newcollecionList = addCollection.value;
-    }else{
-        newcollecionList = collecionListSelec.value;
-    }
+    
+    convertRows = numRows;
+    
+    if(addCollection.value){newcollecionList = addCollection.value; }
+    if(defaultCLickRadio.checked){newcollecionList = collecionListSelec.value; }
+    if(newCode.cheked){newcollecionList = ThisCollection.value}
+    
     newTitleNewItem = titleNewItem.value;
     newNewCode = newCode.value;
     newDescription = description.value;
@@ -36,8 +54,11 @@ const writeCode = (e) => {
         newDescription,
         allTags,
         date: newDate,
+        convertRows,
     };
+    numRows = 1;
     return addnewData(newcollecionList, newTitleNewItem, AllData);
+    
 }
 const addnewData = (newcollecionList, newTitleNewItem, AllData) => {      
     if(userId){
@@ -81,7 +102,9 @@ newItemCode.addEventListener('submit', writeCode);
 
 
 let itemStepsList = document.querySelector('#itemStepsList');
+let ThisCollection = document.querySelector('#ThisCollection');
 let dataFromDb = document.querySelector('#dataFromDb');
+let SelectCollectionActive = document.querySelector('#SelectCollectionActive');
 let allData;
 const showStepsList = () => {
     newDataUser.doc(userId).collection('stepsList')
@@ -96,11 +119,24 @@ const showStepsList = () => {
                 <option value="${doc.id}">${doc.id}</option>              
             `;
         });
+        document.getElementById('defaultCLickRadio').click();
+        // document.getElementById('defaultCLickRadio').checked = true;
         let buttonStepsList = document.querySelectorAll('.buttonStepsList');
             buttonStepsList.forEach(targetButton => {
                 targetButton.addEventListener('click', async(e) => {                  
-                    await showDataSteps(e.target.dataset.id);    
-                    document.querySelector('#stepsDbTittle').innerHTML = e.target.dataset.id;                
+                    await showDataSteps(e.target.dataset.id);
+
+                    for(i = 0; i < buttonStepsList.length; i++){buttonStepsList[i].classList.remove('classActive')}
+                    e.target.classList.add('classActive');
+                    if(screen.width <= 850){
+                        ShowAddNewCode('asideMenu')
+                    }
+                    
+                    
+                    document.querySelector('#stepsDbTittle').innerHTML = `${e.target.dataset.id}`;  
+                    ThisCollection.value = `${e.target.dataset.id}`; 
+                    SelectCollectionActive.classList.remove('hide');              
+                    thisCheck.click();              
                 });
             });
         });
@@ -126,7 +162,7 @@ const showDataSteps = (docId) => {
                         <i class="material-icons">&#xe14d;</i>
                     </button>         
                     
-                    <textarea class="code"  id="innerCode">${datos.newNewCode}</textarea>
+                    <textarea class="code"  id="innerCode" rows="${datos.convertRows}">${datos.newNewCode}</textarea>
                     <p class="description">
                         ${datos.newDescription}
                     </p>
@@ -148,4 +184,41 @@ const showDataSteps = (docId) => {
             });
         });
     });
+}
+
+// search
+const searhTagsInDb = () => {
+    l(tagSearch.value);
+}
+        
+
+
+let inputSearch = document.querySelector('.inputSearch');
+let tagSearch = document.querySelector('#inputSearch');
+let divInputSearch = document.querySelector('.divInputSearch');
+
+inputSearch.addEventListener('keydown', (e) => {
+     if(e.keyCode === 13 && tagSearch.value){
+         searhTagsInDb();
+         tagSearch.value = '';
+         searchTags();
+     }
+});
+let inputSearchBole = true;
+const searchTags = () => {
+    if(!tagSearch.value){
+        if(inputSearchBole){
+            inputSearch.classList.add('openSearch');
+            inputSearchBole = false;
+        }
+        else{
+            inputSearch.classList.remove('openSearch');
+            inputSearchBole = true;
+        }
+    }
+    else{
+        searhTagsInDb();
+        tagSearch.value = '';
+    }
+    
 }

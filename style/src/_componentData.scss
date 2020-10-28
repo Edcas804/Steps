@@ -30,12 +30,9 @@
                 i {
                     font-size: var(--font-size-large);
                     color: var(--primary-color);
-                    text-shadow: var(--shadow-short);
                 }
-                .delete {color: #f00}
-                .edit {
-                    color: var(--primary-color);
-                }
+                .delete:hover {color: #f00}
+                .edit:hover {color: var(--hight-color);}
             }
         }
         &:hover ul{
@@ -54,7 +51,6 @@
             border-radius: var(--border-radius);
             color: var(--hight-color);
             font-size: var(--font-size-medium);
-            font-size: var(--font-size-small);
             border: none;
             outline: none;
         }  
@@ -62,7 +58,7 @@
             display: none;
             position: absolute;
             top: .7rem;
-            right: 1.5rem;
+            right: 1.1rem;
             background: none;
             outline: none;
             border: none;
@@ -76,9 +72,9 @@
             color: var(--black-color);
             padding: .2em;
         }   
-        &:hover .copy{
-            display: block;
-        } 
+        // &:hover .copy{
+        //     display: block;
+        // } 
     }
     .details {
         font-size: var(--font-size-small);
@@ -142,15 +138,6 @@
             color: var(--hight-color);
         }
     }
-    .SelectCollection{
-        width: 100%;
-        display: grid;
-        grid-template-columns: 30px 1fr;
-        label {
-            color: var(--primary-color);
-        }
-        
-    }
     .wrapperTags{
         width: 100%;
         @include flexAround;
@@ -179,4 +166,13 @@
         }
     }
 
+}
+.SelectCollection{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    label {
+        color: var(--primary-color);
+    }
+    
 }

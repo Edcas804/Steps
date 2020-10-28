@@ -125,6 +125,8 @@ btnLogOut.addEventListener('click', e =>{
      anonymous();
      userId = '';
      dataFromDb.innerHTML = ``;
+     itemStepsList.innerHTML = ``;
+     collecionListSelec.innerHTML = ``;
 });
 
 document.onload = onloadDocument();
