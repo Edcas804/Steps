@@ -11,6 +11,7 @@
   let description = newItemCode['description'];
   let allTags= [];
     
+ 
   let AddNewCheck = document.querySelector('#AddNewCheck');   
   let thisCheck = document.querySelector('#thisCheck');   
   let defaultCLickRadio = document.querySelector('#defaultCLickRadio'); 
@@ -106,6 +107,8 @@ let ThisCollection = document.querySelector('#ThisCollection');
 let dataFromDb = document.querySelector('#dataFromDb');
 let SelectCollectionActive = document.querySelector('#SelectCollectionActive');
 let allData;
+let deleteCollection = false;
+// let buttonStepsList = document.querySelectorAll('.buttonStepsList');
 const showStepsList = () => {
     newDataUser.doc(userId).collection('stepsList')
     .onSnapshot((querySnapshot) => {
@@ -120,30 +123,60 @@ const showStepsList = () => {
             `;
         });
         document.getElementById('defaultCLickRadio').click();
-        // document.getElementById('defaultCLickRadio').checked = true;
         let buttonStepsList = document.querySelectorAll('.buttonStepsList');
+        // document.getElementById('defaultCLickRadio').checked = true;
             buttonStepsList.forEach(targetButton => {
-                targetButton.addEventListener('click', async(e) => {                  
-                    await showDataSteps(e.target.dataset.id);
-
-                    for(i = 0; i < buttonStepsList.length; i++){buttonStepsList[i].classList.remove('classActive')}
-                    e.target.classList.add('classActive');
-                    if(screen.width <= 850){
-                        ShowAddNewCode('asideMenu')
-                    }
-                    
-                    
-                    document.querySelector('#stepsDbTittle').innerHTML = `${e.target.dataset.id}`;  
-                    ThisCollection.value = `${e.target.dataset.id}`; 
-                    SelectCollectionActive.classList.remove('hide');              
-                    thisCheck.click();              
+                if(deleteCollection){targetButton.classList.add('deleteAlert')}
+                else{targetButton.classList.remove('deleteAlert')}
+                targetButton.addEventListener('click', (e) => {  
+                    if(deleteCollection){
+                        let forDelete = newDataUser.doc(userId).collection('stepsList').doc(e.target.dataset.id);
+                        deleteEachColletion(forDelete);
+                        deleteCollectionB();
+                    }else{             
+                        showDataSteps(e.target.dataset.id);
+    
+                        for(i = 0; i < buttonStepsList.length; i++){buttonStepsList[i].classList.remove('classActive')}
+    
+                        e.target.classList.add('classActive');
+                        if(screen.width <= 850){
+                            ShowAddNewCode('asideMenu')
+                        }
+                                             
+                        ThisCollection.value = `${e.target.dataset.id}`; 
+                        SelectCollectionActive.classList.remove('hide');              
+                        thisCheck.click();  
+                    }               
                 });
             });
         });
 }
+const deleteCollectionB = () => {
+    if(!deleteCollection){
+        deleteCollection = true;
+        showStepsList();
+    }else{
+        deleteCollection = false;
+        showStepsList();
+    }
+} 
+const deleteEachColletion = (forDelete) => {
+    forDelete.collection('eachStepsList').get()
+    .then((query) => {
+        query.forEach((doc) => {
+            l(doc.id);
+            forDelete.collection('eachStepsList').doc(doc.id)
+            .delete()
+            .then(()=>{forDelete.delete()})
+        })
+    })
+    // forDelete.delete();
+}
+let newUpdateData;
 const showDataSteps = (docId) => {
-    newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList')
-    .onSnapshot((querySnapshot) => {
+    let allDataHere = newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList');
+    
+    allDataHere.onSnapshot((querySnapshot) => {
         dataFromDb.innerHTML = ``;
         querySnapshot.forEach((doc) => {
             let datos = doc.data();
@@ -154,7 +187,15 @@ const showDataSteps = (docId) => {
                     <h4>${datos.newTitleNewItem}</h4>
                     <ul>
                         <li><i class="material-icons delete" data-id="${doc.id}">&#xe872;</i></li>
-                        <li><i class="material-icons edit">&#xe3c9;</i></li>
+                        <li>
+                            <i class="material-icons edit" 
+                             data-new="${datos.newTitleNewItem}"
+                             data-id="${doc.id}" 
+                             data-code="${datos.newNewCode}" 
+                             data-descr="${datos.newDescription}">
+                             &#xe3c9;
+                            </i>
+                        </li>
                     </ul>
                 </header>
                 <div class="wrapperCode" > 
@@ -180,10 +221,54 @@ const showDataSteps = (docId) => {
         deleteActiveCode.forEach( activeCode => {
             activeCode.addEventListener('click', (e) => {
                 l(e.target.dataset.id);
-                newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList').doc(e.target.dataset.id).delete()
+                allDataHere.doc(e.target.dataset.id).delete();
             });
         });
+        let edit = document.querySelectorAll('.edit');
+            edit.forEach( eachitem => {
+                eachitem.addEventListener( 'click', e => {
+                    newUpdateData = allDataHere.doc(e.target.dataset.id); 
+                    updateTitleNewItem.value = e.target.dataset.new; 
+                    updateCode.value = e.target.dataset.code; 
+                    updateDescription.value = e.target.dataset.descr;
+                    ShowAddNewCode('editSteps')
+                });
+            });
     });
+}
+let formUpdate = document.querySelector('#formUpdate');
+let updateTitleNewItem = formUpdate['updateTitleNewItem'];
+let updateCode = formUpdate['updateCode'];
+let updateDescription = formUpdate['updateDescription'];
+
+formUpdate.addEventListener( 'submit', e => {
+    e.preventDefault();
+    newTitleNewItem = updateTitleNewItem.value;
+    newNewCode = updateCode.value;
+    newDescription = updateDescription.value;
+    let allUpdateData= {
+        newTitleNewItem,
+        newNewCode,
+        newDescription, 
+        date: newDate,   
+    }
+    newUpdateData.update(allUpdateData)
+    .then( ()=> {
+        l('actualizado');
+        formUpdate.reset(); 
+        ShowAddNewCode('editSteps')   
+    })
+    .catch(e => {
+        l(e);
+        formUpdate.reset();  
+        errorAll.innerHTML = 'Se ha presentado un error, intenta de nuevo por favor.';
+        activeModal('modalError');
+    });
+
+
+});
+const resetFormUpdate = () => {
+    formUpdate.reset();    
 }
 
 // search

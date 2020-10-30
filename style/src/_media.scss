@@ -49,13 +49,13 @@
             background: var(--black-color);
         }
         .asideNotes {
-            padding: 3rem 0 0 0;
+            padding: 1rem 0 0 0;
         }
         .mainContent{
         }
     }.newItem {
         h6 {
-            max-width: 120px
+            max-width: 120px;
             overflow: hidden;
         }
         ul {
@@ -87,4 +87,5 @@
     .modalLogin, .modalRegister, .wrapperMenu{
 
     }
+    .ShowHidde{display: none}
 }

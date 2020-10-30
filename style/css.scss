@@ -1,8 +1,7 @@
 :root{
     --border-radius: .5rem;
     --primary-color: #05976c;
-    // --primary-color: #0fa;
-    --white-color: #ccc;
+    --white-color: #aaa;
     --black-color: #272727;
     --hight-color: #00f0ea; 
     --gradient:
@@ -179,6 +178,24 @@
         border-style: solid;
         border-color: var(--primary-color);
 
+    }
+}
+@mixin data-descr{
+    position: relative;
+    transition: .5s;
+    &:hover::after{
+        content: attr(data-descr);
+        position: absolute;
+        left: 100%;
+        top: 0;
+        min-width: 120px;
+        border-radius: var(--border-radius);
+        background-color: var(--black-color);
+        padding: .3rem;
+        color:var(--white-color);
+        font-size: var(--font-size-small);
+        z-index: 1000;
+        box-shadow: 1px 1px 1px #101010;
     }
 }
 @import 'src/main', 'src/app', 'src/about', 'src/media';

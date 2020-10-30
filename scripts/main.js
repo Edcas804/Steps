@@ -120,9 +120,13 @@ const hiddeModal = (modal, modal2) => {
 let newdata = true;
 let newasideMenu = true;
 let newasideNotes = true;
+let neweditSteps = true;
+let newmodalForShorcuts = true;
 let newDataModal = document.getElementsByClassName('newDataModal')[0];
 let asideMenu = document.getElementsByClassName('asideMenu')[0];
 let asideNotes = document.getElementsByClassName('asideNotes')[0];
+let editSteps = document.getElementsByClassName('editSteps')[0];
+let modalForShorcuts = document.getElementsByClassName('modalForShorcuts')[0];
 const ShowAddNewCode = (modal) => {
     if(modal === 'newDataModal'){
         if(newdata){
@@ -147,6 +151,23 @@ const ShowAddNewCode = (modal) => {
         }else{
             hiddeModal(asideNotes, 'modal2');
             newasideNotes = true}
+    }
+    if(modal === 'editSteps'){
+        if(neweditSteps){
+            showModal(editSteps, 'modal2');
+            neweditSteps = false;
+        }else{
+            hiddeModal(editSteps, 'modal2');
+            neweditSteps = true}
+    }
+    if(modal === 'modalForShorcuts'){
+        if(newmodalForShorcuts){
+            showModal(modalForShorcuts, 'modal2');
+            newmodalForShorcuts = false;
+        }else{
+            hiddeModal(modalForShorcuts, 'modal2');
+            newmodalForShorcuts = true;
+        }
     }
 }
 let timeOut;
@@ -193,7 +214,22 @@ const watchColor = e => {
 }
 inputColor.addEventListener('input', watchColor, false);
 
-
+let appBo = true;
+let App = document.querySelectorAll('.App')[0];
+let showHideAll = document.querySelectorAll('.showHideAll');
+const hiddeShowNotes = () => {
+    if(appBo){
+        App.classList.add('AppHideShow');
+        showHideAll.forEach( item => {item.classList.add('hide')});
+        asideNotes.classList.add('newForHiddeShow');
+        appBo = false;
+    }else{
+        App.classList.remove('AppHideShow');
+        showHideAll.forEach( item => {item.classList.remove('hide')});
+        asideNotes.classList.remove('newForHiddeShow');
+        appBo = true;
+    }
+}
 // capturando eventos de teclado
 let numRows= 1;
 document.getElementById('code').addEventListener('keydown', (e) => {
@@ -204,10 +240,21 @@ document.getElementById('code').addEventListener('keydown', (e) => {
   
 document.addEventListener('keydown', (e) => {   
     // l(e.keyCode)
-    if(e.keyCode === 107){    
+    if(e.altKey && e.keyCode === 78){    //alt + n
         ShowAddNewCode('newDataModal')    
     }
-    if(e.keyCode === 106){
+    if(e.altKey && e.keyCode === 66){    //alt + b
         searchTags();
     }
+    if(e.altKey && e.keyCode === 72){    //alt + h
+        hiddeShowNotes();
+    }
+    if(e.altKey && e.keyCode === 71){    //alt + g
+        ShowAddNewCode('modalForShorcuts');
+    }
  }, false);
+
+
+     
+ 
+

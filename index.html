@@ -18,7 +18,7 @@
                 <h1>Steps</h1>
             </div>
             <div onclick="">
-                <i class="material-icons menu" onclick="activeModal('wrapperMenu');console.log('click')">&#xe5d2;</i>              
+                <i class="material-icons menu" onclick="activeModal('wrapperMenu')">&#xe5d2;</i>              
             </div>
         </header>  
         <!-- home content -->
@@ -65,23 +65,19 @@
                         <li class="divInputSearch" onclick="">    
                                 <input type="text" placeholder="Search" class="inputSearch" id="inputSearch">     
                         </li>
-                        <li class="" onclick="searchTags()">                           
-                                <i class="material-icons">&#xe8b6;</i>
+                        <li class="" onclick="searchTags()" >  
+                            <!-- <i class="material-icons" >&#xe8b6;</i> -->
+                            <span class="material-icons" tabindex="0" data-descr="CTRL + Y">&#xe8b6;</span>
                         </li>
                         <li class="" onclick="ShowAddNewCode('newDataModal')">
-                            <i class="material-icons newfile" >&#xe147;</i>
+                            <!-- <i class="material-icons newfile" >&#xe147;</i> -->
+                            <span class="material-icons newfile" tabindex="0" data-descr="CTRL + G">&#xe147;</span>
                         </li>
                         <li class="toggleItems" onclick="ShowAddNewCode('asideMenu')">
                             <i class="material-icons listFiles ">&#xe241;</i>
                         </li>
                         <li class="toggleItems" onclick="ShowAddNewCode('asideNotes')" >
                             <i class="material-icons listNotes ">&#xe06f;</i>
-                        </li>
-                        <li>
-                            <label for="inputColor" class="inputColor" id="inputColorLabel">                               
-                                <i class="material-icons">&#xe3b7;</i>
-                            </label>                            
-                            <input type="color" id="inputColor" class="SelectInputColor" value="#ffb414"> 
                         </li>
                     </ul>
                 </div>
@@ -95,8 +91,9 @@
                     <div>
                         <button onclick="ShowAddNewCode('asideNotes')" class="closeBtn toggleClose">X</button>
                     </div>
-                    <p id="userDisplayName"></p>
                     <img src="img\profile\profile.jpg" alt="Profile" title="Profile" onclick="activeModal('userInformation')">
+                    <p id="userDisplayName" class="showHideAll"></p>
+                    <!-- modal user information -->
                     <div class="userInformation">
                         <div>
                             <button onclick="activeModal('userInformation')" class="closeBtn">X</button>
@@ -130,8 +127,53 @@
                     </div>
                 </div>
                 <div>
-                    <p id="errorMensaje"></p>
+                    <div class="asideItem">
+                        <p id="errorMensaje" ></p>
+                    </div>
+                    <div class="asideItem">
+                        <li>
+                            <label for="inputColor" class="inputColor" id="inputColorLabel">                               
+                                <i class="material-icons" tabindex="0" data-descr="CTRL + G">&#xe3b7;</i>
+                            </label>                            
+                            <input type="color" id="inputColor" class="SelectInputColor" value="#ffb414"> 
+                        </li>
+                        <p class="showHideAll">Selec a color</p>
+                    </div>
+                    <div class="asideItem">
+                            <div class="asideItem1" onclick="ShowAddNewCode('modalForShorcuts')">
+                                <i class="material-icons">&#xe8b8;</i>
+                                <h6 class="showHideAll">shortcuts</h6>
+                            </div>
+                            <div class="modalForShorcuts">
+                                <div>
+                                    <button onclick="ShowAddNewCode('modalForShorcuts')" class="closeBtn">X</button>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <span>Show/Hide shorcuts list</span>
+                                        <span class="shorcut">Alt + G</span>
+                                    </li>
+                                    <li>
+                                        <span>Add new item</span>
+                                        <span class="shorcut">Alt + N</span>
+                                    </li>
+                                    <li>
+                                        <span>Search</span>
+                                        <span class="shorcut">Alt + B</span>
+                                    </li>
+                                    <li>
+                                        <span>Show/Hide right menu</span>
+                                        <span class="shorcut">Alt + H</span>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="asideItem" onclick="deleteCollectionB()">
+                        <i class="material-icons">&#xe16c;</i>
+                        <p id="" class="showHideAll" >Delete Collections</p>
+                    </div>
                 </div>
+                <button class="ShowHidde" onclick="hiddeShowNotes()">></button>
 
             </div>
         </div> 
@@ -141,7 +183,7 @@
                 <button onclick="activeModal('wrapperMenu')" class="closeBtn">X</button>
             </div>
             <ul>
-                <li onclick="activeWindow('home'); activeModal('wrapperMenu')" tabindex="0" data-descr="Go to home">
+                <li onclick="activeWindow('home'); activeModal('wrapperMenu')">
                     <span tabindex="0" data-descr="Go to home">Home</span>
                 </li>
                 <li onclick="activeWindow('app');activeModal('wrapperMenu')" >
@@ -237,7 +279,7 @@
             </div>
             <form action="" id="newItemCode">
                 <h5>Insert new code</h5>  
-                <div class="SelectCollection">
+                <div class="SelectCollection ">
                     <input type="radio" name="collection"  value="Add new Collection"  onclick="updatecollectionList('new', event)" id="AddNewCheck">
                     <label>Add new Collection</label>
                 </div> 
@@ -245,7 +287,7 @@
                     <input type="radio" name="collection"   value="this Collection" onclick="updatecollectionList('this', event)" id="thisCheck">
                     <label>This Collection</label>
                 </div>
-                <div class="SelectCollection">
+                <div class="SelectCollection ">
                     <input type="radio" name="collection" value="Select an existing collection" onclick="updatecollectionList('select', event)" id="defaultCLickRadio" checked>
                     <label>Select an existing collection</label>
                 </div>
@@ -258,7 +300,7 @@
                 <div style="width: 100%" id="showContentSelectThis" class="hide">
                     <fieldset>
                         <legend>This Collection</legend>
-                        <input type="text"  id="ThisCollection" >
+                        <input type="text"  id="ThisCollection" disabled>
                     </fieldset>
                 </div>
                 <div style="width: 100%" id="showContentSelectList" >
@@ -296,6 +338,29 @@
                     </div>
                 </fieldset>
                 <button class="btn" >Save</button>
+            </form>
+        </div>
+        <div class="editSteps">
+            <div>
+                <button onclick="ShowAddNewCode('editSteps'); resetFormUpdate()" class="closeBtn">X</button>
+            </div>
+            <form action="" id="formUpdate">
+                <h5>Update Steps</h5>
+                <fieldset>
+                    <legend>Title</legend>
+                    <input type="text" placeholder="" id="updateTitleNewItem">
+                </fieldset>
+                <fieldset>
+                    <legend>Code</legend>
+                    <textarea name="" id="updateCode" cols="" rows="5" placeholder="Insert your code lines here." class="textCode"></textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>Description</legend>
+                    <textarea name="" id="updateDescription" cols="" rows="1" placeholder="Description"></textarea>
+                </fieldset>
+                <div>
+                    <button class="btn" >Update</button>
+                </div>
             </form>
         </div>
         <footer class="footer">

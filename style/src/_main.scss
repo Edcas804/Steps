@@ -6,12 +6,12 @@
 }
 .headerMain{
     @include flexBetween;
-    width: 80%;
+    width: 94%;
     margin:auto;
     padding: 1rem;
     position: fixed;
-    left: 10%;
-    right: 10%;
+    left: 3%;
+    right: 3%;
     top: 0;
     cursor: pointer;
     z-index: 5;
@@ -59,20 +59,7 @@
                 color: var(--white-color);
             }
             [data-descr]{
-                position: relative;
-                &:hover::after{
-                    content: attr(data-descr);
-                    position: absolute;
-                    left: 0;
-                    top: 24px;
-                    min-width: 150px;
-                    border-radius: var(--border-radius);
-                    background-color: var(--black-color);
-                    padding: 12px;
-                    color:var(--white-color);
-                    font-size: var(--font-size-small);
-                    z-index: 1;
-                }
+                @include data-descr;
             }
         }
     }

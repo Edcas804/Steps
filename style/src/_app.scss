@@ -5,6 +5,8 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    transition: .5s;
+    background: var(--black-color);
     .AppItem {
         padding: .3rem;
         margin: 5rem .5rem .5rem .5rem;
@@ -18,29 +20,46 @@
     }
     .asideMenu{
         @include gridItem;
-        background: rgba(0, 0, 0, .5);
-        background: var(--black-color);
-        box-shadow: var(--shadow-short);  
+        // background: rgba(0, 0, 0, .5);
+        // background: var(--black-color);
+        // box-shadow: var(--shadow-short);  
 
     }
     .asideNotes{
         @include gridItem;
+        box-shadow: var(--shadow-short);
+        background: var(--black-color);
 
     }
     .mainContent{
         @include gridItem;
-        // box-shadow: var(--shadow-short);
-        // background: var(--black-color);
+    }
+    // for dinamic js
+    .newForHiddeShow{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: .3rem;
+        
     }
 }
+.AppHideShow {
+    grid-template-columns: 280px 1fr 80px;
+}
 .newItem {
-    @include flexBetween;
+    @include flexcenter;
+    justify-content: flex-end;
     border-radius: .3rem .3rem 0 0;
     padding: .2rem;
     h6 {
+        display: none;
         color: var(--primary-color);
         font-size: var(--font-size-large);
         padding: 0 0 0 .2rem;
+        border:2px solid #0f0;
+        max-width: 200px;
+        overflow: hidden;
         &:hover {
             transform: scale(1.1);
         }
@@ -49,17 +68,26 @@
         height: 100%;
         @include flexcenter;
         justify-content: flex-end;
-        overflow: hidden;
         li {
             list-style: none;
             display: inline-block;
             padding: 0 .3rem;
             cursor: pointer;
             color: var(--primary-color);
-            i {
+            i, span{
                 font-weight: 500;
                 font-size: 2rem;
                 transition: .5s;
+            }
+            [data-descr] {
+                @include data-descr;
+                position: relative;
+            }
+            .newfile{
+                [data-descr]{
+                    right: 100%;
+                    top: 200%;
+                }
             }
         }
         .toggleItems {
@@ -93,10 +121,79 @@
     }
             
 }
+.newfile:hover {color: var(--hight-color)}
+.listFiles:hover {color: #f55}
+.listNotes:hover {color: #f55}
+
+
+
+.itemList {
+    width: 100%;
+    max-width: 100%;
+    
+    li {
+        list-style: none;
+        width: 100%;
+        overflow: hidden;
+        margin: .2rem 0;
+        input {
+            background: none;
+            border: none;
+            outline: none;
+            text-align: left;
+            width: 90%; 
+            max-width: 100%;
+            padding: .4rem .3rem;
+            font-size: var(--font-size-medium);
+            color: var(--primary-color);
+            transition: .5s;
+            font-weight: bold;
+            border-radius: var(--border-radius);
+            &:hover, &:focus {
+                background: rgba(#101010, .5);
+                color: var(--white-color);
+            }
+        }
+        .deleteAlert {
+            background: #f00;
+            background: rgba(255, 0, 0, .5);
+            color: #fff;  
+        }
+    }
+    .classActive {
+        background: rgba(#101010, .5);
+        // color: var(--white-color);
+        // background: url('../img/background/background2.jpg');
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        // background-attachment: fixed;
+    }
+}
+
+
+// aside notes
+
+.ShowHidde {
+    @include flexcenter;
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    padding: .2rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--black-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;
+    box-shadow: var(--shadow-short);
+    font-size: 1rem;
+    font-weight: bold;
+}
 .headerAside{
     @include flexcenter;
-    justify-content: flex-end;
-    position: realtive;
+    justify-content: flex-start;
+    // position: relative;
     p {
         color: var(--primary-color);
     }
@@ -105,7 +202,7 @@
         height: 32px;
         border-radius: 50%;
         box-shadow: var(--shadow-short);
-        margin: .3rem;
+        margin-right: .3rem;
     }
 }
 .userInformation {
@@ -141,9 +238,26 @@
 
     }
 }
-.newfile:hover {color: var(--hight-color)}
-.listFiles:hover {color: #f55}
-.listNotes:hover {color: #f55}
+.asideItem {
+    @include flexcenter;
+    justify-content: flex-start;
+    padding: .3rem 0;
+    border-bottom: 1px solid #222;
+    li{list-style: none;}
+    p, li, h6, {
+        color: var(--primary-color);
+        font-size: var(--font-size-medium);
+        cursor: pointer;
+    }
+    i {
+        margin-right: .3rem;
+        color: var(--primary-color);
+    }
+    .asideItem1 {
+        @include flexcenter;
+        flex-direction: start;
+    }
+}
 
 .SelectInputColor{
     display: none;
@@ -155,42 +269,26 @@
         color: var(--hight-color);
     }
 }
-
-
-.itemList {
-    width: 100%;
-    max-width: 100%;
-    
-    li {
-        list-style: none;
+.modalForShorcuts {
+    @include modalMenu;
+    top: -200;
+    // top: 10%;
+    margin: auto;
+    overflow:auto;
+    ul {
         width: 100%;
-        overflow: hidden;
-        input {
-            background: none;
-            border: none;
-            outline: none;
-            text-align: left;
-            width: 90%; 
-            max-width: 50%;
-            padding: .4rem .3rem;
-            font-size: var(--font-size-medium);
-            color: var(--primary-color);
-            transition: .5s;
-            font-weight: bold;
-            &:hover, &:focus {
-                background: rgba(#101010, .5);
-                color: var(--white-color);
+        li {
+            @include flexBetween;
+            width: 100%;
+            list-style: none;
+            padding: .3rem 0;
+            .shorcut{
+                background: var(--white-color);
+                background: #333;
+                padding: .2rem;
+                border-radius: var(--border-radius);
             }
         }
     }
-    .classActive {
-        // background: rgba(#101010, .5);
-        color: var(--white-color);
-        background: url('../img/background/background2.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
 }
-
 @import 'componentData';

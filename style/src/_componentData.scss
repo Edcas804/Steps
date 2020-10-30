@@ -3,10 +3,9 @@
     padding: 0 1rem 0 0 ;
 }
 .wrapperData {
-    // box-shadow: var(--shadow-short);
     padding: .2rem .2rem;
     border-radius: var(--border-radius);
-    background: var(--white-color);
+    box-shadow: 1px 0px 1px #000;
     display: grid;
     grid-template-rows: 1.5rem 1fr 1rem;
     border-left: 5px solid var(--primary-color);
@@ -18,7 +17,8 @@
         transition: .5s;
         h4 {
             font-size: var(--font-size-medium);
-            color: var(--black-color);
+            color: var(--white-color);
+            color: var(--primary-color);
         }
         ul {
             opacity: 0;
@@ -45,7 +45,7 @@
         .code {
             width: 95%;
             text-align: left;
-            background: var(--black-color);
+            background: #181818;
             padding: .5rem;
             margin: .2rem 0;
             border-radius: var(--border-radius);
@@ -69,7 +69,7 @@
             }
         }  
         .description {
-            color: var(--black-color);
+            color: var(--white-color);
             padding: .2em;
         }   
         // &:hover .copy{
@@ -124,15 +124,7 @@
             }
         }
         input, textarea, select  {
-            width: 100%;
-            padding: .5rem;
-            border-radius:  var(--border-radius);
-            margin: .3rem 0;
-            border:none;
-            outline: none;
-            font-size: var(--font-size-medium);
-            background: none;
-            color: var(--white-color);
+            @include inputFieldset;
         }
         .textCode {
             color: var(--hight-color);
@@ -166,6 +158,29 @@
         }
     }
 
+}
+.editSteps{
+    @include modalMenu;
+    top: -200;
+    // top: 10%;
+    margin: auto;
+    overflow:auto;
+    form {
+        width: 100%;
+        @include flexcenter;
+        flex-direction: column;
+        h5 {
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+            margin: 0 0 .6rem 0;
+        }
+        fieldset {
+            @include fieldsetAll;
+        }
+        input, textarea {
+            @include inputFieldset;
+        }
+    }
 }
 .SelectCollection{
     width: 100%;

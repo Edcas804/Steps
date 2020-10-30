@@ -25,7 +25,6 @@ let userId;
 // login anonnymous
 const onloadDocument = () => {
     anonymous();
-    l('cargó   ')
 }
 const anonymous = () => {
     if(!activeUser){
@@ -99,7 +98,6 @@ auth.onAuthStateChanged(firebaseUser => {
             errorMensaje.innerHTML = ''; 
             btnLogin.classList.add('hide');
             btnLogOut.classList.remove('hide');
-            l(userId);
             activeUser = true;
             showStepsList();
             db.collection('Steps').doc(userId).set({name: firebaseUser.displayName})
