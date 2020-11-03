@@ -36,9 +36,14 @@
         showContentSelectThis.classList.add('hide');
         newcollecionList = collecionListSelec.value;   
       }
-  }
+}
+// let numForIncrem;
+// let numIncrem = newDataUser.doc(userId).collection('stepsList').doc(docId);
+//     numIncrem.get().then((doc) => { contador = doc.data().num; });
+
 const writeCode = (e) => {
     e.preventDefault();
+    
     
     convertRows = numRows;
     
@@ -49,19 +54,23 @@ const writeCode = (e) => {
     newTitleNewItem = titleNewItem.value;
     newNewCode = newCode.value;
     newDescription = description.value;
+    dateeee = 'November 1, 2019 1:23 PM';
+    // newDate = moment(dateeee).format(format); 
+    // Datehour = moment().format('LT'); 
     let AllData = {
         newTitleNewItem,
         newNewCode,
         newDescription,
         allTags,
-        date: newDate,
+        date: {newDate, Datehour},
         convertRows,
     };
     numRows = 1;
     return addnewData(newcollecionList, newTitleNewItem, AllData);
     
 }
-const addnewData = (newcollecionList, newTitleNewItem, AllData) => {      
+const addnewData = (newcollecionList, newTitleNewItem, AllData) => {
+    
     if(userId){
         newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).set({Title: newTitleNewItem});
         newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).collection('eachStepsList').doc(newTitleNewItem)
@@ -131,7 +140,7 @@ const showStepsList = () => {
                 targetButton.addEventListener('click', (e) => {  
                     if(deleteCollection){
                         let forDelete = newDataUser.doc(userId).collection('stepsList').doc(e.target.dataset.id);
-                        deleteEachColletion(forDelete);
+                            (forDelete);
                         deleteCollectionB();
                     }else{             
                         showDataSteps(e.target.dataset.id);
@@ -173,13 +182,32 @@ const deleteEachColletion = (forDelete) => {
     // forDelete.delete();
 }
 let newUpdateData;
+let contador;
 const showDataSteps = (docId) => {
+
     let allDataHere = newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList');
-    
-    allDataHere.onSnapshot((querySnapshot) => {
+    let allDataHereOrder = allDataHere.orderBy('date.newDate', 'asc');
+    allDataHereOrder.onSnapshot((querySnapshot) => {
         dataFromDb.innerHTML = ``;
         querySnapshot.forEach((doc) => {
             let datos = doc.data();
+
+            let dateNew;
+            let dateToday = moment(datos.date.newDate).format(format);
+            let diffDays = moment().diff(dateToday, 'days');
+            let diffMonths = moment().diff(dateToday, 'months');
+            // diffDays <= 2  ? dateNew = diffDays + ' days ago'  : dateNew = dateToday;
+            if(diffDays <= 30){
+                diffDays === 0 ?  dateNew = 'Today' + ' at ' + datos.date.Datehour : dateNew = diffDays + ' days ago';                
+            }
+            else{
+                if(diffMonths >= 1){
+                    dateNew = diffMonths + ' months ago';                  
+                }
+                if(diffMonths >= 13){
+                    dateNew = dateToday;
+                }
+            }
             
             allData = `   
             <div class="wrapperData">
@@ -210,7 +238,7 @@ const showDataSteps = (docId) => {
                 </div>
                 <div> 
                     <p class="details">
-                    Actualizado el  ${datos.date}           
+                        ${dateNew}           
                     </p>
                 </div>
             </div>
@@ -250,7 +278,7 @@ formUpdate.addEventListener( 'submit', e => {
         newTitleNewItem,
         newNewCode,
         newDescription, 
-        date: newDate,   
+        date: {newDate, Datehour}, 
     }
     newUpdateData.update(allUpdateData)
     .then( ()=> {

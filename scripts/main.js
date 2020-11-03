@@ -1,4 +1,16 @@
+
 let l = console.log;
+moment.locale('en');
+
+
+let format = 'LL';
+let newDate = moment().format( format );
+let Datehour = moment().format('LT');
+setInterval(()=> {
+    newDate = moment().format( format );
+    Datehour = moment().format('LT');
+}, 60000);
+
 const activeWindow = (activeWindow) => {
     let windowView = document.querySelectorAll('.window');
 

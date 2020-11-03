@@ -1169,8 +1169,7 @@
 .wrapperData {
   padding: .2rem .2rem;
   border-radius: var(--border-radius);
-  -webkit-box-shadow: 1px 0px 1px #000;
-          box-shadow: 1px 0px 1px #000;
+  background: #303030;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1.5rem 1fr 1rem;
