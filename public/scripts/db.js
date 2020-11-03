@@ -37,14 +37,29 @@
         newcollecionList = collecionListSelec.value;   
       }
 }
-// let numForIncrem;
-// let numIncrem = newDataUser.doc(userId).collection('stepsList').doc(docId);
-//     numIncrem.get().then((doc) => { contador = doc.data().num; });
-
-const writeCode = (e) => {
+let numForIncrem;
+let numIncrem;
+const contadorForNewCode = e => {
+    e.preventDefault();
+    if(addCollection.value){
+        newcollecionList = addCollection.value; 
+        numIncrem = newDataUser.doc(userId).collection('stepsList').doc(addCollection.value).collection('contadores').doc('Cont');
+        numIncrem.set({Num : 0})
+    } else{
+        numIncrem = newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).collection('contadores').doc('Cont');
+    }        
+        numIncrem.get()
+        .then((doc) => { 
+            l(doc.data().Num);
+            let newNum = doc.data().Num;
+            writeCode(e, newNum);
+            numIncrem.update({Num : firebase.firestore.FieldValue.increment(1)})
+        });
+}
+const writeCode = (e, newNum) => {
     e.preventDefault();
     
-    
+    let NewNum = parseInt(newNum) + 1;
     convertRows = numRows;
     
     if(addCollection.value){newcollecionList = addCollection.value; }
@@ -58,6 +73,7 @@ const writeCode = (e) => {
     // newDate = moment(dateeee).format(format); 
     // Datehour = moment().format('LT'); 
     let AllData = {
+        cont : NewNum,
         newTitleNewItem,
         newNewCode,
         newDescription,
@@ -88,7 +104,7 @@ const addnewData = (newcollecionList, newTitleNewItem, AllData) => {
         activeModal('modalError');
     }
 }
-newItemCode.addEventListener('submit', writeCode);
+newItemCode.addEventListener('submit', contadorForNewCode);
 
     const addNewTag = () => {
         let tag = document.querySelector('#tag');
@@ -140,7 +156,7 @@ const showStepsList = () => {
                 targetButton.addEventListener('click', (e) => {  
                     if(deleteCollection){
                         let forDelete = newDataUser.doc(userId).collection('stepsList').doc(e.target.dataset.id);
-                            (forDelete);
+                        deleteEachColletion(forDelete);
                         deleteCollectionB();
                     }else{             
                         showDataSteps(e.target.dataset.id);
@@ -182,11 +198,10 @@ const deleteEachColletion = (forDelete) => {
     // forDelete.delete();
 }
 let newUpdateData;
-let contador;
 const showDataSteps = (docId) => {
 
     let allDataHere = newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList');
-    let allDataHereOrder = allDataHere.orderBy('date.newDate', 'asc');
+    let allDataHereOrder = allDataHere.orderBy('cont', 'asc');
     allDataHereOrder.onSnapshot((querySnapshot) => {
         dataFromDb.innerHTML = ``;
         querySnapshot.forEach((doc) => {
