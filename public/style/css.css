@@ -675,25 +675,20 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   border-radius: .3rem .3rem 0 0;
   padding: .2rem;
 }
 
 .newItem h6 {
-  display: none;
   color: var(--primary-color);
   font-size: var(--font-size-large);
   padding: 0 0 0 .2rem;
-  border: 2px solid #0f0;
   max-width: 200px;
   overflow: hidden;
 }

@@ -131,17 +131,19 @@ let itemStepsList = document.querySelector('#itemStepsList');
 let ThisCollection = document.querySelector('#ThisCollection');
 let dataFromDb = document.querySelector('#dataFromDb');
 let SelectCollectionActive = document.querySelector('#SelectCollectionActive');
+let allTitleSteps = document.querySelector('#allTitleSteps');
 let allData;
 let deleteCollection = false;
 // let buttonStepsList = document.querySelectorAll('.buttonStepsList');
 const showStepsList = () => {
     newDataUser.doc(userId).collection('stepsList')
     .onSnapshot((querySnapshot) => {
+
         itemStepsList.innerHTML = ``;
         collecionListSelec.innerHTML = ``;
         querySnapshot.forEach((doc) => {
             itemStepsList.innerHTML += `
-                <li><input class="buttonStepsList" type="button" value="${doc.id}" data-id="${doc.id}"></li>
+                <li><input class="buttonStepsList" type="button" value="${doc.id}" data-id="${doc.id}" id="${doc.id}"></li>
             `;
             collecionListSelec.innerHTML += `
                 <option value="${doc.id}">${doc.id}</option>              
@@ -149,26 +151,33 @@ const showStepsList = () => {
         });
         document.getElementById('defaultCLickRadio').click();
         let buttonStepsList = document.querySelectorAll('.buttonStepsList');
-        // document.getElementById('defaultCLickRadio').checked = true;
             buttonStepsList.forEach(targetButton => {
-                if(deleteCollection){targetButton.classList.add('deleteAlert')}
+               
+                if(deleteCollection){
+                    targetButton.classList.add('deleteAlert');
+                }
                 else{targetButton.classList.remove('deleteAlert')}
-                targetButton.addEventListener('click', (e) => {  
+           
+                targetButton.addEventListener('click', (e) => { 
+                    
                     if(deleteCollection){
                         let forDelete = newDataUser.doc(userId).collection('stepsList').doc(e.target.dataset.id);
                         deleteEachColletion(forDelete);
                         deleteCollectionB();
-                    }else{             
+                    }
+                    else{             
                         showDataSteps(e.target.dataset.id);
     
-                        for(i = 0; i < buttonStepsList.length; i++){buttonStepsList[i].classList.remove('classActive')}
-    
+                        buttonStepsList.forEach( each => {each.classList.remove('classActive')})
                         e.target.classList.add('classActive');
+                        
                         if(screen.width <= 850){
                             ShowAddNewCode('asideMenu')
-                        }
-                                             
-                        ThisCollection.value = `${e.target.dataset.id}`; 
+                        }                        
+                        stepsDbTittle.innerHTML = e.target.dataset.id;
+                        ThisCollection.value = `${e.target.dataset.id}`;
+                        allTitleSteps.value = e.target.dataset.id;
+                         
                         SelectCollectionActive.classList.remove('hide');              
                         thisCheck.click();  
                     }               
@@ -202,7 +211,8 @@ const showDataSteps = (docId) => {
 
     let allDataHere = newDataUser.doc(userId).collection('stepsList').doc(docId).collection('eachStepsList');
     let allDataHereOrder = allDataHere.orderBy('cont', 'asc');
-    allDataHereOrder.onSnapshot((querySnapshot) => {
+    allDataHereOrder.onSnapshot((querySnapshot) => {    
+
         dataFromDb.innerHTML = ``;
         querySnapshot.forEach((doc) => {
             let datos = doc.data();
@@ -276,7 +286,7 @@ const showDataSteps = (docId) => {
                     updateDescription.value = e.target.dataset.descr;
                     ShowAddNewCode('editSteps')
                 });
-            });
+            }); 
     });
 }
 let formUpdate = document.querySelector('#formUpdate');
@@ -318,9 +328,7 @@ const resetFormUpdate = () => {
 const searhTagsInDb = () => {
     l(tagSearch.value);
 }
-        
-
-
+ 
 let inputSearch = document.querySelector('.inputSearch');
 let tagSearch = document.querySelector('#inputSearch');
 let divInputSearch = document.querySelector('.divInputSearch');
