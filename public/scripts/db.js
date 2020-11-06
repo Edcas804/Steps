@@ -18,25 +18,41 @@
   let showContentSelectNew = document.querySelector('#showContentSelectNew');
   let showContentSelectList = document.querySelector('#showContentSelectList');
   let showContentSelectThis = document.querySelector('#showContentSelectThis');
-  const updatecollectionList = (action, e) => {
-      if(action === 'new'){
-          showContentSelectNew.classList.remove('hide');
-          showContentSelectList.classList.add('hide');
-          showContentSelectThis.classList.add('hide');
-      }
-      else if(action === 'this'){
-          showContentSelectNew.classList.add('hide');
-          showContentSelectList.classList.add('hide');
-          showContentSelectThis.classList.remove('hide');
-        newcollecionList = ThisCollection.value;          
-      }
-      else if(action === 'select'){
-        showContentSelectNew.classList.add('hide');
-        showContentSelectList.classList.remove('hide');
-        showContentSelectThis.classList.add('hide');
-        newcollecionList = collecionListSelec.value;   
-      }
+//   const updatecollectionList = (action, e) => {
+//       if(action === 'new'){
+//           showContentSelectNew.classList.remove('hide');
+//           showContentSelectList.classList.add('hide');
+//           showContentSelectThis.classList.add('hide');
+//         //   newcollecionList = addCollection.value;
+//       }
+//       else if(action === 'this'){
+//           showContentSelectNew.classList.add('hide');
+//           showContentSelectList.classList.add('hide');
+//           showContentSelectThis.classList.remove('hide');
+//           newcollecionList = ThisCollection.value;          
+//       }
+//       else if(action === 'select'){
+//         showContentSelectNew.classList.add('hide');
+//         showContentSelectList.classList.remove('hide');
+//         showContentSelectThis.classList.add('hide');
+//         // newcollecionList = collecionListSelec.value;
+//       }
+// }
+const activeRadio = (radioActive) => {
+    let radioSelect = document.querySelectorAll('.radioSelect');
+    radioSelect.forEach( each => {
+        each.classList.add('hide')
+    });
+    document.querySelector(`#${radioActive}`).classList.remove('hide');
+        if(radioActive === 'showContentSelectThis'){
+            newcollecionList = ThisCollection.value;  
+            radioActiveBole = false;
+            l(radioActiveBole)  
+        }else{
+            radioActiveBole = true;
+        }
 }
+let radioActiveBole = true;
 let numForIncrem;
 let numIncrem;
 const contadorForNewCode = e => {
@@ -61,11 +77,14 @@ const writeCode = (e, newNum) => {
     
     let NewNum = parseInt(newNum) + 1;
     convertRows = numRows;
-    
-    if(addCollection.value){newcollecionList = addCollection.value; }
-    if(defaultCLickRadio.checked){newcollecionList = collecionListSelec.value; }
-    if(newCode.cheked){newcollecionList = ThisCollection.value}
-    
+    if(radioActiveBole){
+        if(addCollection.value){
+            newcollecionList = addCollection.value; 
+        }
+        else{
+            newcollecionList = collecionListSelec.value
+        }
+    }
     newTitleNewItem = titleNewItem.value;
     newNewCode = newCode.value;
     newDescription = description.value;
@@ -86,6 +105,17 @@ const writeCode = (e, newNum) => {
     
 }
 const addnewData = (newcollecionList, newTitleNewItem, AllData) => {
+    
+    let button = document.querySelectorAll('.buttonStepsList');
+    button.forEach(b =>{
+        b.classList.remove('classActive');
+        if(b.value === newcollecionList){
+            b.classList.add('classActive');
+            allTitleSteps.value = newcollecionList;
+            l(newcollecionList);
+            document.getElementById('thisCheck').click();            
+        }
+    });
     
     if(userId){
         newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).set({Title: newTitleNewItem});
@@ -134,7 +164,7 @@ let SelectCollectionActive = document.querySelector('#SelectCollectionActive');
 let allTitleSteps = document.querySelector('#allTitleSteps');
 let allData;
 let deleteCollection = false;
-// let buttonStepsList = document.querySelectorAll('.buttonStepsList');
+let buttonStepsList = document.querySelectorAll('.buttonStepsList');
 const showStepsList = () => {
     newDataUser.doc(userId).collection('stepsList')
     .onSnapshot((querySnapshot) => {
@@ -174,12 +204,12 @@ const showStepsList = () => {
                         if(screen.width <= 850){
                             ShowAddNewCode('asideMenu')
                         }                        
-                        stepsDbTittle.innerHTML = e.target.dataset.id;
+                        // stepsDbTittle.innerHTML = e.target.dataset.id;
                         ThisCollection.value = `${e.target.dataset.id}`;
                         allTitleSteps.value = e.target.dataset.id;
                          
-                        SelectCollectionActive.classList.remove('hide');              
-                        thisCheck.click();  
+                        SelectCollectionActive.classList.remove('hide');  
+                        document.getElementById('thisCheck').click();  
                     }               
                 });
             });

@@ -283,30 +283,33 @@
             <form action="" id="newItemCode">
                 <h5>Insert new code</h5>  
                 <div class="SelectCollection ">
-                    <input type="radio" name="collection"  value="Add new Collection"  onclick="updatecollectionList('new', event)" id="AddNewCheck">
+                    <input type="radio"  name="collection" onclick="activeRadio('showContentSelectNew')" id="AddNewCheck">
+                    <!-- <input type="radio" name="collection"  value="Add new Collection"  onclick="activeRadio('showContentSelectThis'); updatecollectionList('new', event)" id="AddNewCheck"> -->
                     <label>Add new Collection</label>
                 </div> 
                 <div class="hide SelectCollection " id="SelectCollectionActive">
-                    <input type="radio" name="collection"   value="this Collection" onclick="updatecollectionList('this', event)" id="thisCheck">
+                    <input type="radio" name="collection"   onclick="activeRadio('showContentSelectThis')" id="thisCheck">
+                    <!-- <input type="radio" name="collection"   value="this Collection" onclick="activeRadio('showContentSelectNew'); updatecollectionList('this', event)" id="thisCheck"> -->
                     <label>This Collection</label>
                 </div>
                 <div class="SelectCollection ">
-                    <input type="radio" name="collection" value="Select an existing collection" onclick="updatecollectionList('select', event)" id="defaultCLickRadio" checked>
+                    <input type="radio" name="collection" onclick="activeRadio('showContentSelectList')" id="defaultCLickRadio" >
+                    <!-- <input type="radio" name="collection" value="Select an existing collection" onclick="activeRadio('showContentSelectList'); updatecollectionList('select', event)" id="defaultCLickRadio" > -->
                     <label>Select an existing collection</label>
                 </div>
-                <div style="width: 100%" id="showContentSelectNew" class="hide">
+                <div style="width: 100%" id="showContentSelectNew" class="hide radioSelect">
                     <fieldset>
                         <legend>Add new Collection</legend>
                         <input type="text" placeholder="Add a new collection" id="addCollection" >
                     </fieldset>
                 </div>
-                <div style="width: 100%" id="showContentSelectThis" class="hide">
+                <div style="width: 100%" id="showContentSelectThis" class="hide radioSelect">
                     <fieldset>
                         <legend>This Collection</legend>
-                        <input type="text"  id="ThisCollection" disabled>
+                        <input type="button"  id="ThisCollection" >
                     </fieldset>
                 </div>
-                <div style="width: 100%" id="showContentSelectList" >
+                <div style="width: 100%" id="showContentSelectList" class="hide radioSelect">
                     <fieldset >
                         <legend>Colection Name</legend>
                         <div class="wrapperFieldset">
@@ -398,7 +401,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
-<!-- <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
 <script>
   var firebaseConfig = {
     apiKey: "AIzaSyC7llBIi5Xz7LAPVXSyI-USTiJAG3sZ1lg",
@@ -412,7 +415,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
+  firebase.analytics();
 </script>
 <!-- native scripts -->
 <script type="text/javascript" src="scripts/main.js"></script>
