@@ -4,6 +4,7 @@
     --white-color: #aaa;
     --black-color: #272727;
     --hight-color: #00f0ea; 
+    --black-hover: rgba(16, 16, 16, .5);
     --gradient:
         linear-gradient(150deg, rgba(0,0,0,.9), rgba(0,0,0,0) 70.71%),
         linear-gradient(330deg, rgba(5,151,108,.8), rgba(5,151,108,0) 70.71%),
@@ -102,6 +103,15 @@
     &:active{
         transform: scale(.9);
     }
+}
+@mixin cancelBtn {
+    outline: none;
+    border: none;
+    background: #f00;
+    color: #fff;
+    padding: .4rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
 }
 @mixin close{
     width: 2.5rem;

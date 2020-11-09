@@ -5,11 +5,10 @@
 .wrapperData {
     padding: .2rem .2rem;
     border-radius: var(--border-radius);
-    // box-shadow: 1px 0px 1px #000;
-    background: #303030;
+    background: linear-gradient(to right, #232323, #242424, #252525,);
     display: grid;
     grid-template-rows: 1.5rem 1fr 1rem;
-    border-left: 5px solid var(--primary-color);
+    border-left: 3px solid var(--primary-color);
     border-radius: var(--border-radius);
     margin: .5rem 0;
     .dataHeader {
@@ -47,6 +46,7 @@
             width: 95%;
             text-align: left;
             background: #181818;
+            background: linear-gradient(to right, #151515, #171717, #191919);
             padding: .5rem;
             margin: .2rem 0;
             border-radius: var(--border-radius);
@@ -71,6 +71,7 @@
         }  
         .description {
             color: var(--white-color);
+            font-size: var(--font-size-medium);
             padding: .2em;
         }   
         // &:hover .copy{

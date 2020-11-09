@@ -93,6 +93,14 @@ const activeModal = (modal) => {
         }else{
             hiddeModal(modalRegister); 
             showRegister = true}
+    }        
+    if(modal === 'modalError'){   
+        if(showmodalError){
+            showModal(modalError, 'modal2');
+            showmodalError = false;
+        }else{
+            hiddeModal(modalError, 'modal2'); 
+            showmodalError= true}
     }            
     if(modal === 'userInformation'){   
         if(showuserInformation){
@@ -101,31 +109,7 @@ const activeModal = (modal) => {
         }else{
             hiddeModal(userInformation); 
             showuserInformation = true}
-    }         
-    if(modal === 'modalError'){   
-        if(showmodalError){
-            showModal(modalError, 'modal2');
-            showmodalError = false;
-        }else{
-            hiddeModal(modalError, 'modal2'); 
-            showmodalError= true}
-    }           
-}
-const showModal = (modal, modal2) => {
-    if(modal2 === 'modal2'){
-        modal.classList.add('top5');
-    }
-    else{
-        modal.classList.add('top0');
-    }
-}
-const hiddeModal = (modal, modal2) => {
-    if(modal2 === 'modal2'){
-            modal.classList.remove('top5');
-    }
-    else{
-        modal.classList.remove('top0');
-    }
+    }            
 }
 
 // modals for add new data
@@ -182,6 +166,23 @@ const ShowAddNewCode = (modal) => {
         }
     }
 }
+const showModal = (modal, modal2) => {
+    if(modal2 === 'modal2'){
+        modal.classList.add('top5');
+    }
+    else{
+        modal.classList.add('top0');
+    }
+}
+const hiddeModal = (modal, modal2) => {
+    if(modal2 === 'modal2'){
+            modal.classList.remove('top5');
+    }
+    else{
+        modal.classList.remove('top0');
+    }
+}
+
 let timeOut;
 const writeTitle = () => {
     let message = '  The only limit is you                         ';

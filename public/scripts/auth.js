@@ -62,13 +62,11 @@ btnSingup.addEventListener('submit', e => {
     let userEmail = newEmail.value;
     let userPassword = newPassword.value;
     
-    // const auth = firebase.auth();
     const createNewUser = auth.createUserWithEmailAndPassword(userEmail, userPassword);
     createNewUser.then(() => {
         activeModal('modalRegister');
         activeModal('modalLogin');
-        btnSingup.reset();
-        l('registrado');
+        btnSingup.reset();  
         firebase.auth().onAuthStateChanged( firebaseUser => {
             if(firebaseUser.displayName == null){
                 l('no existe el nombre');
@@ -89,12 +87,13 @@ function updateUserName(firebaseUser, userName){
     .then(() => {l('user name update')})
     .catch( error => {l(error)});
 }
-
+let dataUser;
 auth.onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         if(firebaseUser.displayName){
             userDisplayName.innerHTML = `${firebaseUser.displayName} `;  
             userId = firebaseUser.uid; 
+            dataUser = firebaseUser;
             errorMensaje.innerHTML = ''; 
             btnLogin.classList.add('hide');
             btnLogOut.classList.remove('hide');
@@ -126,5 +125,6 @@ btnLogOut.addEventListener('click', e =>{
      itemStepsList.innerHTML = ``;
      collecionListSelec.innerHTML = ``;
 });
+
 
 document.onload = onloadDocument();

@@ -52,16 +52,13 @@
     // justify-content: flex-end;
     border-radius: .3rem .3rem 0 0;
     padding: .2rem;
-    h6 {
-        // display: none;
+    input {
         color: var(--primary-color);
         font-size: var(--font-size-large);
         padding: 0 0 0 .2rem;
-        max-width: 200px;
-        overflow: hidden;
-        &:hover {
-            transform: scale(1.1);
-        }
+        background: none;
+        outline: none;
+        border: none;
     }
     ul {
         height: 100%;
@@ -73,20 +70,13 @@
             padding: 0 .3rem;
             cursor: pointer;
             color: var(--primary-color);
+            font-weight: 500;
+            font-size: 2rem;
+            transition: .5s;
             i, span{
                 font-weight: 500;
                 font-size: 2rem;
                 transition: .5s;
-            }
-            [data-descr] {
-                @include data-descr;
-                position: relative;
-            }
-            .newfile{
-                [data-descr]{
-                    right: 100%;
-                    top: 200%;
-                }
             }
         }
         .toggleItems {
@@ -124,7 +114,15 @@
 .listFiles:hover {color: #f55}
 .listNotes:hover {color: #f55}
 
-
+.wrapperCancel{
+    @include flexcenter;
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    .cancel {
+        @include cancelBtn;
+    }
+}
 
 .itemList {
     width: 100%;
@@ -135,8 +133,11 @@
         width: 100%;
         overflow: hidden;
         margin: .2rem 0;
+        background: none;
+        color: var(--primary-color);
         input {
             background: none;
+            color: var(--primary-color);
             border: none;
             outline: none;
             text-align: left;
@@ -144,51 +145,29 @@
             max-width: 100%;
             padding: .4rem .3rem;
             font-size: var(--font-size-medium);
-            color: var(--primary-color);
             transition: .5s;
             font-weight: bold;
             border-radius: var(--border-radius);
-            &:hover, &:focus {
-                background: rgba(#101010, .5);
-                color: var(--white-color);
+            &:hover {
+                background: var(--black-hover);
             }
         }
         .deleteAlert {
-            background: #f00;
-            background: rgba(255, 0, 0, .5);
-            color: #fff;  
+            color: #f00;  
+            border-left: 3px solid #f00;
+            border-right: 3px solid #f00;
         }
     }
-    .classActive {
-        background: rgba(#101010, .5);
-        // color: var(--white-color);
-        // background: url('../img/background/background2.jpg');
-        // background-size: cover;
-        // background-repeat: no-repeat;
-        // background-attachment: fixed;
+    .classActive, &:focus {
+        // background: rgba(#101010, .5);
+        background: linear-gradient(to right, #181818, #202020, #222, #252525);
+        border-left: 2px solid var(--primary-color);
     }
 }
-
 
 // aside notes
 
-.ShowHidde {
-    @include flexcenter;
-    position: absolute;
-    top: 50%;
-    left: -8px;
-    padding: .2rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--black-color);
-    color: var(--primary-color);
-    outline: none;
-    border: none;
-    box-shadow: var(--shadow-short);
-    font-size: 1rem;
-    font-weight: bold;
-}
+
 .headerAside{
     @include flexcenter;
     justify-content: flex-start;
@@ -242,6 +221,9 @@
     justify-content: flex-start;
     padding: .3rem 0;
     border-bottom: 1px solid #222;
+    &:hover {
+        background: var(--black-hover);
+    }
     li{list-style: none;}
     p, li, h6, {
         color: var(--primary-color);

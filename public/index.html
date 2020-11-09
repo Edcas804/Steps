@@ -51,30 +51,28 @@
         </div>
         <!-- app content -->
         <div class="window App" id="app">
+            <!-- Aside -->
             <div class="AppItem   asideMenu  transtaleL">
                 <div>
                     <button onclick="ShowAddNewCode('asideMenu')" class="closeBtn toggleClose">X</button>
                 </div>
+                <div class="wrapperCancel">
+                    <button class="cancel hide" id="cancelRemoveList" onclick="deleteCollectionB()"> Cancelar </button>
+                </div>
                 <ul class="itemList" id="itemStepsList">
                 </ul>
             </div>
+            <!-- app main -->
             <div class="AppItem  mainContent  transtaleT">
                 <div class="newItem">
-                    <h6 id="stepsDbTittle">
-
-                    </h6>
                     <input type="button" id="allTitleSteps">
                     <ul>
                         <li class="divInputSearch" onclick="">    
                                 <input type="text" placeholder="Search" class="inputSearch" id="inputSearch">     
                         </li>
-                        <li class="" onclick="searchTags()" >  
-                            <!-- <i class="material-icons" >&#xe8b6;</i> -->
-                            <span class="material-icons" tabindex="0" data-descr="CTRL + Y">&#xe8b6;</span>
+                        <li class="material-icons" onclick="searchTags()" >  &#xe8b6;
                         </li>
-                        <li class="" onclick="ShowAddNewCode('newDataModal')">
-                            <!-- <i class="material-icons newfile" >&#xe147;</i> -->
-                            <span class="material-icons newfile" tabindex="0" data-descr="CTRL + G">&#xe147;</span>
+                        <li class="material-icons newfile" onclick="ShowAddNewCode('newDataModal')">&#xe147;
                         </li>
                         <li class="toggleItems" onclick="ShowAddNewCode('asideMenu')">
                             <i class="material-icons listFiles ">&#xe241;</i>
@@ -89,6 +87,7 @@
                 </div>
                               
             </div>
+            <!-- aside notes -->
             <div class="AppItem  asideNotes  transtaleR">
                 <div class="headerAside">
                     <div>
@@ -176,10 +175,13 @@
                         <p id="" class="showHideAll" >Delete Collections</p>
                     </div>
                 </div>
-                <button class="ShowHidde" onclick="hiddeShowNotes()">></button>
 
             </div>
         </div> 
+
+
+        <!-- modals -->
+        <!-- ************************************************************************ -->
         <!-- modal for login and register -->        
         <div class="wrapperMenu">
             <div>
@@ -204,7 +206,8 @@
                     Create an account here.
                 </span>
             </p>
-        </div>  
+        </div> 
+        <!-- login -->
         <div class="modalLogin">
             <div>
                 <button class="closeBtn" onclick="activeModal('modalLogin')">X</button>
@@ -232,7 +235,8 @@
                 
             </form>           
         </div>
-        <div class="modalRegister" enctype=multipart/form-data>
+        <!-- register -->
+        <div class="modalRegister"  >
             <div>
                 <button class="closeBtn" onclick="activeModal('modalRegister')">X</button>
             </div>
@@ -267,6 +271,7 @@
                 
             </form>      
         </div>
+        <!-- modal for error -->
         <div class="modalError">
             <div>
                 <button class="closeBtn" onclick="activeModal('modalError')">X</button>
@@ -284,18 +289,11 @@
                 <h5>Insert new code</h5>  
                 <div class="SelectCollection ">
                     <input type="radio"  name="collection" onclick="activeRadio('showContentSelectNew')" id="AddNewCheck">
-                    <!-- <input type="radio" name="collection"  value="Add new Collection"  onclick="activeRadio('showContentSelectThis'); updatecollectionList('new', event)" id="AddNewCheck"> -->
                     <label>Add new Collection</label>
                 </div> 
                 <div class="hide SelectCollection " id="SelectCollectionActive">
                     <input type="radio" name="collection"   onclick="activeRadio('showContentSelectThis')" id="thisCheck">
-                    <!-- <input type="radio" name="collection"   value="this Collection" onclick="activeRadio('showContentSelectNew'); updatecollectionList('this', event)" id="thisCheck"> -->
                     <label>This Collection</label>
-                </div>
-                <div class="SelectCollection ">
-                    <input type="radio" name="collection" onclick="activeRadio('showContentSelectList')" id="defaultCLickRadio" >
-                    <!-- <input type="radio" name="collection" value="Select an existing collection" onclick="activeRadio('showContentSelectList'); updatecollectionList('select', event)" id="defaultCLickRadio" > -->
-                    <label>Select an existing collection</label>
                 </div>
                 <div style="width: 100%" id="showContentSelectNew" class="hide radioSelect">
                     <fieldset>
@@ -307,16 +305,6 @@
                     <fieldset>
                         <legend>This Collection</legend>
                         <input type="button"  id="ThisCollection" >
-                    </fieldset>
-                </div>
-                <div style="width: 100%" id="showContentSelectList" class="hide radioSelect">
-                    <fieldset >
-                        <legend>Colection Name</legend>
-                        <div class="wrapperFieldset">
-                            <select name="" id="collecionListSelec">
-                            </select>
-                            <i class="material-icons">&#xe313;</i>
-                        </div>
                     </fieldset>
                 </div>
 
@@ -346,6 +334,7 @@
                 <button class="btn" >Save</button>
             </form>
         </div>
+        <!-- edit -->
         <div class="editSteps">
             <div>
                 <button onclick="ShowAddNewCode('editSteps'); resetFormUpdate()" class="closeBtn">X</button>
@@ -369,6 +358,7 @@
                 </div>
             </form>
         </div>
+        <!-- footer -->
         <footer class="footer">
             <div class="wrapperFooter">
                 <p>
