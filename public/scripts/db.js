@@ -140,13 +140,15 @@ let allTitleSteps = document.querySelector('#allTitleSteps');
 let allData;
 let deleteCollection = false;
 let selectOrThis = true;
+let arrayAllStepsList = [];
 const showStepsList = () => {
     newDataUser.doc(userId).collection('stepsList')
     .onSnapshot((querySnapshot) => {
-
+        
         itemStepsList.innerHTML = ``;
 
         querySnapshot.forEach((doc) => {
+            arrayAllStepsList.push(doc.id);
             itemStepsList.innerHTML += `
                 <li><input class="buttonStepsList" type="button" value="${doc.id}" data-id="${doc.id}" id="${doc.id}"></li>
             `;
@@ -203,17 +205,39 @@ const deleteCollectionB = () => {
         showStepsList();
     }
 } 
+// const deleteEachColletion = (forDelete) => {
+//     forDelete.collection('eachStepsList').get()
+//     .then((query) => {
+//         query.forEach((doc) => {
+//             l(doc.id);
+//             forDelete.collection('eachStepsList').doc(doc.id)
+//             .delete()
+//             .then(()=>{forDelete.delete()})
+//         })
+//     })
+// }
 const deleteEachColletion = (forDelete) => {
-    forDelete.collection('eachStepsList').get()
+    forDelete.collection('contadores').get()
     .then((query) => {
         query.forEach((doc) => {
             l(doc.id);
-            forDelete.collection('eachStepsList').doc(doc.id)
+            forDelete.collection('contadores').doc(doc.id)
             .delete()
-            .then(()=>{forDelete.delete()})
+            .then( () =>  {
+                forDelete.collection('eachStepsList').get()
+                .then((query) => {
+                    query.forEach((doc) => {
+                        l(doc.id);
+                        forDelete.collection('eachStepsList').doc(doc.id)
+                        .delete()
+                        .then(()=>{forDelete.delete()})
+                    })
+                })
+            })
         })
     })
-    // forDelete.delete();
+
+
 }
 let newUpdateData;
 const showDataSteps = (docId) => {
@@ -334,8 +358,87 @@ const resetFormUpdate = () => {
 }
 
 // search
-const searhTagsInDb = () => {
-    l(tagSearch.value);
+const searhTagsInDb = (tag) => {
+    dataFromDb.innerHTML = '';
+    allTitleSteps.value = '';
+    arrayAllStepsList.forEach( element => {
+        let allDataHere = newDataUser.doc(userId).collection('stepsList').doc(element).collection('eachStepsList');
+        allDataHere.where('allTags', "array-contains", tag)
+        .get()
+        .then( (snapshot) => {
+            snapshot.forEach( doc => {
+                let data = doc.data();
+                
+                let dateNew;
+                let dateToday = moment(data.date.newDate).format(format);
+                let diffDays = moment().diff(dateToday, 'days');
+                let diffMonths = moment().diff(dateToday, 'months');
+                if(diffDays <= 30){
+                    diffDays === 0 ?  dateNew = 'Today' + ' at ' + data.date.Datehour : dateNew = diffDays + ' days ago';                
+                }
+                else{
+                    if(diffMonths >= 1){
+                        dateNew = diffMonths + ' months ago';                  
+                    }
+                    if(diffMonths >= 13){
+                        dateNew = dateToday;
+                    }
+                }
+
+                allData = `   
+                <div class="wrapperData">
+                    <header class="dataHeader">
+                        <h4>${data.newTitleNewItem}</h4>
+                        <ul>
+                            <li><i class="material-icons delete" data-id="${doc.id}">&#xe872;</i></li>
+                            <li>
+                                <i class="material-icons edit" 
+                                 data-new="${data.newTitleNewItem}"
+                                 data-id="${doc.id}" 
+                                 data-code="${data.newNewCode}" 
+                                 data-descr="${data.newDescription}">
+                                 &#xe3c9;
+                                </i>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="wrapperCode" > 
+                        <button class="copy" onclick="copyData()">
+                            <i class="material-icons">&#xe14d;</i>
+                        </button>         
+                        
+                        <textarea class="code"  id="innerCode" rows="${data.convertRows}">${data.newNewCode}</textarea>
+                        <p class="description">
+                            ${data.newDescription}
+                        </p>
+                    </div>
+                    <div> 
+                        <p class="details">
+                            ${dateNew}           
+                        </p>
+                    </div>
+                </div>
+                `;
+                dataFromDb.innerHTML += allData ;
+                allTitleSteps.value = `Results for '${tag}'`;
+            });
+            setTimeout( ()=> {
+                if(dataFromDb.innerHTML === ''){
+                    l('No se recuperardon documentos');
+                    dataFromDb.innerHTML = `
+                        <p style="color: #fff; font-size: 1.5rem; text-align: center">
+                            No se encontró ninguna coincidencia para '${tag}.'
+                        </p>
+                    `;
+                }
+            }, 1000);
+        })
+    })
+    
+    
+    
+    
+    
 }
  
 let inputSearch = document.querySelector('.inputSearch');
@@ -344,7 +447,7 @@ let divInputSearch = document.querySelector('.divInputSearch');
 
 inputSearch.addEventListener('keydown', (e) => {
      if(e.keyCode === 13 && tagSearch.value){
-         searhTagsInDb();
+         searhTagsInDb(tagSearch.value);
          tagSearch.value = '';
          searchTags();
      }
@@ -362,8 +465,9 @@ const searchTags = () => {
         }
     }
     else{
-        searhTagsInDb();
+        searhTagsInDb(tagSearch.value);
         tagSearch.value = '';
+        inputSearch.classList.remove('openSearch');
     }
     
 }

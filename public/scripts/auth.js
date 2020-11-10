@@ -123,8 +123,8 @@ btnLogOut.addEventListener('click', e =>{
      userId = '';
      dataFromDb.innerHTML = ``;
      itemStepsList.innerHTML = ``;
-     collecionListSelec.innerHTML = ``;
 });
 
 
 document.onload = onloadDocument();
+
