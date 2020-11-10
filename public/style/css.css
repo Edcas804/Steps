@@ -1783,4 +1783,20 @@ body {
   text-align: center;
   border-radius: var(--border-radius);
 }
+
+.border-none {
+  border: none;
+}
+
+.bg-blue {
+  background: #359;
+}
+
+.bg-redOrange {
+  background: #d43;
+}
+
+.c-white {
+  color: #fff;
+}
 /*# sourceMappingURL=css.css.map */

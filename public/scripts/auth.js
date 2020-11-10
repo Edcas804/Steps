@@ -16,6 +16,7 @@ const auth = firebase.auth();
 let activeUser = false;
 // userProfile
 let userDisplayName = document.querySelector('#userDisplayName');
+let photoUserLog = document.querySelector('#photoUserLog');
 let errorMensaje = document.querySelector('#errorMensaje');
 //error
 let errorAll = document.querySelector('#errorAll');
@@ -99,7 +100,10 @@ auth.onAuthStateChanged(firebaseUser => {
             btnLogOut.classList.remove('hide');
             activeUser = true;
             showStepsList();
-            db.collection('Steps').doc(userId).set({name: firebaseUser.displayName})
+            db.collection('Steps').doc(userId).set({name: firebaseUser.displayName});
+            if(firebaseUser.photoURL){photoUserLog.src = firebaseUser.photoURL}
+            else{photoUserLog.src = 'img/profile/profile.png';}
+            
         }
         if(firebaseUser.isAnonymous){
             errorMensaje.innerHTML = 'Aún no has iniciado sesión';
@@ -123,8 +127,49 @@ btnLogOut.addEventListener('click', e =>{
      userId = '';
      dataFromDb.innerHTML = ``;
      itemStepsList.innerHTML = ``;
+     photoUserLog.src = 'img/profile/profile.png';
+     allTitleSteps.value = `No has iniciado sesión `;
 });
 
 
 document.onload = onloadDocument();
+
+// agregando autentcicación con google
+// let loginGoogle = document.querySelector('#loginGoogle');
+// loginGoogle.addEventListener( 'click', () => {
+//     const provider = new firebase.auth.GoogleAuthProvider();
+//     firebase.auth().signInWithPopup(provider)
+//     .then( result => {
+//         l(result)
+//     })
+//     .catch( error => {
+//         l(error)
+//     })
+// });
+
+let loginGoogle = document.querySelector('#loginGoogle');
+loginGoogle.addEventListener( 'click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().getRedirectResult().then(function(result) {
+        if (result.credential) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+});
+
 

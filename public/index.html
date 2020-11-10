@@ -93,7 +93,7 @@
                     <div>
                         <button onclick="ShowAddNewCode('asideNotes')" class="closeBtn toggleClose">X</button>
                     </div>
-                    <img src="img\profile\profile.jpg" alt="Profile" title="Profile" onclick="activeModal('userInformation')">
+                    <img src="img\profile\profile.png" alt="Profile" title="Profile" id="photoUserLog" onclick="activeModal('userInformation')">
                     <p id="userDisplayName" class="showHideAll"></p>
                     <!-- modal user information -->
                     <div class="userInformation">
@@ -199,7 +199,7 @@
                 </li>
             </ul>
             <input type="button" value="Login" class="btn login" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')" id="btnLogin">
-            <input type="button" value="Logout" class="btn logout hide" id="btnLogOut">    
+            <input type="button" value="Logout" class="btn logout hide" id="btnLogOut">
             <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
                 ¿Don't you have an account? <br>
                 <span style="text-decoration: underline">
@@ -231,9 +231,14 @@
                     <span style="text-decoration: underline">
                         Create an account here.
                     </span>
-                </p>
+                </p>   
+                <p>Start with your accounts:</p>
                 
-            </form>           
+            </form> 
+            <div>
+                <input type="button" value="Google" class="btn bg-redOrange c-white border-none" id="loginGoogle">
+                <input type="button" value="Facebook" class="btn bg-blue c-white border-none" id="loginFacebook">
+            </div>          
         </div>
         <!-- register -->
         <div class="modalRegister"  >
