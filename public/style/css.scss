@@ -4,6 +4,7 @@
     --white-color: #aaa;
     --black-color: #272727;
     --hight-color: #00f0ea; 
+    --light-color: #d43; 
     --black-hover: rgba(16, 16, 16, .5);
     --gradient:
         linear-gradient(150deg, rgba(0,0,0,.9), rgba(0,0,0,0) 70.71%),
@@ -100,6 +101,11 @@
         background: none;
         color: var(--primary-color);
     }
+    &:focus{
+        background: none;
+        color: var(--light-color);
+        border-color: var(--light-color);
+    }
     &:active{
         transform: scale(.9);
     }
@@ -186,7 +192,7 @@
     &:focus { 
         border-width: 0 2px 0 2px;
         border-style: solid;
-        border-color: var(--primary-color);
+        border-color: var(--light-color);
 
     }
 }
@@ -230,7 +236,6 @@ body {
 .transtaleL {transform: translateX(-1000px)}
 .transtaleT {transform: translateY(-1000px)}
 .transtaleR {transform: translateX(1000px)}
-.hide {display: none}
 .top0 {top: 0}
 .top5 {top: 5rem}
 .errorAll {
@@ -241,7 +246,25 @@ body {
     text-align: center;
     border-radius: var(--border-radius);
 }
+
 .border-none{border: none}
 .bg-blue {background: #359}
 .bg-redOrange {background: #d43}
 .c-white{color: #fff}
+.c-link{
+    color: #07a; 
+    &:hover{
+        text-decoration: underline;
+        cursor: pointer;    
+    }
+}
+.f-z-m {font-size: var(--font-size-medium)}
+.f-z-s {font-size: var(--font-size-small)}
+.f-z-l {font-size: var(--font-size-large)}
+
+.width-100{width: 100%}
+.d-flex-c-col{@include flexcenter;flex-direction: column}
+.d-flex-start{@include flexcenter; justify-content: flex-start;}
+
+
+.hide {display: none}

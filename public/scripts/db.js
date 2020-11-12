@@ -205,17 +205,6 @@ const deleteCollectionB = () => {
         showStepsList();
     }
 } 
-// const deleteEachColletion = (forDelete) => {
-//     forDelete.collection('eachStepsList').get()
-//     .then((query) => {
-//         query.forEach((doc) => {
-//             l(doc.id);
-//             forDelete.collection('eachStepsList').doc(doc.id)
-//             .delete()
-//             .then(()=>{forDelete.delete()})
-//         })
-//     })
-// }
 const deleteEachColletion = (forDelete) => {
     forDelete.collection('contadores').get()
     .then((query) => {
@@ -471,3 +460,19 @@ const searchTags = () => {
     }
     
 }
+
+
+let newUserData = document.querySelector('#newUserData');
+let newUserName = newUserData['newUserName'];
+let newUserEmal = newUserData['newUserEmal'];
+let NewUserAbout = newUserData['NewUserAbout'];
+const updateDataUser = (e) => {
+    e.preventDefault();
+    let newUserInformation= {
+        displayName: newUserName,
+        photoURL: '',
+
+    };
+    return updateUserName('x', 'x', 'update', newUserInformation), activeModal('userInformation');
+}
+newUserData.addEventListener('submit', updateDataUser);

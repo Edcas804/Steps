@@ -183,6 +183,23 @@ const hiddeModal = (modal, modal2) => {
     }
 }
 
+
+let MainUserProfile = document.getElementsByClassName('MainUserProfile')[0];
+let UpdateUserProfile = document.getElementsByClassName('UpdateUserProfile')[0];
+let editB = true;
+const ShowHiddeUserEdit = () => {
+    if(editB){
+        MainUserProfile.classList.add('hide');
+        UpdateUserProfile.classList.remove('hide');
+        editB = false;
+    }else{
+        MainUserProfile.classList.remove('hide');
+        UpdateUserProfile.classList.add('hide');
+        editB = true;
+    }
+
+}
+
 let timeOut;
 const writeTitle = () => {
     let message = '  The only limit is you                         ';

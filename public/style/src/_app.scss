@@ -78,6 +78,9 @@
                 font-size: 2rem;
                 transition: .5s;
             }
+            &:hover{
+                color: var(--light-color);
+            }
         }
         .toggleItems {
             display: none;
@@ -102,6 +105,7 @@
         transition: .5s;
         &:focus {
             background: var(--black-color);
+            border-color: var(--light-color);
         }
     }
     .openSearch{
@@ -110,9 +114,7 @@
     }
             
 }
-.newfile:hover {color: var(--hight-color)}
-.listFiles:hover {color: #f55}
-.listNotes:hover {color: #f55}
+// .newfile:hover, .listFiles:hover, .listNotes:hover, .openSearch {color: var(--light-color)}
 
 .wrapperCancel{
     @include flexcenter;
@@ -187,33 +189,71 @@
     position: absolute;
     @include modalMenu;
     top: -200%;
+    // top: 0;
     right: 1rem;
     margin: auto;
-    form {
-        @include flexcenter;
-        flex-direction: column;
-        width: 100%;
-        fieldset {
-            @include fieldsetAll;
-        }
-        input{
-            @include inputFieldset; 
-        }
-    }
-    .photoUser {
-        position: relative;
-        img{
-            width: 8rem;
-            height: 8rem;
-            object-fit: cover;
-        }
-        .wrapperSelectPhoto {
-            width: 100%;
-            position: absolute;
-            bottom: 1rem;
-            @include flexcenter;    
+
+    .MainUserProfile{
+        width: 100%;        
+        .wrapperPhotoUser{
+            @include flexcenter;
+            flex-direction: column;
+            width: 100%;;
+            position: relative;
+            img {
+                width: 100%;
+                max-width: 200px;
+                max-height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            p{  
+                width: 100%;
+                text-align: center;
+                padding: .5rem;
+                font-size: var(--font-size-large);
+                color: var(--primary-color);
+            }    
         }
 
+    }    
+    .editProfile {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        color: var(--light-color);
+        cursor: pointer;
+    }     
+
+    .UpdateUserProfile{
+        form {
+            @include flexcenter;
+            flex-direction: column;
+            width: 100%;
+            fieldset {
+                @include fieldsetAll;
+            }
+            input{
+                @include inputFieldset; 
+            }
+        }
+        .photoUser {
+            position: relative;
+            img{
+                width: 8rem;
+                height: 8rem;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            .wrapperSelectPhoto {
+                width: 100%;
+                position: absolute;
+                bottom: 1rem;
+                color: var(--light-color);
+                @include flexcenter;    
+            }
+    
+        }
     }
 }
 .asideItem {

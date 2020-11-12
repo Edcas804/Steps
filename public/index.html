@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon"href="favicon.ico"/>	
     <link rel="stylesheet" href="style/css.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
     <div class="main">
@@ -93,39 +94,9 @@
                     <div>
                         <button onclick="ShowAddNewCode('asideNotes')" class="closeBtn toggleClose">X</button>
                     </div>
-                    <img src="img\profile\profile.png" alt="Profile" title="Profile" id="photoUserLog" onclick="activeModal('userInformation')">
-                    <p id="userDisplayName" class="showHideAll"></p>
-                    <!-- modal user information -->
-                    <div class="userInformation">
-                        <div>
-                            <button onclick="activeModal('userInformation')" class="closeBtn">X</button>
-                        </div>
-                        <div class="photoUser" >                            
-                            <img src="img\profile\profile.jpg" alt="">
-                            <div class="wrapperSelectPhoto">                                
-                                <p class="material-icons">&#xe439;                              
-                                </p>
-                            </div>
-                        </div>
-                        <form action="">
-                            <fieldset>
-                                <legend>Name:</legend>
-                                <input type="text" value="Edwar Castaño">
-                            </fieldset>
-                            <fieldset>
-                                <legend>Email:</legend>
-                                <input type="email" value="edwarcas80@gmail.com">
-                            </fieldset>
-                            </fieldset>
-                            <fieldset>
-                                <legend>About you</legend>
-                                <input type="text" value="Developer">
-                            </fieldset>
-                            <button class="btn">
-                                Update
-                            </button>
-                        </form>
-
+                    <div class="d-flex-start width-100 " onclick="activeModal('userInformation')">
+                        <img src="" alt="Profile" title="Profile" class="photoUserLog" >
+                        <p  class="showHideAll userDisplayName"></p>
                     </div>
                 </div>
                 <div>
@@ -139,7 +110,7 @@
                             </label>                            
                             <input type="color" id="inputColor" class="SelectInputColor" value="#ffb414"> 
                         </li>
-                        <p class="showHideAll">Selec a color</p>
+                        <p class="showHideAll">Select a color</p>
                     </div>
                     <div class="asideItem">
                             <div class="asideItem1" onclick="ShowAddNewCode('modalForShorcuts')">
@@ -179,7 +150,6 @@
             </div>
         </div> 
 
-
         <!-- modals -->
         <!-- ************************************************************************ -->
         <!-- modal for login and register -->        
@@ -198,14 +168,23 @@
                     About Steps
                 </li>
             </ul>
-            <input type="button" value="Login" class="btn login" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')" id="btnLogin">
-            <input type="button" value="Logout" class="btn logout hide" id="btnLogOut">
+            <input type="button" value="Login" class="btn login btnLogin" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')" id="">
+            <input type="button" value="Logout" class="btn logout btnLogOut hide" onclick="LogOutMain(); activeModal('wrapperMenu')">
             <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
                 ¿Don't you have an account? <br>
                 <span style="text-decoration: underline">
                     Create an account here.
-                </span>
+                </span>      <br>         
+                or start with your accounts:
             </p>
+            <div>
+                <button value="Google" class="socialLogin google fab" id="loginGoogle">&#xf1a0;
+                </button>
+                <button value="Facebook" class="socialLogin facebook fab" id="loginFacebook">&#xf39e;
+                </button>
+            </div>
+            
+            
         </div> 
         <!-- login -->
         <div class="modalLogin">
@@ -238,6 +217,7 @@
             <div>
                 <input type="button" value="Google" class="btn bg-redOrange c-white border-none" id="loginGoogle">
                 <input type="button" value="Facebook" class="btn bg-blue c-white border-none" id="loginFacebook">
+
             </div>          
         </div>
         <!-- register -->
@@ -362,6 +342,49 @@
                     <button class="btn" >Update</button>
                 </div>
             </form>
+        </div>
+        <!-- modal user information -->
+        <div class="userInformation">
+            <div>
+                <button onclick="activeModal('userInformation')" class="closeBtn">X</button>
+            </div>
+            <p class="f-z-s editProfile" onclick="ShowHiddeUserEdit()"><i class="material-icons">&#xe3c9;</i></p>
+            <div class="MainUserProfile d-flex-c-col">
+                <div class="wrapperPhotoUser">
+                    <img src="" alt="" id=""  class="photoUserLog" alt="">
+                    <p class="userDisplayName"></p>
+                </div>
+                <input type="button" class="btn btnLogin" value="login" onclick="activeModal('modalLogin'); activeModal('userInformation')">
+                <input type="button" class="btn btnLogOut hide" value="Logout" onclick="LogOutMain(); activeModal('userInformation')" >
+            </div>
+            <div class="UpdateUserProfile width-100 d-flex-c-col hide" > 
+                <div class="photoUser" >                            
+                    <img src="" alt="" id="" class="photoUserLog">
+                    <div class="wrapperSelectPhoto">                                
+                        <p class="material-icons">&#xe439;                              
+                        </p>
+                    </div>
+                </div>
+                <form action="" id="newUserData">
+                    <fieldset>
+                        <legend>Name:</legend>
+                        <input type="text" value="Edwar Castaño" id="newUserName">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Email:</legend>
+                        <input type="email" value="edwarcas80@gmail.com" id="newUserEmal">
+                    </fieldset>
+                    </fieldset>
+                    <fieldset>
+                        <legend>About you</legend>
+                        <input type="text" value="Developer" id="NewUserAbout">
+                    </fieldset>
+                    <button class="btn" >
+                        Update
+                    </button>
+                </form>
+            </div>
+
         </div>
         <!-- footer -->
         <footer class="footer">

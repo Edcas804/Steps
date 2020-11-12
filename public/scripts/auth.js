@@ -1,6 +1,6 @@
 // butons
-let btnLogin = document.querySelector('#btnLogin');
-let btnLogOut = document.querySelector('#btnLogOut');
+let btnLogin = document.querySelectorAll('.btnLogin');
+let btnLogOut = document.querySelectorAll('.btnLogOut');
 // signup
 let btnSingup = document.querySelector('#btnSingup');    
 let newName = btnSingup['newName'];
@@ -15,8 +15,10 @@ let loginPassword = userLogin['userLoginPassword'];
 const auth = firebase.auth();
 let activeUser = false;
 // userProfile
-let userDisplayName = document.querySelector('#userDisplayName');
-let photoUserLog = document.querySelector('#photoUserLog');
+let userDisplayName = document.querySelectorAll('.userDisplayName');
+let photoUserLog = document.querySelectorAll('.photoUserLog');
+let userPhotoMain = document.querySelector('#userPhotoMain');
+let userPhotoMain2 = document.querySelector('#userPhotoMain2');
 let errorMensaje = document.querySelector('#errorMensaje');
 //error
 let errorAll = document.querySelector('#errorAll');
@@ -71,7 +73,7 @@ btnSingup.addEventListener('submit', e => {
         firebase.auth().onAuthStateChanged( firebaseUser => {
             if(firebaseUser.displayName == null){
                 l('no existe el nombre');
-                updateUserName(firebaseUser, userName);
+                updateUserName(firebaseUser, userName, first);
             }
         });
     });
@@ -81,28 +83,41 @@ btnSingup.addEventListener('submit', e => {
     });
 });
 // Update User Name
-function updateUserName(firebaseUser, userName){
-    firebaseUser.updateProfile({
-        displayName : userName 
-    })
-    .then(() => {l('user name update')})
-    .catch( error => {l(error)});
+function updateUserName(firebaseUser, userName, source, data){
+    if(source === 'source'){
+        firebaseUser.updateProfile({
+            displayName : userName 
+        })
+        .then(() => {l('user name update')})
+        .catch( error => {l(error)});
+    }
+    else if(source === 'update'){
+        l('es una actualización')
+    }
 }
 let dataUser;
 auth.onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         if(firebaseUser.displayName){
-            userDisplayName.innerHTML = `${firebaseUser.displayName} `;  
             userId = firebaseUser.uid; 
             dataUser = firebaseUser;
             errorMensaje.innerHTML = ''; 
-            btnLogin.classList.add('hide');
-            btnLogOut.classList.remove('hide');
             activeUser = true;
             showStepsList();
+            userDisplayName.forEach( p => { p.innerHTML = `${firebaseUser.displayName}`}) 
+            btnLogin.forEach(b => {b.classList.add('hide')});
+            btnLogOut.forEach(b => {b.classList.remove('hide')});
+            newUserName.value = firebaseUser.displayName;
+            newUserEmal.value = firebaseUser.email;
+            NewUserAbout.value = 'about';
             db.collection('Steps').doc(userId).set({name: firebaseUser.displayName});
-            if(firebaseUser.photoURL){photoUserLog.src = firebaseUser.photoURL}
-            else{photoUserLog.src = 'img/profile/profile.png';}
+            
+            if(firebaseUser.photoURL){
+                photoUserLog.forEach(photo => {photo.src = firebaseUser.photoURL});
+            }
+            else{
+                photoUserLog.forEach(photo => {photo.src = 'img/profile/user.svg'});
+            }
             
         }
         if(firebaseUser.isAnonymous){
@@ -114,39 +129,27 @@ auth.onAuthStateChanged(firebaseUser => {
         userDisplayName.innerHTML = '';     
         errorMensaje.innerHTML = 'Aún no has iniciado sesión';    
         errorMensaje.style.color = '#fff'; 
-        btnLogOut.classList.add('hide');
-        btnLogin.classList.remove('hide');
+        // btnLogOut.classList.add('hide');
+        // btnLogin.classList.remove('hide');
+        btnLogin.forEach(b => {b.classList.remove('hide')});
+        btnLogOut.forEach(b => {b.classList.add('hide')});
+        photoUserLog.forEach(photo => {photo.src = 'img/profile/user.svg'});
     }
 
 });
-btnLogOut.addEventListener('click', e =>{
-     auth.signOut();   
-     activeModal('wrapperMenu');
-     activeUser = false;
-     anonymous();
-     userId = '';
-     dataFromDb.innerHTML = ``;
-     itemStepsList.innerHTML = ``;
-     photoUserLog.src = 'img/profile/profile.png';
-     allTitleSteps.value = `No has iniciado sesión `;
-});
-
+const LogOutMain = () => {
+    auth.signOut();   
+    activeUser = false;
+    anonymous();
+    userId = '';
+    dataFromDb.innerHTML = ``;
+    itemStepsList.innerHTML = ``;
+    userDisplayName.forEach( p => { p.innerHTML = ``}) 
+    photoUserLog.src = 'img/profile/profile.png';
+    allTitleSteps.value = `No has iniciado sesión `;
+}
 
 document.onload = onloadDocument();
-
-// agregando autentcicación con google
-// let loginGoogle = document.querySelector('#loginGoogle');
-// loginGoogle.addEventListener( 'click', () => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     firebase.auth().signInWithPopup(provider)
-//     .then( result => {
-//         l(result)
-//     })
-//     .catch( error => {
-//         l(error)
-//     })
-// });
-
 let loginGoogle = document.querySelector('#loginGoogle');
 loginGoogle.addEventListener( 'click', () => {
     const provider = new firebase.auth.GoogleAuthProvider();

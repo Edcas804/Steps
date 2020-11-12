@@ -123,9 +123,19 @@
         
     }
 }
-.modalRegister {
-    // top:0;
+.socialLogin{
+    background: none;
+    padding: .5rem;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    &:focus{border: 2px solid var(--light-color)} 
 }
+.google{color: var(--light-color)}
+.facebook{color: #06f}
+// .modalLogin {
+//     top:0;
+// }
 .home {
     width: 100%;
     height: 100%;

@@ -4,6 +4,7 @@
   --white-color: #aaa;
   --black-color: #272727;
   --hight-color: #00f0ea;
+  --light-color: #d43;
   --black-hover: rgba(16, 16, 16, .5);
   --gradient:
         linear-gradient(150deg, rgba(0,0,0,.9), rgba(0,0,0,0) 70.71%),
@@ -347,7 +348,7 @@
 .modalLogin form input:focus, .modalRegister form input:focus {
   border-width: 0 2px 0 2px;
   border-style: solid;
-  border-color: var(--primary-color);
+  border-color: var(--light-color);
 }
 
 .modalLogin form #files, .modalRegister form #files {
@@ -374,6 +375,26 @@
   color: var(--hight-color);
   padding: .3rem;
   border-radius: var(--border-radius);
+}
+
+.socialLogin {
+  background: none;
+  padding: .5rem;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.socialLogin:focus {
+  border: 2px solid var(--light-color);
+}
+
+.google {
+  color: var(--light-color);
+}
+
+.facebook {
+  color: #06f;
 }
 
 .home {
@@ -457,6 +478,12 @@
 .btn:hover, .btn:focus {
   background: none;
   color: var(--primary-color);
+}
+
+.btn:focus {
+  background: none;
+  color: var(--light-color);
+  border-color: var(--light-color);
 }
 
 .btn:active {
@@ -730,6 +757,10 @@
   transition: .5s;
 }
 
+.newItem ul li:hover {
+  color: var(--light-color);
+}
+
 .newItem ul .toggleItems {
   display: none;
 }
@@ -754,23 +785,12 @@
 
 .newItem .inputSearch:focus {
   background: var(--black-color);
+  border-color: var(--light-color);
 }
 
 .newItem .openSearch {
   opacity: 1;
   width: 90%;
-}
-
-.newfile:hover {
-  color: var(--hight-color);
-}
-
-.listFiles:hover {
-  color: #f55;
-}
-
-.listNotes:hover {
-  color: #f55;
 }
 
 .wrapperCancel {
@@ -914,7 +934,54 @@
   }
 }
 
-.userInformation form {
+.userInformation .MainUserProfile {
+  width: 100%;
+}
+
+.userInformation .MainUserProfile .wrapperPhotoUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.userInformation .MainUserProfile .wrapperPhotoUser img {
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.userInformation .MainUserProfile .wrapperPhotoUser p {
+  width: 100%;
+  text-align: center;
+  padding: .5rem;
+  font-size: var(--font-size-large);
+  color: var(--primary-color);
+}
+
+.userInformation .editProfile {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: var(--light-color);
+  cursor: pointer;
+}
+
+.userInformation .UpdateUserProfile form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -931,7 +998,7 @@
   width: 100%;
 }
 
-.userInformation form fieldset {
+.userInformation .UpdateUserProfile form fieldset {
   border-radius: var(--border-radius);
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
@@ -950,16 +1017,16 @@
           align-items: center;
 }
 
-.userInformation form fieldset:hover, .userInformation form fieldset:focus {
+.userInformation .UpdateUserProfile form fieldset:hover, .userInformation .UpdateUserProfile form fieldset:focus {
   -webkit-filter: hue-rotate(20deg);
           filter: hue-rotate(20deg);
 }
 
-.userInformation form fieldset legend {
+.userInformation .UpdateUserProfile form fieldset legend {
   padding: 0 1rem .3rem 1rem;
 }
 
-.userInformation form input {
+.userInformation .UpdateUserProfile form input {
   width: 98%;
   padding: .6rem 0;
   border-radius: var(--border-radius);
@@ -970,27 +1037,29 @@
   outline: none;
 }
 
-.userInformation form input:focus {
+.userInformation .UpdateUserProfile form input:focus {
   border-width: 0 2px 0 2px;
   border-style: solid;
-  border-color: var(--primary-color);
+  border-color: var(--light-color);
 }
 
-.userInformation .photoUser {
+.userInformation .UpdateUserProfile .photoUser {
   position: relative;
 }
 
-.userInformation .photoUser img {
+.userInformation .UpdateUserProfile .photoUser img {
   width: 8rem;
   height: 8rem;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 50%;
 }
 
-.userInformation .photoUser .wrapperSelectPhoto {
+.userInformation .UpdateUserProfile .photoUser .wrapperSelectPhoto {
   width: 100%;
   position: absolute;
   bottom: 1rem;
+  color: var(--light-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1393,7 +1462,7 @@
 .newDataModal form input:focus, .newDataModal form textarea:focus, .newDataModal form select:focus {
   border-width: 0 2px 0 2px;
   border-style: solid;
-  border-color: var(--primary-color);
+  border-color: var(--light-color);
 }
 
 .newDataModal form .textCode {
@@ -1555,7 +1624,7 @@
 .editSteps form input:focus, .editSteps form textarea:focus {
   border-width: 0 2px 0 2px;
   border-style: solid;
-  border-color: var(--primary-color);
+  border-color: var(--light-color);
 }
 
 .SelectCollection {
@@ -1763,10 +1832,6 @@ body {
           transform: translateX(1000px);
 }
 
-.hide {
-  display: none;
-}
-
 .top0 {
   top: 0;
 }
@@ -1798,5 +1863,65 @@ body {
 
 .c-white {
   color: #fff;
+}
+
+.c-link {
+  color: #07a;
+}
+
+.c-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.f-z-m {
+  font-size: var(--font-size-medium);
+}
+
+.f-z-s {
+  font-size: var(--font-size-small);
+}
+
+.f-z-l {
+  font-size: var(--font-size-large);
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.d-flex-c-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.d-flex-start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=css.css.map */
