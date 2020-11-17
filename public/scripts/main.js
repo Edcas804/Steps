@@ -221,19 +221,19 @@ const writeTitle = () => {
 writeTitle();
 
 // upload profile photo user
-let files = document.querySelector('#files');
-let write = document.querySelectorAll('.list')[0];
-const uploadFile = (evt) => {
-    let file = evt.target.files;
-    let dataFile = [];
-    for ( let i = 0, f; f = file[i]; i++){
-      dataFile.push(f.name, f.size, f.type);
-    }
-     console.log(dataFile);
-     console.log(file);
-     return write.innerHTML = 'Se subío el archivo';
-}
-files.addEventListener('change', uploadFile);
+// let files = document.querySelector('#files');
+// let write = document.querySelectorAll('.list')[0];
+// const uploadFile = (evt) => {
+//     let file = evt.target.files;
+//     let dataFile = [];
+//     for ( let i = 0, f; f = file[i]; i++){
+//       dataFile.push(f.name, f.size, f.type);
+//     }
+//      console.log(dataFile);
+//      console.log(file);
+//      return write.innerHTML = 'Se subío el archivo';
+// }
+// files.addEventListener('change', uploadFile);
 
 
 let inputColor = document.querySelector('#inputColor');

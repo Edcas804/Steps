@@ -351,10 +351,15 @@
   border-color: var(--light-color);
 }
 
-.modalLogin form #files, .modalRegister form #files {
+.modalLogin form #filePhoto, .modalRegister form #filePhoto {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
+}
+
+.modalLogin form #prevUserPhoto, .modalRegister form #prevUserPhoto {
+  -webkit-box-shadow: var(--shadow-short);
+          box-shadow: var(--shadow-short);
 }
 
 .modalLogin form label, .modalRegister form label {
@@ -1853,12 +1858,20 @@ body {
   border: none;
 }
 
+.border-r {
+  border-radius: var(--border-radius);
+}
+
 .bg-blue {
   background: #359;
 }
 
 .bg-redOrange {
   background: #d43;
+}
+
+.bg-black {
+  background: #222;
 }
 
 .c-white {
@@ -1872,6 +1885,10 @@ body {
 .c-link:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.pad-2 {
+  padding: .2rem;
 }
 
 .f-z-m {
@@ -1919,6 +1936,10 @@ body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.d-inline {
+  display: inline-block;
 }
 
 .hide {

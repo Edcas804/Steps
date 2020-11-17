@@ -178,9 +178,7 @@
                 or start with your accounts:
             </p>
             <div>
-                <button value="Google" class="socialLogin google fab" id="loginGoogle">&#xf1a0;
-                </button>
-                <button value="Facebook" class="socialLogin facebook fab" id="loginFacebook">&#xf39e;
+                <button value="Google" class="socialLogin google fab"  onclick="loginWithGoogle(googleProvider)">&#xf1a0;
                 </button>
             </div>
             
@@ -215,9 +213,7 @@
                 
             </form> 
             <div>
-                <input type="button" value="Google" class="btn bg-redOrange c-white border-none" id="loginGoogle">
-                <input type="button" value="Facebook" class="btn bg-blue c-white border-none" id="loginFacebook">
-
+                <input type="button" value="Google" class="btn bg-redOrange c-white border-none"  onclick="loginWithGoogle(googleProvider)">
             </div>          
         </div>
         <!-- register -->
@@ -247,11 +243,14 @@
                     <input type="text" id="newDescriptionUser">
                 </fieldset>
                 <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
-                <label for="files">
+                <label for="filePhoto">
                     <i class="material-icons">&#xe2c3;</i>
                 </label>
-                <input type="file" id="files" name="files[]" multiple enctype=multipart/form-data/>
-                <p class="list" ></p>
+                <input type="file" id="filePhoto" onchange="return newUserPhoto(event)">
+                <img src="" alt="" id="prevUserPhoto" width="80">
+                <div id="visorFiles">
+
+                </div>
                 <button class="btn">Start</button>
                 
             </form>      
@@ -419,6 +418,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-storage.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
 <script>
   var firebaseConfig = {

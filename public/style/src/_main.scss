@@ -97,10 +97,13 @@
         input {
             @include inputFieldset;  
         }
-        #files {
+        #filePhoto {
             width: 0.1px;
             height: 0.1px;
             opacity: 0;
+        }
+        #prevUserPhoto{
+            box-shadow: var(--shadow-short);
         }
         label {
             color: var(--primary-color);
@@ -133,9 +136,9 @@
 }
 .google{color: var(--light-color)}
 .facebook{color: #06f}
-// .modalLogin {
-//     top:0;
-// }
+.modalRegister {
+    // top:5%;
+}
 .home {
     width: 100%;
     height: 100%;

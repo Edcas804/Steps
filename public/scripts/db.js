@@ -1,4 +1,5 @@
-  
+  let storage = firebase.storage();
+  let dataUser;
   let db = firebase.firestore();
   let newDataUser= db.collection('Steps');
 

@@ -248,8 +248,10 @@ body {
 }
 
 .border-none{border: none}
+.border-r{border-radius: var(--border-radius)}
 .bg-blue {background: #359}
 .bg-redOrange {background: #d43}
+.bg-black {background: #222}
 .c-white{color: #fff}
 .c-link{
     color: #07a; 
@@ -258,6 +260,7 @@ body {
         cursor: pointer;    
     }
 }
+.pad-2{padding: .2rem}
 .f-z-m {font-size: var(--font-size-medium)}
 .f-z-s {font-size: var(--font-size-small)}
 .f-z-l {font-size: var(--font-size-large)}
@@ -265,6 +268,7 @@ body {
 .width-100{width: 100%}
 .d-flex-c-col{@include flexcenter;flex-direction: column}
 .d-flex-start{@include flexcenter; justify-content: flex-start;}
+.d-inline{display: inline-block}
 
 
 .hide {display: none}

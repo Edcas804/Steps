@@ -61,41 +61,68 @@ userLogin.addEventListener('submit', e => {
 });
 btnSingup.addEventListener('submit', e => {
     e.preventDefault();
-    let userName = newName.value;
     let userEmail = newEmail.value;
     let userPassword = newPassword.value;
+    let userName = newName.value;
     
     const createNewUser = auth.createUserWithEmailAndPassword(userEmail, userPassword);
-    createNewUser.then(() => {
-        activeModal('modalRegister');
-        activeModal('modalLogin');
-        btnSingup.reset();  
+    createNewUser.then(() => { 
         firebase.auth().onAuthStateChanged( firebaseUser => {
             if(firebaseUser.displayName == null){
+                dataUser = firebaseUser;
                 l('no existe el nombre');
-                updateUserName(firebaseUser, userName, first);
+                // updateUserImg();
+                updateUserName(dataUser, userName, 'first');
             }
         });
+        activeModal('modalRegister');
+        activeModal('modalLogin');
+        btnSingup.reset(); 
     });
     createNewUser.catch( e => {
         errorAll.innerHTML = e.message;
         activeModal('modalError');
     });
 });
-// Update User Name
-function updateUserName(firebaseUser, userName, source, data){
-    if(source === 'source'){
-        firebaseUser.updateProfile({
-            displayName : userName 
+// update user imgage
+let downloadURL;
+const updateUserImg = () => {
+    let userName = newName.value;
+
+    let newStorageref = storage.ref('/userProfileImgs/' + newFilePhotoNew.name);
+    let uploadImg = newStorageref.put(newFilePhotoNew);
+
+    uploadImg.on('state_changed', (snapshot) => {
+
+    }, (error) => {
+        l(error);
+    }, () => {
+        l('se subío el archivo.');
+        downloadURL = uploadImg.snapshot.downloadURL;
+        dataUser.updateProfile({
+            photoURL: downloadURL
         })
-        .then(() => {l('user name update')})
+        .then(() => {l('user name update and img');
+        })
+        .catch( error => {l(error)});
+    }
+     
+    );
+
+}
+// Update User Name
+function updateUserName(dataUser, userName, source){
+    if(source === 'first'){
+        dataUser.updateProfile({
+            displayName : userName,
+        })
+        .then(() => {l('user name update'); LogOutMain()})
         .catch( error => {l(error)});
     }
     else if(source === 'update'){
         l('es una actualización')
     }
 }
-let dataUser;
 auth.onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         if(firebaseUser.displayName){
@@ -110,6 +137,7 @@ auth.onAuthStateChanged(firebaseUser => {
             newUserName.value = firebaseUser.displayName;
             newUserEmal.value = firebaseUser.email;
             NewUserAbout.value = 'about';
+            allTitleSteps.value = `Hola ${firebaseUser.displayName}`;
             db.collection('Steps').doc(userId).set({name: firebaseUser.displayName});
             
             if(firebaseUser.photoURL){
@@ -150,17 +178,16 @@ const LogOutMain = () => {
 }
 
 document.onload = onloadDocument();
-let loginGoogle = document.querySelector('#loginGoogle');
-loginGoogle.addEventListener( 'click', () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+const loginWithGoogle = (provider) => {
+    l('entramos');
     firebase.auth().signInWithRedirect(provider);
     firebase.auth().getRedirectResult().then(function(result) {
         if (result.credential) {
           // This gives you a Google Access Token. You can use it to access the Google API.
           var token = result.credential.accessToken;
-          // ...
         }
-        // The signed-in user info.
         var user = result.user;
       }).catch(function(error) {
         // Handle Errors here.
@@ -173,6 +200,41 @@ loginGoogle.addEventListener( 'click', () => {
         // ...
       });
 
-});
+}
+
+// validando archivos subidos como foto de perfil
+
+let filePhoto = document.querySelector('#filePhoto');
+let newFilePhotoNew;
+const newUserPhoto = (e) => {
+    let newFilePhoto = filePhoto.value;
+    newFilePhotoNew = e.target.files[0];
+    l(newFilePhotoNew.name, newFilePhotoNew.size, newFilePhotoNew.type);
+    l(newFilePhotoNew);
+    let allowedExt = /(.jpg|.png|.jpeg|.svg)$/i;
+
+    if(!allowedExt.exec(newFilePhoto)){
+        errorAll.innerHTML = `
+        La extensión del archivo que estás intentando subir no es valida,
+         solo se admiten archivos tipo 
+         <p class="bg-redOrange border-r pad-2 d-inline">.jpg </p>
+         <p class="bg-redOrange border-r pad-2 d-inline">.png </p>
+         <p class="bg-redOrange border-r pad-2 d-inline">.jpeg </p>
+        `;
+        activeModal('modalError');
+        filePhoto.value = '';
+
+    }
+    else {
+        if(filePhoto.files && filePhoto.files[0]){
+            let visor = new FileReader();
+            visor.onload = function(e){
+                document.querySelector('#prevUserPhoto').src = `${e.target.result}`;
+            }
+            visor.readAsDataURL(filePhoto.files[0]);
+        }
+    }
+
+}
 
 
