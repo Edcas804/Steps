@@ -73,10 +73,12 @@ btnSingup.addEventListener('submit', e => {
                 l('no existe el nombre');
                 // updateUserImg();
                 updateUserName(dataUser, userName, 'first');
+                modalError.classList.add('bg-redOrange');
+                errorAll.innerHTML = 'Guardando los cambios...';
+                activeModal('modalError');
             }
         });
         activeModal('modalRegister');
-        activeModal('modalLogin');
         btnSingup.reset(); 
     });
     createNewUser.catch( e => {
@@ -105,7 +107,7 @@ const updateUserImg = () => {
                 photoURL: downloadURL
             })
             .then(() => {
-                window.location.reload(); 
+                window.location.reload() 
             })
             .catch( error => {l(error)});
         })
@@ -119,7 +121,7 @@ function updateUserName(dataUser, userName, source){
         dataUser.updateProfile({
             displayName : userName,
         })
-        .then(() => {l('user name update'); LogOutMain()})
+        .then(() => {l('user name update'); updateUserImg(); })
         .catch( error => {l(error)});
     }
     else if(source === 'update'){
