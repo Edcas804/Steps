@@ -89,26 +89,29 @@ let downloadURL;
 const updateUserImg = () => {
     let userName = newName.value;
 
-    let newStorageref = storage.ref('/userProfileImgs/' + newFilePhotoNew.name);
-    let uploadImg = newStorageref.put(newFilePhotoNew);
+    // let newStorageref = storage.ref('/userProfileImgs/' + newFilePhotoNew.name);
+    // let uploadImg = newStorageref.put(newFilePhotoNew);
+    let uploadImg = storage.ref('/userProfileImgs/' + newFilePhotoNew.name).put(newFilePhotoNew);
 
-    uploadImg.on('state_changed', (snapshot) => {
-
+    // uploadImg.on(firebase.storage.TaskEvent.STATE_CHANGED,(snapshot) => {
+    uploadImg.on('state_changed', (snapshot) => { 
     }, (error) => {
         l(error);
-    }, () => {
-        l('se subío el archivo.');
-        downloadURL = uploadImg.snapshot.downloadURL;
-        dataUser.updateProfile({
-            photoURL: downloadURL
+    }, function(){
+        uploadImg.snapshot.ref.getDownloadURL()
+        .then(downloadURL => {
+            l('la url de la foto es: ' + downloadURL);
+            dataUser.updateProfile({
+                photoURL: downloadURL
+            })
+            .then(() => {
+                window.location.reload(); 
+            })
+            .catch( error => {l(error)});
         })
-        .then(() => {l('user name update and img');
-        })
-        .catch( error => {l(error)});
-    }
+        }
      
     );
-
 }
 // Update User Name
 function updateUserName(dataUser, userName, source){
@@ -157,8 +160,6 @@ auth.onAuthStateChanged(firebaseUser => {
         userDisplayName.innerHTML = '';     
         errorMensaje.innerHTML = 'Aún no has iniciado sesión';    
         errorMensaje.style.color = '#fff'; 
-        // btnLogOut.classList.add('hide');
-        // btnLogin.classList.remove('hide');
         btnLogin.forEach(b => {b.classList.remove('hide')});
         btnLogOut.forEach(b => {b.classList.add('hide')});
         photoUserLog.forEach(photo => {photo.src = 'img/profile/user.svg'});
