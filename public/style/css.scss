@@ -2,7 +2,7 @@
     --border-radius: .5rem;
     --primary-color: #05976c;
     --white-color: #aaa;
-    --black-color: #272727;
+    --black-color: #151515;
     --hight-color: #00f0ea; 
     --light-color: #d43; 
     --black-hover: rgba(16, 16, 16, .5);
@@ -120,18 +120,19 @@
     font-weight: bold;
 }
 @mixin close{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    left: 1rem;
+    top: 1rem;
     outline: none;
     background: none;
     color: var(--primary-color);
-    font-size: var(--font-size-large);
+    font-size: 2rem;
     font-weight: bold;
-    border: 2px solid var(--primary-color);
+    border: none;
+    // border: 2px solid var(--primary-color);
     &:hover, &:focus{
         background: none;
         background: var(--primary-color);
@@ -139,8 +140,30 @@
     }
     &:active{
         transform: scale(.9);
+        color: var(--black-color);
     }
     
+}
+@mixin allModal{
+    @include flexcenter;
+    flex-direction: column;
+    // background: #222;
+    // background: rgba(20, 20, 20, .9);
+    border-radius: var(--border-radius);
+    padding: 2rem 1rem  1rem 1rem ;
+    transition: 1s;
+    max-width: 400px;
+    min-width: 280px;
+    max-height: 80%;
+    // box-shadow: var(--shadow-short);
+    z-index:500;
+    justify-content: flex-start;
+    overflow-x: auto;
+    @media (max-width: 850px){
+        width: 100%;
+        max-width: 400px;
+
+    }
 }
 @mixin modalMenu {
     position: fixed;
@@ -161,7 +184,6 @@
         max-width: 400px;
 
     }
-    
 }
 @mixin fieldsetAll {
     border-radius: var(--border-radius);
@@ -238,6 +260,7 @@ body {
 .transtaleR {transform: translateX(1000px)}
 .top0 {top: 0}
 .top5 {top: 5rem}
+.Show{top: 0}
 .errorAll {
     width: 100%;
     background: rgba(255, 0, 0, .4);

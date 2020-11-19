@@ -1,7 +1,28 @@
 
+let allModals = document.querySelectorAll('.allModals');
+let allModals2 = document.querySelectorAll('.allModals2');
+const toggleModals = (modal, back) => {
+    if(back){
+        allModals2.forEach(modals => {modals.classList.remove('Show')});
+        
+        if(modal != 'x'){
+            document.querySelector(`#${modal}`).classList.add('Show');
+        }
+    }
+    else{
+        allModals.forEach(modals => {modals.classList.remove('Show')});
+
+        if(modal != 'x'){
+            document.querySelector(`#${modal}`).classList.add('Show');
+        }
+    }
+}
+// toggleModals('MRegister');
+
+
+
 let l = console.log;
 moment.locale('en');
-
 
 let format = 'LL';
 let newDate = moment().format( format );
@@ -58,129 +79,43 @@ function animationWin2(win){
 
 }
 activeWindow('app');
-let menu = true;
-let showLogin = true;
-let showRegister = true;
-let showuserInformation = true;
-let showmodalError = true;
-let wrapperMenu = document.getElementsByClassName('wrapperMenu')[0];
-let modalLogin = document.getElementsByClassName('modalLogin')[0];
-let modalRegister = document.getElementsByClassName('modalRegister')[0];
-let userInformation = document.getElementsByClassName('userInformation')[0];
-let modalError = document.getElementsByClassName('modalError')[0];
 
-const activeModal = (modal) => {
-    if(modal === 'wrapperMenu'){
-        if(menu){
-            showModal(wrapperMenu);
-            menu = false;
-        }else{
-            hiddeModal(wrapperMenu); 
-            menu = true}
-    }
-    if(modal === 'modalLogin'){   
-        if(showLogin){
-            showModal(modalLogin);
-            showLogin = false;
-        }else{
-            hiddeModal(modalLogin); 
-            showLogin = true}
-    }
-    if(modal === 'modalRegister'){   
-        if(showRegister){
-            showModal(modalRegister);
-            showRegister = false;
-        }else{
-            hiddeModal(modalRegister); 
-            showRegister = true}
-    }        
-    if(modal === 'modalError'){   
-        if(showmodalError){
-            showModal(modalError, 'modal2');
-            showmodalError = false;
-        }else{
-            hiddeModal(modalError, 'modal2'); 
-            showmodalError= true}
-    }            
-    if(modal === 'userInformation'){   
-        if(showuserInformation){
-            showModal(userInformation);
-            showuserInformation = false;
-        }else{
-            hiddeModal(userInformation); 
-            showuserInformation = true}
-    }            
-}
-
-// modals for add new data
-let newdata = true;
+// modals for add new 
 let newasideMenu = true;
 let newasideNotes = true;
-let neweditSteps = true;
-let newmodalForShorcuts = true;
-let newDataModal = document.getElementsByClassName('newDataModal')[0];
 let asideMenu = document.getElementsByClassName('asideMenu')[0];
 let asideNotes = document.getElementsByClassName('asideNotes')[0];
-let editSteps = document.getElementsByClassName('editSteps')[0];
-let modalForShorcuts = document.getElementsByClassName('modalForShorcuts')[0];
-const ShowAddNewCode = (modal) => {
-    if(modal === 'newDataModal'){
-        if(newdata){
-            showModal(newDataModal, 'modal2');
-            newdata = false;
-        }else{
-            hiddeModal(newDataModal, 'modal2');
-            newdata = true}
+let allAsides = document.querySelectorAll('.allAsides');
+const ShowAddNewCode = (Menu) => {
+    allAsides.forEach( aside => aside.classList.remove('top0'));
+    if(Menu != 'x'){
+        document.querySelector(`#${Menu}`).classList.add('top0');
     }
-    if(modal === 'asideMenu'){
-        if(newasideMenu){
-            showModal(asideMenu, 'modal2');
-            newasideMenu = false;
-        }else{
-            hiddeModal(asideMenu, 'modal2');
-            newasideMenu = true}
-    }
-    if(modal === 'asideNotes'){
-        if(newasideNotes){
-            showModal(asideNotes, 'modal2');
-            newasideNotes = false;
-        }else{
-            hiddeModal(asideNotes, 'modal2');
-            newasideNotes = true}
-    }
-    if(modal === 'editSteps'){
-        if(neweditSteps){
-            showModal(editSteps, 'modal2');
-            neweditSteps = false;
-        }else{
-            hiddeModal(editSteps, 'modal2');
-            neweditSteps = true}
-    }
-    if(modal === 'modalForShorcuts'){
-        if(newmodalForShorcuts){
-            showModal(modalForShorcuts, 'modal2');
-            newmodalForShorcuts = false;
-        }else{
-            hiddeModal(modalForShorcuts, 'modal2');
-            newmodalForShorcuts = true;
-        }
-    }
+
+
+
+    // if(modal === 'asideMenu'){
+    //     if(newasideMenu){
+    //         showModal(asideMenu);
+    //         newasideMenu = false;
+    //     }else{
+    //         hiddeModal(asideMenu);
+    //         newasideMenu = true}
+    // }
+    // if(modal === 'asideNotes'){
+    //     if(newasideNotes){
+    //         showModal(asideNotes);
+    //         newasideNotes = false;
+    //     }else{
+    //         hiddeModal(asideNotes);
+    //         newasideNotes = true}
+    // }
 }
-const showModal = (modal, modal2) => {
-    if(modal2 === 'modal2'){
-        modal.classList.add('top5');
-    }
-    else{
+const showModal = (modal) => {
         modal.classList.add('top0');
-    }
 }
-const hiddeModal = (modal, modal2) => {
-    if(modal2 === 'modal2'){
-            modal.classList.remove('top5');
-    }
-    else{
+const hiddeModal = (modal) => {
         modal.classList.remove('top0');
-    }
 }
 
 
@@ -220,22 +155,6 @@ const writeTitle = () => {
 }
 writeTitle();
 
-// upload profile photo user
-// let files = document.querySelector('#files');
-// let write = document.querySelectorAll('.list')[0];
-// const uploadFile = (evt) => {
-//     let file = evt.target.files;
-//     let dataFile = [];
-//     for ( let i = 0, f; f = file[i]; i++){
-//       dataFile.push(f.name, f.size, f.type);
-//     }
-//      console.log(dataFile);
-//      console.log(file);
-//      return write.innerHTML = 'Se subío el archivo';
-// }
-// files.addEventListener('change', uploadFile);
-
-
 let inputColor = document.querySelector('#inputColor');
 let root = document.documentElement;
 const watchColor = e => {
@@ -267,11 +186,15 @@ document.getElementById('code').addEventListener('keydown', (e) => {
        numRows++;
    }
 }, false);
-  
+let BShort = true;
+let BAdd = true;
+
 document.addEventListener('keydown', (e) => {   
     // l(e.keyCode)
     if(e.altKey && e.keyCode === 78){    //alt + n
-        ShowAddNewCode('newDataModal')    
+        if(BAdd){toggleModals('MDataModal'); BAdd = false }
+        else{toggleModals('x'); BAdd = true} 
+          
     }
     if(e.altKey && e.keyCode === 66){    //alt + b
         searchTags();
@@ -280,7 +203,8 @@ document.addEventListener('keydown', (e) => {
         hiddeShowNotes();
     }
     if(e.altKey && e.keyCode === 71){    //alt + g
-        ShowAddNewCode('modalForShorcuts');
+        if(BShort){toggleModals('MShorCuts'); BShort = false }
+        else{toggleModals('x'); BShort = true} 
     }
  }, false);
 

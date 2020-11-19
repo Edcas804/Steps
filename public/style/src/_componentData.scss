@@ -86,13 +86,9 @@
 }
 // form new data
 .newDataModal {
-    @include modalMenu;
-    top: -200;
-    // top: 10%;
-    margin: auto;
-    overflow:auto;
+    @include allModal;
     form {
-        width: 80%;
+        width: 100%;
         @include flexcenter;
         flex-direction: column;
         h5 {
@@ -162,11 +158,7 @@
 
 }
 .editSteps{
-    @include modalMenu;
-    top: -200;
-    // top: 10%;
-    margin: auto;
-    overflow:auto;
+    @include allModal;
     form {
         width: 100%;
         @include flexcenter;

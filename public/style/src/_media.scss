@@ -41,16 +41,14 @@
         }
         .asideMenu, .asideNotes {
             position: fixed;
-            left: 1%;
-            right: 1%;
+            left: 0;
+            right: 0;
             z-index: 200;
             margin: auto;
+            padding: 4rem 0 0 0;
             max-width: 400px;
             background: var(--black-color);
             box-shadow: var(--shadow-short);
-        }
-        .asideNotes {
-            padding: 1rem 0 0 0;
         }
         .mainContent{
         }

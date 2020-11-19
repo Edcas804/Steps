@@ -36,10 +36,8 @@
     
 }
 .wrapperMenu {
-    @include modalMenu;
-    margin: auto;
-    right: 3rem;
-    z-index: 500;
+    // @include modalMenu;
+    @include allModal;
     ul {
         width: 100%;
         padding: 0 0 2rem 0;
@@ -75,10 +73,10 @@
 
 }
 .modalLogin, .modalRegister {
-    @include modalMenu;
-    margin: auto;
-    left: 20%;
-    right: 20%;
+    // @include modalMenu;
+    @include allModal;
+    // justify-content: flex-start;
+    // overflow-x: auto;
     form {
         @include flexcenter;
         flex-direction: column;
@@ -126,6 +124,48 @@
         
     }
 }
+.allModals{
+    @include flexcenter;
+    position:fixed;
+    top: -200%;
+    width: 100%;
+    height:100vh;
+    background: url('../img/background/background1.jpg');
+    background-size: cover;
+    z-index: 100;
+    transition: .8s;
+    &:before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(20, 20, 20, .8);
+    }
+}
+.allModals2 {
+    @include flexcenter;
+    position:fixed;
+    top: -200%;
+    // top: 0;
+    width: 100%;
+    height:100vh;
+    z-index: 1000;
+    transition: .8s;
+    // &:before{
+    //     content: '';
+    //     width: 100%;
+    //     height: 100%;
+    //     position: absolute;
+    //     background: rgba(20, 20, 20, .8);
+    // }
+
+}
+.underTitle{
+    width: 100%;
+    padding: 0 0 1rem 0;
+    text-align: center;
+}
+
 .socialLogin{
     background: none;
     padding: .5rem;
@@ -136,9 +176,6 @@
 }
 .google{color: var(--light-color)}
 .facebook{color: #06f}
-.modalRegister {
-    // top:5%;
-}
 .home {
     width: 100%;
     height: 100%;
@@ -211,16 +248,13 @@
     }
 }
 .modalError {
-    position: fixed;
-    top: -200%;
-    left: 1%;
-    right: 1%;
-    max-width: 270px;
-    margin: auto;
-    padding: 2rem 1.5rem;
+    @include flexcenter;
+    flex-direction: column;
+    position: relative;
+    max-width: 320px;
+    padding: 1rem;
     border-radius: var(--border-radius);
     background: #f00;
-    background: rgba(255, 0, 0, .7);
     box-shadow: var(--shadow-short);
     transition: 1s;
     z-index: 1000;
@@ -228,16 +262,23 @@
         color: #fff;
         font-size: var(--font-size-large);
         text-align: center;
+        font-weight: bold;
     }
-    .closeBtn{
-        top: -20%;
-        left: 94%;
-        border-color: #fff;
-        background: #f00;
+    img{
+        filter: invert(100%);
+        width: 3rem;
+        height: 3rem;
+        margin: 0 0 1rem 0;
+    }
+    .btn{
+        background: none;
         color: #fff;
+        border-color: #fff;
+        margin: 1rem 0 0 0;
         &:hover {
             color: #f00;
             background: #fff;
         }
     }
+    
 }

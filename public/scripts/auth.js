@@ -49,13 +49,14 @@ userLogin.addEventListener('submit', e => {
     let login = auth.signInWithEmailAndPassword(logEmail, logPassword);
     login.then( () => {
         l('logueado');        
-        activeModal('modalLogin');
+        toggleModals('x')
         userLogin.reset();
     });
     login.catch( error => {
          l(error);
          errorAll.innerHTML = error.message;
-         activeModal('modalError');
+        //  activeModal('modalError');
+         toggleModals('MError', true)
     });
 
 });
@@ -75,15 +76,15 @@ btnSingup.addEventListener('submit', e => {
                 updateUserName(dataUser, userName, 'first');
                 modalError.classList.add('bg-redOrange');
                 errorAll.innerHTML = 'Guardando los cambios...';
-                activeModal('modalError');
+                toggleModals('MError', true);
             }
         });
-        activeModal('modalRegister');
+        toggleModals('x');
         btnSingup.reset(); 
     });
     createNewUser.catch( e => {
         errorAll.innerHTML = e.message;
-        activeModal('modalError');
+        toggleModals('MError', true);
     });
 });
 // update user imgage
@@ -224,7 +225,7 @@ const newUserPhoto = (e) => {
          <p class="bg-redOrange border-r pad-2 d-inline">.png </p>
          <p class="bg-redOrange border-r pad-2 d-inline">.jpeg </p>
         `;
-        activeModal('modalError');
+        toggleModals('MError', true)
         filePhoto.value = '';
 
     }

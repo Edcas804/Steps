@@ -129,7 +129,6 @@
 .itemList {
     width: 100%;
     max-width: 100%;
-    
     li {
         list-style: none;
         width: 100%;
@@ -186,13 +185,7 @@
     }
 }
 .userInformation {
-    position: absolute;
-    @include modalMenu;
-    top: -200%;
-    // top: 0;
-    right: 1rem;
-    margin: auto;
-
+    @include allModal;
     .MainUserProfile{
         width: 100%;        
         .wrapperPhotoUser{
@@ -291,11 +284,7 @@
     }
 }
 .modalForShorcuts {
-    @include modalMenu;
-    top: -200;
-    // top: 10%;
-    margin: auto;
-    overflow:auto;
+    @include allModal;
     ul {
         width: 100%;
         li {
@@ -303,6 +292,8 @@
             width: 100%;
             list-style: none;
             padding: .3rem 0;
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
             .shorcut{
                 background: var(--white-color);
                 background: #333;

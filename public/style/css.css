@@ -2,7 +2,7 @@
   --border-radius: .5rem;
   --primary-color: #05976c;
   --white-color: #aaa;
-  --black-color: #272727;
+  --black-color: #151515;
   --hight-color: #00f0ea;
   --light-color: #d43;
   --black-hover: rgba(16, 16, 16, .5);
@@ -138,8 +138,6 @@
 }
 
 .wrapperMenu {
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -153,27 +151,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  margin: auto;
-  right: 3rem;
-  z-index: 500;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .wrapperMenu {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
@@ -234,8 +228,6 @@
 }
 
 .modalLogin, .modalRegister {
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -249,27 +241,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  margin: auto;
-  left: 20%;
-  right: 20%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .modalLogin, .modalRegister {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
@@ -380,6 +368,60 @@
   color: var(--hight-color);
   padding: .3rem;
   border-radius: var(--border-radius);
+}
+
+.allModals {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: -200%;
+  width: 100%;
+  height: 100vh;
+  background: url("../img/background/background1.jpg");
+  background-size: cover;
+  z-index: 100;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+.allModals:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(20, 20, 20, 0.8);
+}
+
+.allModals2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: -200%;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+.underTitle {
+  width: 100%;
+  padding: 0 0 1rem 0;
+  text-align: center;
 }
 
 .socialLogin {
@@ -497,18 +539,18 @@
 }
 
 .closeBtn {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  left: 1rem;
+  top: 1rem;
   outline: none;
   background: none;
   color: var(--primary-color);
-  font-size: var(--font-size-large);
+  font-size: 2rem;
   font-weight: bold;
-  border: 2px solid var(--primary-color);
+  border: none;
   -webkit-transition: .5s;
   transition: .5s;
 }
@@ -522,6 +564,7 @@
 .closeBtn:active {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
+  color: var(--black-color);
 }
 
 .footer {
@@ -583,16 +626,24 @@
 }
 
 .modalError {
-  position: fixed;
-  top: -200%;
-  left: 1%;
-  right: 1%;
-  max-width: 270px;
-  margin: auto;
-  padding: 2rem 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  max-width: 320px;
+  padding: 1rem;
   border-radius: var(--border-radius);
   background: #f00;
-  background: rgba(255, 0, 0, 0.7);
   -webkit-box-shadow: var(--shadow-short);
           box-shadow: var(--shadow-short);
   -webkit-transition: 1s;
@@ -604,17 +655,25 @@
   color: #fff;
   font-size: var(--font-size-large);
   text-align: center;
+  font-weight: bold;
 }
 
-.modalError .closeBtn {
-  top: -20%;
-  left: 94%;
-  border-color: #fff;
-  background: #f00;
+.modalError img {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+.modalError .btn {
+  background: none;
   color: #fff;
+  border-color: #fff;
+  margin: 1rem 0 0 0;
 }
 
-.modalError .closeBtn:hover {
+.modalError .btn:hover {
   color: #f00;
   background: #fff;
 }
@@ -898,9 +957,6 @@
 }
 
 .userInformation {
-  position: absolute;
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -914,27 +970,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  top: -200%;
-  right: 1rem;
-  margin: auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .userInformation {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
@@ -1142,8 +1194,6 @@
 }
 
 .modalForShorcuts {
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1157,27 +1207,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  top: -200;
-  margin: auto;
-  overflow: auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .modalForShorcuts {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
@@ -1199,6 +1245,8 @@
   width: 100%;
   list-style: none;
   padding: .3rem 0;
+  color: var(--primary-color);
+  font-size: var(--font-size-large);
 }
 
 .modalForShorcuts ul li .shorcut {
@@ -1327,8 +1375,6 @@
 }
 
 .newDataModal {
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1342,33 +1388,29 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  top: -200;
-  margin: auto;
-  overflow: auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .newDataModal {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
 
 .newDataModal form {
-  width: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1524,8 +1566,6 @@
 }
 
 .editSteps {
-  position: fixed;
-  top: -200%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1539,27 +1579,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #222;
   border-radius: var(--border-radius);
-  padding: 3rem 1rem  1rem 1rem;
+  padding: 2rem 1rem  1rem 1rem;
   -webkit-transition: 1s;
   transition: 1s;
   max-width: 400px;
   min-width: 280px;
-  -webkit-box-shadow: var(--shadow-short);
-          box-shadow: var(--shadow-short);
+  max-height: 80%;
   z-index: 500;
-  left: 10%;
-  right: 10%;
-  top: -200;
-  margin: auto;
-  overflow: auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media (max-width: 850px) {
   .editSteps {
-    left: 1%;
-    right: 1%;
+    width: 100%;
     max-width: 400px;
   }
 }
@@ -1760,17 +1796,15 @@
   }
   .App .asideMenu, .App .asideNotes {
     position: fixed;
-    left: 1%;
-    right: 1%;
+    left: 0;
+    right: 0;
     z-index: 200;
     margin: auto;
+    padding: 4rem 0 0 0;
     max-width: 400px;
     background: var(--black-color);
     -webkit-box-shadow: var(--shadow-short);
             box-shadow: var(--shadow-short);
-  }
-  .App .asideNotes {
-    padding: 1rem 0 0 0;
   }
   .newItem h6 {
     max-width: 120px;
@@ -1843,6 +1877,10 @@ body {
 
 .top5 {
   top: 5rem;
+}
+
+.Show {
+  top: 0;
 }
 
 .errorAll {

@@ -19,7 +19,7 @@
                 <h1>Steps</h1>
             </div>
             <div onclick="">
-                <i class="material-icons menu" onclick="activeModal('wrapperMenu')">&#xe5d2;</i>              
+                <i class="material-icons menu" onclick="toggleModals('MMenu')">&#xe5d2;</i>              
             </div>
         </header>  
         <!-- home content -->
@@ -42,7 +42,7 @@
                     <p class="dinamicJs transtaleL">
                         Create simple notes, add a title and description and you're done. Save it or share it
                     </p>
-                    <button class="dinamicJs btn transtaleR" onclick="activeModal('modalRegister')">
+                    <button class="dinamicJs btn transtaleR" onclick="toggleModals('MRegister')">
                         Create an account
                     </button>
 
@@ -53,9 +53,9 @@
         <!-- app content -->
         <div class="window App" id="app">
             <!-- Aside -->
-            <div class="AppItem   asideMenu  transtaleL">
+            <div class="AppItem   asideMenu  transtaleL allAsides" id="asideMenu">
                 <div>
-                    <button onclick="ShowAddNewCode('asideMenu')" class="closeBtn toggleClose">X</button>
+                    <button onclick="ShowAddNewCode('x')" class="closeBtn toggleClose">X</button>
                 </div>
                 <div class="wrapperCancel">
                     <button class="cancel hide" id="cancelRemoveList" onclick="deleteCollectionB()"> Cancelar </button>
@@ -73,7 +73,7 @@
                         </li>
                         <li class="material-icons" onclick="searchTags()" >  &#xe8b6;
                         </li>
-                        <li class="material-icons newfile" onclick="ShowAddNewCode('newDataModal')">&#xe147;
+                        <li class="material-icons newfile" onclick="toggleModals('MDataModal')">&#xe147;
                         </li>
                         <li class="toggleItems" onclick="ShowAddNewCode('asideMenu')">
                             <i class="material-icons listFiles ">&#xe241;</i>
@@ -89,12 +89,12 @@
                               
             </div>
             <!-- aside notes -->
-            <div class="AppItem  asideNotes  transtaleR">
+            <div class="AppItem  asideNotes  transtaleR allAsides" id="asideNotes">
                 <div class="headerAside">
                     <div>
-                        <button onclick="ShowAddNewCode('asideNotes')" class="closeBtn toggleClose">X</button>
+                        <button onclick="ShowAddNewCode('x')" class="closeBtn toggleClose">X</button>
                     </div>
-                    <div class="d-flex-start width-100 " onclick="activeModal('userInformation')">
+                    <div class="d-flex-start width-100 " onclick="toggleModals('MUserInformation')">
                         <img src="" alt="Profile" title="Profile" class="photoUserLog" >
                         <p  class="showHideAll userDisplayName"></p>
                     </div>
@@ -113,32 +113,9 @@
                         <p class="showHideAll">Select a color</p>
                     </div>
                     <div class="asideItem">
-                            <div class="asideItem1" onclick="ShowAddNewCode('modalForShorcuts')">
+                            <div class="asideItem1" onclick="toggleModals('MShorCuts')">
                                 <i class="material-icons">&#xe8b8;</i>
                                 <h6 class="showHideAll">shortcuts</h6>
-                            </div>
-                            <div class="modalForShorcuts">
-                                <div>
-                                    <button onclick="ShowAddNewCode('modalForShorcuts')" class="closeBtn">X</button>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <span>Show/Hide shorcuts list</span>
-                                        <span class="shorcut">Alt + G</span>
-                                    </li>
-                                    <li>
-                                        <span>Add new item</span>
-                                        <span class="shorcut">Alt + N</span>
-                                    </li>
-                                    <li>
-                                        <span>Search</span>
-                                        <span class="shorcut">Alt + B</span>
-                                    </li>
-                                    <li>
-                                        <span>Show/Hide right menu</span>
-                                        <span class="shorcut">Alt + H</span>
-                                    </li>
-                                </ul>
                             </div>
                     </div>
                     <div class="asideItem" onclick="deleteCollectionB()">
@@ -152,25 +129,26 @@
 
         <!-- modals -->
         <!-- ************************************************************************ -->
-        <!-- modal for login and register -->        
-        <div class="wrapperMenu">
+        <!-- modal for login and register -->    
+        <div class="allModals" id="MMenu">  
+            <div class="wrapperMenu">
             <div>
-                <button onclick="activeModal('wrapperMenu')" class="closeBtn">X</button>
+                <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
             </div>
             <ul>
-                <li onclick="activeWindow('home'); activeModal('wrapperMenu')">
+                <li onclick="activeWindow('home'); toggleModals('x')">
                     <span tabindex="0" data-descr="Go to home">Home</span>
                 </li>
-                <li onclick="activeWindow('app');activeModal('wrapperMenu')" >
+                <li onclick="activeWindow('app');toggleModals('x')" >
                     <span tabindex="0" data-descr="Go to my personal Task">My workspace</span>
                 </li>
-                <li onclick="activeWindow('about');activeModal('wrapperMenu')">
+                <li onclick="activeWindow('about');toggleModals('x')">
                     About Steps
                 </li>
             </ul>
-            <input type="button" value="Login" class="btn login btnLogin" onclick="activeModal('wrapperMenu'); activeModal('modalLogin')" id="">
-            <input type="button" value="Logout" class="btn logout btnLogOut hide" onclick="LogOutMain(); activeModal('wrapperMenu')">
-            <p onclick="activeModal('modalRegister'); activeModal('wrapperMenu')">
+            <input type="button" value="Login" class="btn login btnLogin" onclick="toggleModals('MLogin')" id="">
+            <input type="button" value="Logout" class="btn logout btnLogOut hide" onclick="LogOutMain(); toggleModals('x')">
+            <p onclick="toggleModals('MRegister')">
                 ¿Don't you have an account? <br>
                 <span style="text-decoration: underline">
                     Create an account here.
@@ -183,43 +161,47 @@
             </div>
             
             
-        </div> 
+            </div> 
+        </div>
         <!-- login -->
-        <div class="modalLogin">
-            <div>
-                <button class="closeBtn" onclick="activeModal('modalLogin')">X</button>
+        <div class="allModals" id="MLogin">
+            <div class="modalLogin">
+                <div>
+                    <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
+                </div>
+                <form action="" id="userLogin">
+                    <h3>Login</h3>
+                    <p>
+                        Login in steps to start creating your own story.
+                    </p>
+                    <fieldset>
+                        <legend>Email</legend>
+                        <input type="mail" id="userLoginEmail">
+                    </fieldset>                    
+                    <fieldset>
+                        <legend>Password</legend>
+                        <input type="password" id="userLoginPassword">
+                    </fieldset>
+                    <button class="btn">Start</button>
+                    <p onclick="toggleModals('MRegister')">
+                        ¿Don't you have an account? <br>
+                        <span style="text-decoration: underline">
+                            Create an account here.
+                        </span>
+                    </p>   
+                    <p>Start with your accounts:</p>
+                    
+                </form> 
+                <div>
+                    <input type="button" value="Google" class="btn bg-redOrange c-white border-none"  onclick="loginWithGoogle(googleProvider)">
+                </div>          
             </div>
-            <form action="" id="userLogin">
-                <h3>Login</h3>
-                <p>
-                    Login in steps to start creating your own story.
-                </p>
-                <fieldset>
-                    <legend>Email</legend>
-                    <input type="mail" id="userLoginEmail">
-                </fieldset>                    
-                <fieldset>
-                    <legend>Password</legend>
-                    <input type="password" id="userLoginPassword">
-                </fieldset>
-                <button class="btn">Start</button>
-                <p onclick="activeModal('modalLogin'); activeModal('modalRegister')">
-                    ¿Don't you have an account? <br>
-                    <span style="text-decoration: underline">
-                        Create an account here.
-                    </span>
-                </p>   
-                <p>Start with your accounts:</p>
-                
-            </form> 
-            <div>
-                <input type="button" value="Google" class="btn bg-redOrange c-white border-none"  onclick="loginWithGoogle(googleProvider)">
-            </div>          
         </div>
         <!-- register -->
-        <div class="modalRegister"  >
+        <div class="allModals" id="MRegister">
+            <div class="modalRegister"  >
             <div>
-                <button class="closeBtn" onclick="activeModal('modalRegister')">X</button>
+                <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
             </div>
             <form action="" id="btnSingup">
                 <h3>Register</h3>
@@ -254,23 +236,26 @@
                 <button class="btn">Start</button>
                 
             </form>      
+            </div>
         </div>
         <!-- modal for error -->
-        <div class="modalError">
-            <div>
-                <button class="closeBtn" onclick="activeModal('modalError')">X</button>
+        <div class="allModals2" id="MError">
+            <div class="modalError">
+                <img src="img/background/error2.svg" alt="">
+                <p id="errorAll">
+                    Se ha presentado un error inesperado
+                </p>
+                <input type="button" class="btn" value="Ok" onclick="toggleModals('x', true)">
             </div>
-            <p id="errorAll">
-                Se ha presentado un error inesperado
-            </p>
         </div>
         <!-- modal inputs for new data -->
-        <div class="newDataModal">
+        <div class="allModals" id="MDataModal">      
+            <div class="newDataModal">
             <div>
-                <button onclick="ShowAddNewCode('newDataModal')" class="closeBtn">X</button>
+                <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
             </div>
             <form action="" id="newItemCode">
-                <h5>Insert new code</h5>  
+                <h5 class="underTitle">Insert new code</h5>  
                 <div class="SelectCollection ">
                     <input type="radio"  name="collection" onclick="activeRadio('showContentSelectNew')" id="AddNewCheck">
                     <label>Add new Collection</label>
@@ -317,14 +302,16 @@
                 </fieldset>
                 <button class="btn" >Save</button>
             </form>
-        </div>
+            </div>
+        </div>  
         <!-- edit -->
-        <div class="editSteps">
+        <div class="allModals" id="MEditSteps">
+            <div class="editSteps">
             <div>
-                <button onclick="ShowAddNewCode('editSteps'); resetFormUpdate()" class="closeBtn">X</button>
+                <button class="fa closeBtn " onclick="toggleModals('x'); resetFormUpdate()" >&#xf060;</button>
             </div>
             <form action="" id="formUpdate">
-                <h5>Update Steps</h5>
+                <h5 class="underTitle">Update Steps</h5>
                 <fieldset>
                     <legend>Title</legend>
                     <input type="text" placeholder="" id="updateTitleNewItem">
@@ -341,11 +328,13 @@
                     <button class="btn" >Update</button>
                 </div>
             </form>
+            </div>
         </div>
         <!-- modal user information -->
-        <div class="userInformation">
+        <div class="allModals" id="MUserInformation">
+            <div class="userInformation">
             <div>
-                <button onclick="activeModal('userInformation')" class="closeBtn">X</button>
+                <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
             </div>
             <p class="f-z-s editProfile" onclick="ShowHiddeUserEdit()"><i class="material-icons">&#xe3c9;</i></p>
             <div class="MainUserProfile d-flex-c-col">
@@ -353,8 +342,8 @@
                     <img src="" alt="" id=""  class="photoUserLog" alt="">
                     <p class="userDisplayName"></p>
                 </div>
-                <input type="button" class="btn btnLogin" value="login" onclick="activeModal('modalLogin'); activeModal('userInformation')">
-                <input type="button" class="btn btnLogOut hide" value="Logout" onclick="LogOutMain(); activeModal('userInformation')" >
+                <input type="button" class="btn btnLogin" value="login" onclick="toggleModals('MLogin')">
+                <input type="button" class="btn btnLogOut hide" value="Logout" onclick="LogOutMain(); toggleModals('x')" >
             </div>
             <div class="UpdateUserProfile width-100 d-flex-c-col hide" > 
                 <div class="photoUser" >                            
@@ -384,6 +373,32 @@
                 </form>
             </div>
 
+            </div>
+        </div>
+        <div class="allModals" id="MShorCuts">
+            <div class="modalForShorcuts">
+            <div>
+                <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
+            </div>
+            <ul>
+                <li>
+                    <span>Show/Hide shorcuts list</span>
+                    <span class="shorcut">Alt + G</span>
+                </li>
+                <li>
+                    <span>Add new item</span>
+                    <span class="shorcut">Alt + N</span>
+                </li>
+                <li>
+                    <span>Search</span>
+                    <span class="shorcut">Alt + B</span>
+                </li>
+                <li>
+                    <span>Show/Hide right menu</span>
+                    <span class="shorcut">Alt + H</span>
+                </li>
+            </ul>
+            </div>
         </div>
         <!-- footer -->
         <footer class="footer">

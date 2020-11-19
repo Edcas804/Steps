@@ -36,20 +36,30 @@ let numForIncrem;
 let numIncrem;
 const contadorForNewCode = e => {
     e.preventDefault();
-    if(addCollection.value){
-        newcollecionList = addCollection.value; 
-        numIncrem = newDataUser.doc(userId).collection('stepsList').doc(addCollection.value).collection('contadores').doc('Cont');
-        numIncrem.set({Num : 0})
-    } else{
-        numIncrem = newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).collection('contadores').doc('Cont');
-    }        
-        numIncrem.get()
-        .then((doc) => { 
-            l(doc.data().Num);
-            let newNum = doc.data().Num;
-            writeCode(e, newNum);
-            numIncrem.update({Num : firebase.firestore.FieldValue.increment(1)})
-        });
+    if(userId){
+        if(addCollection.value){
+            newcollecionList = addCollection.value; 
+            numIncrem = newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).collection('contadores').doc('Cont');
+            numIncrem.set({Num : 0})
+            l('Es nueva')
+        } else{
+            numIncrem = newDataUser.doc(userId).collection('stepsList').doc(newcollecionList).collection('contadores').doc('Cont');
+            l('no es nueva')
+        } 
+        setTimeout(() => {
+            numIncrem.get()
+                    .then((doc) => { 
+                        l(doc.data().Num);
+                        let newNum = doc.data().Num;
+                        writeCode(e, newNum);
+                        numIncrem.update({Num : firebase.firestore.FieldValue.increment(1)})
+                    });
+                }, 1000)
+    }
+    else{
+        errorAll.innerHTML = 'Debes inciar sesión o crear una cuenta para poder guardar los cambios';
+        toggleModals('MError', true);
+    }
 }
 const writeCode = (e, newNum) => {
     e.preventDefault();
@@ -99,7 +109,7 @@ const addnewData = (newcollecionList, newTitleNewItem, AllData) => {
         .set(AllData)
         .then(() => {    
             newItemCode.reset();
-            ShowAddNewCode('newDataModal');
+            toggleModals('x')
             l('Registrado')
         })
         .catch( error => {l(error)});            
@@ -107,7 +117,7 @@ const addnewData = (newcollecionList, newTitleNewItem, AllData) => {
         insertTags.innerHTML =  ``;
     }else{
         errorAll.innerHTML = 'Debes inciar sesión o crear una cuenta para poder guardar los cambios';
-        activeModal('modalError');
+        toggleModals('MError', true);
     }
 }
 newItemCode.addEventListener('submit', contadorForNewCode);
@@ -198,7 +208,6 @@ const deleteCollectionB = () => {
         showStepsList();
         if(screen.width <= 850){
             ShowAddNewCode('asideMenu');
-            ShowAddNewCode('asideNotes');
         }
     }else{
         cancelRemoveList.classList.add('hide');
@@ -307,7 +316,7 @@ const showDataSteps = (docId) => {
                     updateTitleNewItem.value = e.target.dataset.new; 
                     updateCode.value = e.target.dataset.code; 
                     updateDescription.value = e.target.dataset.descr;
-                    ShowAddNewCode('editSteps')
+                    toggleModals('MEditSteps');
                 });
             }); 
     });
@@ -332,13 +341,13 @@ formUpdate.addEventListener( 'submit', e => {
     .then( ()=> {
         l('actualizado');
         formUpdate.reset(); 
-        ShowAddNewCode('editSteps')   
+        toggleModals('x')   
     })
     .catch(e => {
         l(e);
         formUpdate.reset();  
         errorAll.innerHTML = 'Se ha presentado un error, intenta de nuevo por favor.';
-        activeModal('modalError');
+        toggleModals('MError', true);
     });
 
 
@@ -463,17 +472,17 @@ const searchTags = () => {
 }
 
 
-let newUserData = document.querySelector('#newUserData');
-let newUserName = newUserData['newUserName'];
-let newUserEmal = newUserData['newUserEmal'];
-let NewUserAbout = newUserData['NewUserAbout'];
-const updateDataUser = (e) => {
-    e.preventDefault();
-    let newUserInformation= {
-        displayName: newUserName,
-        photoURL: '',
+// let newUserData = document.querySelector('#newUserData');
+// let newUserName = newUserData['newUserName'];
+// let newUserEmal = newUserData['newUserEmal'];
+// let NewUserAbout = newUserData['NewUserAbout'];
+// const updateDataUser = (e) => {
+//     e.preventDefault();
+//     let newUserInformation= {
+//         displayName: newUserName,
+//         photoURL: '',
 
-    };
-    return updateUserName('x', 'x', 'update', newUserInformation), activeModal('userInformation');
-}
-newUserData.addEventListener('submit', updateDataUser);
+//     };
+//     return updateUserName('x', 'x', 'update', newUserInformation), activeModal('userInformation');
+// }
+// newUserData.addEventListener('submit', updateDataUser);
