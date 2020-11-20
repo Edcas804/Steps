@@ -91,34 +91,8 @@ const ShowAddNewCode = (Menu) => {
     if(Menu != 'x'){
         document.querySelector(`#${Menu}`).classList.add('top0');
     }
-
-
-
-    // if(modal === 'asideMenu'){
-    //     if(newasideMenu){
-    //         showModal(asideMenu);
-    //         newasideMenu = false;
-    //     }else{
-    //         hiddeModal(asideMenu);
-    //         newasideMenu = true}
-    // }
-    // if(modal === 'asideNotes'){
-    //     if(newasideNotes){
-    //         showModal(asideNotes);
-    //         newasideNotes = false;
-    //     }else{
-    //         hiddeModal(asideNotes);
-    //         newasideNotes = true}
-    // }
 }
-const showModal = (modal) => {
-        modal.classList.add('top0');
-}
-const hiddeModal = (modal) => {
-        modal.classList.remove('top0');
-}
-
-
+ShowAddNewCode('asideNotes');
 let MainUserProfile = document.getElementsByClassName('MainUserProfile')[0];
 let UpdateUserProfile = document.getElementsByClassName('UpdateUserProfile')[0];
 let editB = true;
@@ -134,6 +108,8 @@ const ShowHiddeUserEdit = () => {
     }
 
 }
+
+// document.querySelector('#clickk').click();
 
 let timeOut;
 const writeTitle = () => {

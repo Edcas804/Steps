@@ -20,8 +20,10 @@ let photoUserLog = document.querySelectorAll('.photoUserLog');
 let userPhotoMain = document.querySelector('#userPhotoMain');
 let userPhotoMain2 = document.querySelector('#userPhotoMain2');
 let errorMensaje = document.querySelector('#errorMensaje');
+let userProfileEdit = document.querySelector('#userProfileEdit');
 //error
 let errorAll = document.querySelector('#errorAll');
+let modalError = document.querySelectorAll('.modalError')[0];
 
 let userId;
 
@@ -55,7 +57,6 @@ userLogin.addEventListener('submit', e => {
     login.catch( error => {
          l(error);
          errorAll.innerHTML = error.message;
-        //  activeModal('modalError');
          toggleModals('MError', true)
     });
 
@@ -72,11 +73,7 @@ btnSingup.addEventListener('submit', e => {
             if(firebaseUser.displayName == null){
                 dataUser = firebaseUser;
                 l('no existe el nombre');
-                // updateUserImg();
                 updateUserName(dataUser, userName, 'first');
-                modalError.classList.add('bg-redOrange');
-                errorAll.innerHTML = 'Guardando los cambios...';
-                toggleModals('MError', true);
             }
         });
         toggleModals('x');
@@ -90,7 +87,6 @@ btnSingup.addEventListener('submit', e => {
 // update user imgage
 let downloadURL;
 const updateUserImg = () => {
-    let userName = newName.value;
 
     // let newStorageref = storage.ref('/userProfileImgs/' + newFilePhotoNew.name);
     // let uploadImg = newStorageref.put(newFilePhotoNew);
@@ -122,13 +118,31 @@ function updateUserName(dataUser, userName, source){
         dataUser.updateProfile({
             displayName : userName,
         })
-        .then(() => {l('user name update'); updateUserImg(); })
+        .then(() => {
+            l('user name update');  
+            modalError.classList.add('bg-redOrange');
+            errorAll.innerHTML = 'Guardando los cambios...';
+            toggleModals('MError', true);
+            updateUserImg();
+        })
         .catch( error => {l(error)});
     }
     else if(source === 'update'){
-        l('es una actualización')
+        dataUser.updateProfile({
+            displayName : userName,
+        })
+        .then(() => {
+            l('user name update'); 
+            modalError.classList.add('bg-redOrange');
+            errorAll.innerHTML = 'Guardando los cambios...';
+            toggleModals('MError', true);
+            updateUserImg(); 
+        })
+        .catch( error => {l(error)});
+        l('es una actualización');
     }
 }
+
 auth.onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         if(firebaseUser.displayName){
@@ -140,6 +154,7 @@ auth.onAuthStateChanged(firebaseUser => {
             userDisplayName.forEach( p => { p.innerHTML = `${firebaseUser.displayName}`}) 
             btnLogin.forEach(b => {b.classList.add('hide')});
             btnLogOut.forEach(b => {b.classList.remove('hide')});
+            userProfileEdit.classList.remove('hide')
             newUserName.value = firebaseUser.displayName;
             newUserEmal.value = firebaseUser.email;
             NewUserAbout.value = 'about';
@@ -179,6 +194,10 @@ const LogOutMain = () => {
     userDisplayName.forEach( p => { p.innerHTML = ``}) 
     photoUserLog.src = 'img/profile/profile.png';
     allTitleSteps.value = `No has iniciado sesión `;
+    newUserName.value = ` `;
+    newUserEmal.value = ` `;
+    NewUserAbout.value = ` `;
+    userProfileEdit.classList.add('hide')
 }
 
 document.onload = onloadDocument();
@@ -209,35 +228,69 @@ const loginWithGoogle = (provider) => {
 // validando archivos subidos como foto de perfil
 
 let filePhoto = document.querySelector('#filePhoto');
+let filePhoto2 = document.querySelector('#filePhoto2');
+let prevUserPhoto = document.querySelectorAll('.prevUserPhoto');
 let newFilePhotoNew;
-const newUserPhoto = (e) => {
-    let newFilePhoto = filePhoto.value;
+let newFilePhoto;
+const newUserPhoto = (e, source) => {
     newFilePhotoNew = e.target.files[0];
     l(newFilePhotoNew.name, newFilePhotoNew.size, newFilePhotoNew.type);
     l(newFilePhotoNew);
+
     let allowedExt = /(.jpg|.png|.jpeg|.svg)$/i;
-
-    if(!allowedExt.exec(newFilePhoto)){
-        errorAll.innerHTML = `
-        La extensión del archivo que estás intentando subir no es valida,
-         solo se admiten archivos tipo 
-         <p class="bg-redOrange border-r pad-2 d-inline">.jpg </p>
-         <p class="bg-redOrange border-r pad-2 d-inline">.png </p>
-         <p class="bg-redOrange border-r pad-2 d-inline">.jpeg </p>
-        `;
-        toggleModals('MError', true)
-        filePhoto.value = '';
-
-    }
-    else {
-        if(filePhoto.files && filePhoto.files[0]){
-            let visor = new FileReader();
-            visor.onload = function(e){
-                document.querySelector('#prevUserPhoto').src = `${e.target.result}`;
+    
+    if(source === 'update'){
+        newFilePhoto = filePhoto2.value;
+        if(!allowedExt.exec(newFilePhoto)){
+            errorAll.innerHTML = `
+            La extensión del archivo que estás intentando subir no es valida,
+             solo se admiten archivos tipo 
+             <p class="bg-redOrange border-r pad-2 d-inline">.jpg </p>
+             <p class="bg-redOrange border-r pad-2 d-inline">.png </p>
+             <p class="bg-redOrange border-r pad-2 d-inline">.jpeg </p>
+            `;
+            toggleModals('MError', true)
+            filePhoto.value = '';
+    
+        }
+        else {
+            if(filePhoto2.files && filePhoto2.files[0]){
+                let visor = new FileReader();
+                visor.onload = function(e){
+                    // document.querySelector('#prevUserPhoto').src = `${e.target.result}`;
+                    prevUserPhoto.forEach( photo => {photo.src = `${e.target.result}`})
+                }
+                visor.readAsDataURL(filePhoto2.files[0]);
             }
-            visor.readAsDataURL(filePhoto.files[0]);
         }
     }
+    else{
+        newFilePhoto = filePhoto.value;
+        if(!allowedExt.exec(newFilePhoto)){
+            errorAll.innerHTML = `
+            La extensión del archivo que estás intentando subir no es valida,
+             solo se admiten archivos tipo 
+             <p class="bg-redOrange border-r pad-2 d-inline">.jpg </p>
+             <p class="bg-redOrange border-r pad-2 d-inline">.png </p>
+             <p class="bg-redOrange border-r pad-2 d-inline">.jpeg </p>
+            `;
+            toggleModals('MError', true)
+            filePhoto.value = '';
+    
+        }
+        else {
+            if(filePhoto.files && filePhoto.files[0]){
+                let visor = new FileReader();
+                visor.onload = function(e){
+                    // document.querySelector('#prevUserPhoto').src = `${e.target.result}`;
+                    prevUserPhoto.forEach( photo => {photo.src = `${e.target.result}`})
+                }
+                visor.readAsDataURL(filePhoto.files[0]);
+            }
+        }
+    }
+
+    
 
 }
 

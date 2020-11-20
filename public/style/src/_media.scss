@@ -87,7 +87,54 @@
 
     }
     .ShowHidde{display: none}
+    .headerAside{
+        @include flexcenter;
+        .contentHead{
+            @include flexcenter;
+            justify-content: center;
+            p {
+                color: var(--primary-color);
+            }
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                box-shadow: var(--shadow-short);
+                margin-right: .3rem;
+            }
+        }
+    }
+    .itemList {
+        padding: 1rem 0;
+        li {
+            @include flexcenter;
+            list-style: none;
+            width: 80%;
+            overflow: hidden;
+            margin: auto;
+            background: none;
+            color: var(--primary-color);
+            input {
+                text-align: center;
+                margin: auto;
+                width: 80%; 
+                max-width: 100%;
+                &:hover {
+                }
+            }
+            .deleteAlert {
+                color: #f00;  
+                border-left: 3px solid #f00;
+                border-right: 3px solid #f00;
+            }
+        }
+        .classActive, &:focus {
+        }
+    }
     .asideItem {
+        justify-content: center;
+        border-bottom: none;
+        padding: .3rem 0;
         li{}
         p, li, h6, {
         }

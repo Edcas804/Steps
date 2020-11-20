@@ -472,17 +472,14 @@ const searchTags = () => {
 }
 
 
-// let newUserData = document.querySelector('#newUserData');
-// let newUserName = newUserData['newUserName'];
-// let newUserEmal = newUserData['newUserEmal'];
-// let NewUserAbout = newUserData['NewUserAbout'];
-// const updateDataUser = (e) => {
-//     e.preventDefault();
-//     let newUserInformation= {
-//         displayName: newUserName,
-//         photoURL: '',
-
-//     };
-//     return updateUserName('x', 'x', 'update', newUserInformation), activeModal('userInformation');
-// }
-// newUserData.addEventListener('submit', updateDataUser);
+let newUserData = document.querySelector('#newUserData');
+let newUserName = newUserData['newUserName'];
+let newUserEmal = newUserData['newUserEmal'];
+let NewUserAbout = newUserData['NewUserAbout'];
+const updateDataUser = (e) => {
+    e.preventDefault();
+    dataUser = dataUser;
+    let newUserName2 = newUserName.value;
+    return updateUserName(dataUser, newUserName2, 'update');
+}
+newUserData.addEventListener('submit', updateDataUser);

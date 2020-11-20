@@ -94,7 +94,7 @@
                     <div>
                         <button onclick="ShowAddNewCode('x')" class="closeBtn toggleClose">X</button>
                     </div>
-                    <div class="d-flex-start width-100 " onclick="toggleModals('MUserInformation')">
+                    <div class="contentHead width-100 " onclick="toggleModals('MUserInformation');ShowAddNewCode('x')">
                         <img src="" alt="Profile" title="Profile" class="photoUserLog" >
                         <p  class="showHideAll userDisplayName"></p>
                     </div>
@@ -148,7 +148,7 @@
             </ul>
             <input type="button" value="Login" class="btn login btnLogin" onclick="toggleModals('MLogin')" id="">
             <input type="button" value="Logout" class="btn logout btnLogOut hide" onclick="LogOutMain(); toggleModals('x')">
-            <p onclick="toggleModals('MRegister')">
+            <p onclick="toggleModals('MRegister')" style="cursor:pointer">
                 ¿Don't you have an account? <br>
                 <span style="text-decoration: underline">
                     Create an account here.
@@ -224,15 +224,14 @@
                     <legend>Add description (Optional)</legend>
                     <input type="text" id="newDescriptionUser">
                 </fieldset>
-                <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
-                <label for="filePhoto">
-                    <i class="material-icons">&#xe2c3;</i>
-                </label>
-                <input type="file" id="filePhoto" onchange="return newUserPhoto(event)">
-                <img src="" alt="" id="prevUserPhoto" width="80">
-                <div id="visorFiles">
-
+                <div class="contentPrevPhoto">
+                    <label for="filePhoto" class="forFile">
+                        <i class="material-icons">&#xe2c3;</i>
+                    </label>
+                    <input type="file" id="filePhoto" class="filePhoto" onchange="return newUserPhoto(event)">
+                    <img src="img/profile/user.svg" alt="" title="" id="prevUserPhoto" class="prevUserPhoto " >
                 </div>
+                <p>Choose your profile photo(.jpg, .jpeg, .png)</p>
                 <button class="btn">Start</button>
                 
             </form>      
@@ -336,10 +335,10 @@
             <div>
                 <button class="fa closeBtn " onclick="toggleModals('x')" >&#xf060;</button>
             </div>
-            <p class="f-z-s editProfile" onclick="ShowHiddeUserEdit()"><i class="material-icons">&#xe3c9;</i></p>
+            <p class="f-z-s editProfile hide" onclick="ShowHiddeUserEdit()" id="userProfileEdit"><i class="material-icons">&#xe3c9;</i></p>
             <div class="MainUserProfile d-flex-c-col">
                 <div class="wrapperPhotoUser">
-                    <img src="" alt="" id=""  class="photoUserLog" alt="">
+                    <img src="" alt="" id=""  class="photoUserLog" alt="" onclick="ShowHiddeUserEdit()">
                     <p class="userDisplayName"></p>
                 </div>
                 <input type="button" class="btn btnLogin" value="login" onclick="toggleModals('MLogin')">
@@ -347,11 +346,11 @@
             </div>
             <div class="UpdateUserProfile width-100 d-flex-c-col hide" > 
                 <div class="photoUser" >                            
-                    <img src="" alt="" id="" class="photoUserLog">
-                    <div class="wrapperSelectPhoto">                                
-                        <p class="material-icons">&#xe439;                              
-                        </p>
-                    </div>
+                    <img src="" alt="" id="" class="photoUserLog prevUserPhoto" id="">
+                    <label for="filePhoto2" class="forFile">
+                        <i class="material-icons">&#xe2c3;</i>
+                    </label>
+                    <input type="file" id="filePhoto2" class="filePhoto" onchange="return newUserPhoto(event, 'update')">
                 </div>
                 <form action="" id="newUserData">
                     <fieldset>
@@ -367,7 +366,7 @@
                         <legend>About you</legend>
                         <input type="text" value="Developer" id="NewUserAbout">
                     </fieldset>
-                    <button class="btn" onclick="updateUserImg()">
+                    <button class="btn" onclick="updateUserName()">
                         Update
                     </button>
                 </form>
