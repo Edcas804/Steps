@@ -17,7 +17,7 @@ const toggleModals = (modal, back) => {
         }
     }
 }
-// toggleModals('MRegister');
+// toggleModals('MChangePassword', true);
 
 
 

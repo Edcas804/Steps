@@ -167,6 +167,7 @@ auth.onAuthStateChanged(firebaseUser => {
             else{
                 photoUserLog.forEach(photo => {photo.src = 'img/profile/user.svg'});
             }
+
             
         }
         if(firebaseUser.isAnonymous){
@@ -222,6 +223,29 @@ const loginWithGoogle = (provider) => {
         var credential = error.credential;
         // ...
       });
+
+}
+const sendNewChangePassword = () => {
+    let mail = document.getElementById('emailForNewPassword').value;
+    auth.sendPasswordResetEmail(mail)
+    .then(()=> {
+        l('Email enviado');
+        modalError.classList.add('bg-redOrange');
+        errorAll.innerHTML = `Se han enviado las instrucciones a tu correo ${mail}`;
+        toggleModals('MError', true);
+        setTimeout( () => {
+            toggleModals('x', true);
+            setTimeout(()=>{
+                toggleModals('MLogin');
+            }, 500)
+
+        }, 5000)
+    })
+    .catch(error=> {
+        l(error);
+        errorAll.innerHTML = error.message;
+        toggleModals('MError', true)
+    })
 
 }
 

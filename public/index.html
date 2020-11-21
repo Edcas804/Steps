@@ -182,6 +182,7 @@
                         <legend>Password</legend>
                         <input type="password" id="userLoginPassword">
                     </fieldset>
+                    <p class="c-link" onclick="toggleModals('MChangePassword', true)">¿Don't remember your password?</p>
                     <button class="btn">Start</button>
                     <p onclick="toggleModals('MRegister')">
                         ¿Don't you have an account? <br>
@@ -245,6 +246,19 @@
                     Se ha presentado un error inesperado
                 </p>
                 <input type="button" class="btn" value="Ok" onclick="toggleModals('x', true)">
+            </div>
+        </div>
+        <div class="allModals2" id="MChangePassword">
+            <div class="modalChangePassword">
+
+                <p id="">
+                    Ingresa tu correo electrónico:
+                </p>
+                <fieldset>
+                    <legend>Your email</legend>
+                    <input type="email" id="emailForNewPassword">
+                </fieldset>
+                <button type="button" class="mainBtn" value="Enviar" onclick="sendNewChangePassword()">Enviar</button>
             </div>
         </div>
         <!-- modal inputs for new data -->

@@ -247,7 +247,7 @@
         display: inline-block;
     }
 }
-.modalError {
+.modalError, .modalChangePassword {
     @include flexcenter;
     flex-direction: column;
     position: relative;
@@ -281,4 +281,25 @@
         }
     }
     
+}
+.modalChangePassword{
+    background: var(--black-color);
+    p {
+        color: var(--primary-color);
+    }
+    img{
+        filter: invert(100%);
+        width: 3rem;
+        height: 3rem;
+        margin: 0 0 1rem 0;
+    }
+    fieldset{
+        @include fieldsetAll;
+    }
+    input{
+        @include inputFieldset;
+    }
+    button{
+        @include mainBtn;
+    }
 }
