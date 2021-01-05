@@ -42,8 +42,11 @@
     }
 }
 ::-webkit-scrollbar{
-    width: .5rem;
+    width: .4rem;
     height: .5rem;
+    &:hover {
+        cursor: pointer;
+    }
 }
 ::-webkit-scrollbar-thumb{
     background:var(--primary-color);
@@ -51,12 +54,15 @@
     &:active {
         background: var(--hight-color);
     }
+    &:hover {
+        cursor: pointer;
+    }
 }
 ::-webkit-scrollbar-track{
     border-radius: 1rem;
     transition: .5s;
     &:hover {
-        background: #aaa;
+        cursor: pointer;
     }
 }
 ::-webkit-scrollbar-corner {
@@ -195,7 +201,7 @@
     &:hover, &:focus { 
         filter: hue-rotate(20deg);
     }
-    @include flexcenter
+    @include flexcenter;
     legend {
         padding: 0 1rem .3rem 1rem;
 

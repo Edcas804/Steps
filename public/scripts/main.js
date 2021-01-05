@@ -78,7 +78,7 @@ function animationWin2(win){
     }
 
 }
-activeWindow('app');
+activeWindow('home');
 
 // modals for add new 
 let newasideMenu = true;

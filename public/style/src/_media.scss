@@ -144,4 +144,31 @@
             display: none;
         }
     }
+    .about {
+	.wrapperAbout{
+	    .itemDescription {
+		width: 90%;
+		height: 100%;
+		// box-shadow: var(--shadow-short);
+		margin: auto;
+		@include flexcenter;
+		flex-direction: column;
+		align-items: center;
+		h6 {
+		    font-size: var(--font-size-extraBig);
+		    line-height: 0.8;
+		    color: var(--white-color);
+		    padding: 1rem 0;
+		    font-weight: bold;
+		    text-align: center;
+		}
+		p {
+		    font-size: var(--font-size-large);
+		    color: var(--white-color);
+		    text-align: center;
+		    padding: 1rem 0;
+		}
+	    }
+	}
+    }
 }
